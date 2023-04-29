@@ -1,4 +1,8 @@
 <?php
+
+    // Start the session
+    session_start();
+
     $email=$_POST['email'];
     $psw=$_POST['psw'];
 
@@ -14,6 +18,7 @@
         $user=mysqli_fetch_assoc($result);
 
         if($user){
+            
             $checkpsw="SELECT * FROM signup WHERE email='$email' AND password='$psw'";
             $resultpsw=mysqli_query($db, $checkpsw);
             if (mysqli_num_rows($resultpsw) == 1) {

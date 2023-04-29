@@ -1,4 +1,7 @@
 <?php
+    // Start the session
+    session_start();
+    
     $fname=$_POST['fname'];
     $lname=$_POST['lname'];
     $email=$_POST['email'];
@@ -27,9 +30,10 @@
                 exit;
             }
             else{
-                $query="INSERT INTO signup(firstname, lastname, email, phonenum, password, password2) VALUES($fname, $lname, $email, $num, $psw, $psw2)";
+                
+                $query="INSERT INTO signup(firstname, lastname, email, phonenum, password, password2) 
+                    VALUES('$fname', '$lname', '$email', '$num', '$psw', '$psw2')";
                 mysqli_query($db, $query);
-                echo "<h2>Registration Successful!</h2>";
                 $_SESSION['email']=$email;
                 header("location: ../html/home.html");
             }
