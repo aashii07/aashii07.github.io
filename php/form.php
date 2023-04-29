@@ -29,7 +29,7 @@
         if($row){
             $callerID=$row["id"];
 
-            $query="INSERT INTO patient(firstname, lastname, age, gender, medcondition, date, time, callerid) 
+            $query="INSERT INTO patient(firstname, lastname, age, gender, description, date, time, callerid) 
                 VALUES('$fnamep', '$lnamep', '$age', '$gender', '$subject', '$date', '$time', '$callerID')";
             mysqli_query($db, $query);
 

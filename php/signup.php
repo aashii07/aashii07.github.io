@@ -6,6 +6,7 @@
     $lname=$_POST['lname'];
     $email=$_POST['email'];
     $num=$_POST['num'];
+    $role=$_POST['role'];
     $psw=$_POST['psw'];
     $psw2=$_POST['psw2'];
 
@@ -31,11 +32,21 @@
             }
             else{
                 
-                $query="INSERT INTO signup(firstname, lastname, email, phonenum, password, password2) 
-                    VALUES('$fname', '$lname', '$email', '$num', '$psw', '$psw2')";
+                $query="INSERT INTO signup(firstname, lastname, email, phonenum, role, password, password2) 
+                    VALUES('$fname', '$lname', '$email', '$num', '$role', '$psw', '$psw2')";
                 mysqli_query($db, $query);
                 $_SESSION['email']=$email;
-                header("location: ../html/home.html");
+
+                if($role=='p'){
+                    header("location: ../html/home.html");
+                }
+                else if($role=='c'){
+                    header("location: ../html/dash.html");
+                }
+                else{
+                    header("location: ../html/resource.html");
+                }
+                
             }
         }
     }
