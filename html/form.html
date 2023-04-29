@@ -12,46 +12,55 @@
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="home.html">Home</a>
-        <a href="f.html">Register</a>
-        <a href="sign.html">Sign up</a>
+        <a href="f.html">Report</a>
+        <a href="log.html">Sign up</a>
         <a href="logout.html">Log out</a>
     </div>
 
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 
-    <h1>Register Form</h1>
+    <h1>Patient Details</h1>
 
     <div class="container">
-        <form action="/action_page.php">
-            <label for="fname">First Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="Patient's first name..">
+        
 
-            <label for="lname">Last Name</label>
-            <input type="text" id="lname" name="lastname" placeholder="Patient's last name..">
 
-            <label for="age">Age</label>
-            <input type="text" id="age" name="age" placeholder="Patient's age..">
+        <form class="modal-content animate" action="../php/form.php" method="post">
 
-            <label>Gender</label>
+            <label for="fname"><b>First Name</b></label>
+            <input type="text" placeholder="Enter first name" name="fnamep" required>
+
+            <label for="lname"><b>Last Name</b></label>
+            <input type="text" placeholder="Enter your last name" name="lnamep" required>
+
+            <label for="age"><b>Age</b></label>
+            <input type="text" placeholder="Enter age" name="age" required>
+
+            <label><b>Gender</b></label>
             <br><br>
             <label class="choice">Male
-                <input type="radio" checked="checked" name="radio">
+                <input type="radio" checked="checked" name="gender" value="m">
                 <span class="checkmark"></span>
             </label>
             <label class="choice">Female
-                <input type="radio" name="radio">
+                <input type="radio" name="gender" value="f">
                 <span class="checkmark"></span>
             </label>
             <label class="choice">Other
-                <input type="radio" name="radio">
+                <input type="radio" name="gender" value="o">
                 <span class="checkmark"></span>
             </label>
 
             <br><br>
-            <label for="subject">Condition of Patient</label>
+            <label for="subject"><b>Medical Condition</b></label>
             <textarea id="subject" name="subject" placeholder="Write here.." style="height:200px"></textarea>
 
-            <input type="submit" value="Submit">
+            
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn2">Cancel</button>
+                <button type="submit" class="signupbtn">Login</button>
+            </div>
+
         </form>
     </div>
 
