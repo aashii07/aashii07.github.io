@@ -34,7 +34,7 @@
             mysqli_query($db, $query);
 
             echo "<h2>Incident successfully reported!</h2>";
-            //header("location: ../html/home.html");
+            //header("location: ../htmlC/home.html");
             
         }
         else{

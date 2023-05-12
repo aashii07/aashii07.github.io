@@ -6,7 +6,8 @@
     $lname=$_POST['lname'];
     $email=$_POST['email'];
     $num=$_POST['num'];
-    $role='p';
+    $gender=$_POST['gender'];
+    $dob=$_POST['dob'];
     $psw=$_POST['psw'];
     $psw2=$_POST['psw2'];
 
@@ -17,7 +18,7 @@
     }
     else{
         //check if already has an account
-        $check="SELECT * FROM signup WHERE email='$email' LIMIT 1";
+        $check="SELECT * FROM public WHERE email='$email' LIMIT 1";
         $result=mysqli_query($db, $check);
         $user=mysqli_fetch_assoc($result);
 
@@ -32,20 +33,12 @@
             }
             else{
                 
-                $query="INSERT INTO signup(firstname, lastname, email, phonenum, role, password, password2) 
-                    VALUES('$fname', '$lname', '$email', '$num', '$role', '$psw', '$psw2')";
+                $query="INSERT INTO public(firstname, lastname, email, phonenum, gender, dob, password, password2) 
+                    VALUES('$fname', '$lname', '$email', '$num', '$gender', '$dob', '$psw', '$psw2')";
                 mysqli_query($db, $query);
                 $_SESSION['email']=$email;
-
-                if($role=='p'){
-                    header("location: ../html/home.html");
-                }
-                else if($role=='c'){
-                    header("location: ../html/dash.html");
-                }
-                else{
-                    header("location: ../html/resource.html");
-                }
+                echo $_SESSION['email'];
+                header("location: ../htmlC/home.html");
                 
             }
         }

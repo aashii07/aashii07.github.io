@@ -7,6 +7,7 @@
     $email=$_POST['email'];
     $num=$_POST['num'];
     $role=$_POST['role'];
+    $place=$_POST['place'];
     $psw=$_POST['psw'];
     $psw2=$_POST['psw2'];
 
@@ -17,7 +18,13 @@
     }
     else{
         //check if already has an account
-        $check="SELECT * FROM signup WHERE email='$email' LIMIT 1";
+        if($role=='c'){
+            $check="SELECT * FROM control_officer WHERE email='$email' LIMIT 1";
+        }
+        else{
+            $check="SELECT * FROM samu_staff WHERE email='$email' LIMIT 1";
+        }
+        
         $result=mysqli_query($db, $check);
         $user=mysqli_fetch_assoc($result);
 
@@ -32,19 +39,29 @@
             }
             else{
                 
-                $query="INSERT INTO signup(firstname, lastname, email, phonenum, role, password, password2) 
-                    VALUES('$fname', '$lname', '$email', '$num', '$role', '$psw', '$psw2')";
+                if($role=='c'){
+                    $query="INSERT INTO control_officer(firstname, lastname, email, phonenum, password, password2) 
+                        VALUES('$fname', '$lname', '$email', '$num', '$psw', '$psw2')";
+                }
+                else{
+                    $status="available";
+                    $query="SELECT id FROM hospital WHERE name='$place' LIMIT 1";
+                    $result=mysqli_query($db, $query);
+                    $row=mysqli_fetch_assoc($result);
+                    $hospital_id=$row['id'];
+                    $query="INSERT INTO samu_staff(firstname, lastname, email, phonenum, role, status, password, password2, hospital_id) 
+                        VALUES('$fname', '$lname', '$email', '$num', '$role', '$status', '$psw', '$psw2', '$hospital_id')";
+                }
+                
+
                 mysqli_query($db, $query);
                 $_SESSION['email']=$email;
 
-                if($role=='p'){
-                    header("location: ../html/home.html");
-                }
-                else if($role=='c'){
-                    header("location: ../html/dash.html");
+                if($role=='c'){
+                    header("location: ../html/resource.html");
                 }
                 else{
-                    header("location: ../html/resource.html");
+                    header("location: ../html/dash.html");
                 }
                 
             }
