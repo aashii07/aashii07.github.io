@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../css/log.css" />
-    <script type="text/JavaScript" src="../js/log.js"></script>
+    <link rel="stylesheet" type="text/css" href="../cssC/log.css" />
+    <script type="text/JavaScript" src="../jsC/log.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -63,16 +63,28 @@
                 <label for="num"><b>Phone Number</b></label>
                 <input type="text" placeholder="Enter your phone number" name="num" required>
 
-                <br>
-                <label><b>Role</b></label><br>
-                <select id="rl" name="role" 
-                    style="padding: 11px; border-color: #ccc; text-align: center; margin-top: 5px; margin-bottom: 7px; width: 100%;" >
-                    <option value="p">General Public</option>
-                    <option value="c">Controlling Officer</option>
-                    <option value="s">SAMU Staff</option>
-                </select>
-                <br>
+                <br><br>
+                <label><b>Gender</b></label>
+                <br><br>
+                <label class="choice">Male
+                    <input type="radio" checked="checked" name="gender" value="m">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="choice">Female
+                    <input type="radio" name="gender" value="f">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="choice">Other
+                    <input type="radio" name="gender" value="o">
+                    <span class="checkmark"></span>
+                </label>
 
+                <br><br>
+                <label for="dob"><b>Date of Birth</b></label>
+                <br><br>
+                <input type="date" id="dob" name="dob">
+
+                <br><br>
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter a password" name="psw" required>
 
