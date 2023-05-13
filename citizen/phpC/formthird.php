@@ -6,11 +6,12 @@
     $lnamep=$_POST['lnamep'];
     $age=$_POST['age'];
     $gender=$_POST['gender'];
+    $loc=$_POST['loc'];
     $subject=$_POST['subject'];
     
     date_default_timezone_set("Indian/Mauritius");
-    $date=date("Y-m-d");
-    $time=date("H:i:s");
+    $report = date("Y-m-d H:i:s");
+
     
     //DB connection
     $db=new mysqli('localhost', 'root', '!AAshi4477', 'fyp');
@@ -22,15 +23,26 @@
         
         $user=$_SESSION['email'];
         
-        $caller="SELECT id FROM signup WHERE email='$user' LIMIT 1";
+        $caller="SELECT id FROM public WHERE email='$user' LIMIT 1";
         $result=mysqli_query($db, $caller);
         $row=mysqli_fetch_assoc($result);
 
         if($row){
-            $callerID=$row["id"];
+            $query="INSERT INTO patient(firstname, lastname, age, gender) 
+                VALUES('$fnamep', '$lnamep', '$age', '$gender')";
+            mysqli_query($db, $query);
 
-            $query="INSERT INTO patient(firstname, lastname, age, gender, description, date, time, callerid) 
-                VALUES('$fnamep', '$lnamep', '$age', '$gender', '$subject', '$date', '$time', '$callerID')";
+            $patient="SELECT id FROM patient ORDER BY id DESC LIMIT 1";
+            $result=mysqli_query($db, $patient);
+            $id=mysqli_fetch_assoc($result);
+            $patientID=$id["id"];
+
+
+            $callerID=$row["id"];
+            $status="pending";
+
+            $query="INSERT INTO incident(location, description, status, reported_datetime, patient_id, public_id) 
+                VALUES('$loc', '$subject', '$status', '$report', '$patientID', '$callerID')";
             mysqli_query($db, $query);
 
             echo "<h2>Incident successfully reported!</h2>";

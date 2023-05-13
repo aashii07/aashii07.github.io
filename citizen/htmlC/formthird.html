@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="../cssC/form.css" />
     <script type="text/JavaScript" src="../jsC/form.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7QxELH5K885dSSgb8wEt1f01PiITwWzM"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -15,7 +16,7 @@
         <a href="home.html">Home</a>
         <a href="f.html">Report</a>
         <a href="log.html">Sign up</a>
-        <a href="../php/logout.php">Log out</a>
+        <a href="../phpC/logout.php">Log out</a>
     </div>
 
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
@@ -23,15 +24,21 @@
     <h1>Patient Details</h1>
 
     <div class="container">
-        <form action="../php/form.php" method="post">
+        <form action="../phpC/formthird.php" method="post">
+
+            
+            
+            
+            
+
             <label for="fnamep"><b>First Name</b></label>
-            <input type="text" placeholder="Enter first name" name="fnamep" required>
+            <input type="text" placeholder="Enter first name" name="fnamep">
 
             <label for="lnamep"><b>Last Name</b></label>
-            <input type="text" placeholder="Enter your last name" name="lnamep" required>
+            <input type="text" placeholder="Enter your last name" name="lnamep">
 
             <label for="age"><b>Age</b></label>
-            <input type="text" placeholder="Enter age" name="age" required>
+            <input type="text" placeholder="Enter age" name="age">
 
             <label><b>Gender</b></label>
             <br><br>
@@ -49,6 +56,10 @@
             </label>
 
             <br><br>
+            <label for="loc"><b>Location</b></label>
+            <input type="text" placeholder="Enter location" name="loc">
+
+            <br>
             <label for="subject"><b>Description</b></label>
             <textarea id="subject" name="subject" placeholder="Write here.." style="height:100px" required></textarea>
 

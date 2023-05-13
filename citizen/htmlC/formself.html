@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../cssC/form.css" />
+    <script type="text/JavaScript" src="../jsC/form.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7QxELH5K885dSSgb8wEt1f01PiITwWzM"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="home.html">Home</a>
+        <a href="f.html">Report</a>
+        <a href="log.html">Sign up</a>
+        <a href="../phpC/logout.php">Log out</a>
+    </div>
+
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+    <h1>Incident Details</h1>
+
+    <div class="container">
+        <form action="../phpC/formself.php" method="post">
+
+            
+            
+            
+            
+
+            
+            
+            <label for="loc"><b>Location</b></label>
+            <input type="text" placeholder="Enter location" name="loc" required>
+
+            <br>
+            <label for="subject"><b>Description</b></label>
+            <textarea id="subject" name="subject" placeholder="Write here.." style="height:100px" required></textarea>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</body>
+
+</html>
