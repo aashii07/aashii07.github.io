@@ -2,7 +2,8 @@
     // Start the session
     session_start();
    
-    $loc=$_POST['loc'];
+    $lat=$_POST['lat'];
+    $long=$_POST['long'];
     $subject=$_POST['subject'];
     
     date_default_timezone_set("Indian/Mauritius");
@@ -45,9 +46,18 @@
         $gender=$row["gender"];
 
         if($row){
-            $query="INSERT INTO patient(firstname, lastname, age, gender) 
+            $check="SELECT id FROM patient WHERE firstname='$fname' AND lastname='$lname' LIMIT 1";
+            $result=mysqli_query($db, $check);
+            $old=mysqli_fetch_assoc($result);
+            
+            if($old){
+                $patientID=$old["id"];
+            }else{
+                $query="INSERT INTO patient(firstname, lastname, age, gender) 
                 VALUES('$fname', '$lname', '$age', '$gender')";
-            mysqli_query($db, $query);
+                mysqli_query($db, $query);
+            }
+            
 
             $patient="SELECT id FROM patient ORDER BY id DESC LIMIT 1";
             $result=mysqli_query($db, $patient);
@@ -57,8 +67,8 @@
             
             $status="pending";
 
-            $query="INSERT INTO incident(location, description, status, reported_datetime, patient_id, public_id) 
-                VALUES('$loc', '$subject', '$status', '$report', '$patientID', '$callerID')";
+            $query="INSERT INTO incident(latitude, longitude, description, status, reported_datetime, patient_id, public_id) 
+                VALUES('$lat', '$long', '$subject', '$status', '$report', '$patientID', '$callerID')";
             mysqli_query($db, $query);
 
             echo "<h2>Incident successfully reported!</h2>";

@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html>
+<style>
+    .button-91 {
+        color: #fff;
+        padding: 15px 25px;
+        background-color: #38D2D2;
+        background-image: radial-gradient(93% 87% at 87% 89%, rgba(0, 0, 0, 0.23) 0%, transparent 86.18%), radial-gradient(66% 66% at 26% 20%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 69.79%, rgba(255, 255, 255, 0) 100%);
+        box-shadow: inset -3px -3px 9px rgba(255, 255, 255, 0.25), inset 0px 3px 9px rgba(255, 255, 255, 0.3), inset 0px 1px 1px rgba(255, 255, 255, 0.6), inset 0px -8px 36px rgba(0, 0, 0, 0.3), inset 0px 1px 5px rgba(255, 255, 255, 0.6), 2px 19px 31px rgba(0, 0, 0, 0.2);
+        border-radius: 14px;
+        font-weight: bold;
+        font-size: 16px;
+
+        border: 0;
+
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+
+        cursor: pointer;
+}
+</style>
 
 <head>
     <link rel="stylesheet" type="text/css" href="../cssC/form.css" />
     <script type="text/JavaScript" src="../jsC/form.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7QxELH5K885dSSgb8wEt1f01PiITwWzM"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -24,26 +42,56 @@
     <h1>Incident Details</h1>
 
     <div class="container">
+       
+        <button class="button-91" role="button" onclick="getLocation()">Get Location</button>
+        <br><br>
         <form action="../phpC/formself.php" method="post">
 
             
             
-            
-            
+           
 
             
             
-            <label for="loc"><b>Location</b></label>
-            <input type="text" placeholder="Enter location" name="loc" required>
+           
 
-            <br>
+            <label for="latitude"><b>Latitude</b></label>
+            <input type="text" id="latitude" name="lat"><br>
+            <label for="longitude"><b>Longitude</b></label>
+            <input type="text" id="longitude" name="long"><br>
+
+            
             <label for="subject"><b>Description</b></label>
             <textarea id="subject" name="subject" placeholder="Write here.." style="height:100px" required></textarea>
+
+            
 
             <input type="submit" value="Submit">
         </form>
     </div>
+    
+
+
+    <script>
+        
+        
+        function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(fillForm);
+        } else {
+          alert("Geolocation is not supported by this browser.");
+        }
+      }
+
+      function fillForm(position) {
+        document.getElementById("latitude").value = position.coords.latitude;
+        document.getElementById("longitude").value = position.coords.longitude;
+      }
+        </script>
+        
 
 </body>
+
+
 
 </html>
