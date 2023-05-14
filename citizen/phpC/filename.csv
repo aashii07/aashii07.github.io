@@ -1,0 +1,51 @@
+incidentID,description,severity
+1,suffocating,1
+2,severe fever,2
+3,minor cut,3
+4,severe burns,1
+5,fever,2
+6,"hand not moving, suspect fracture",2
+7,diarrhea and unconscious,1
+8,mild fever,3
+9,falling and excessive bleeding,1
+10,minor head injury due to fall,2
+11,severe fever,2
+12,minor cut,3
+13,severe burns,1
+14,fever,2
+15,falling and excessive bleeding and unconscious,1
+16,minor head injury due to fall,2
+17,severe fever,2
+18,"hand not moving, suspect fracture",2
+19,diarrhea and unconscious,1
+20,mild fever,3
+21,falling and excessive bleeding and unconscious,1
+22,minor head injury due to fall,2
+23,severe fever,2
+24,minor cut,3
+25,mild fever,3
+26,falling and excessive bleeding and unconscious,1
+27,minor head injury due to fall,2
+28,fever,2
+29,"hand not moving, suspect fracture",2
+30,diarrhea and unconscious,1
+31,mild fever,3
+32,falling and excessive bleeding and unconscious,1
+33,major head injury due to fall,3
+34,severe fever,2
+35,minor cut,3
+36,severe burns,1
+37,fever,2
+38,falling and excessive bleeding and unconscious,1
+39,minor head injury due to fall,2
+40,severe fever,2
+41,"hand not moving, suspect fracture",2
+42,diarrhea and unconscious,1
+43,minor cut,3
+44,mild fever,3
+45,falling ,2
+46,minor head injury due to fall,2
+47,fever,2
+48,fractured,2
+49,diarrhea and unconscious,1
+50,mild fever,3

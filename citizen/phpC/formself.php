@@ -20,29 +20,13 @@
         
         $user=$_SESSION['email'];
         
-        $caller="SELECT id FROM public WHERE email='$user' LIMIT 1";
+        $caller="SELECT id, firstname, lastname, DATEDIFF(CURDATE(), dob)/365.25, gender FROM public WHERE email='$user' LIMIT 1";
         $result=mysqli_query($db, $caller);
         $row=mysqli_fetch_assoc($result);
         $callerID=$row["id"];
-
-        $caller="SELECT firstname FROM public WHERE email='$user' LIMIT 1";
-        $result=mysqli_query($db, $caller);
-        $row=mysqli_fetch_assoc($result);
         $fname=$row["firstname"];
-
-        $caller="SELECT lastname FROM public WHERE email='$user' LIMIT 1";
-        $result=mysqli_query($db, $caller);
-        $row=mysqli_fetch_assoc($result);
         $lname=$row["lastname"];
-
-        $caller="SELECT DATEDIFF(CURDATE(), dob)/365.25 FROM public WHERE email='$user' LIMIT 1";
-        $result=mysqli_query($db, $caller);
-        $row=mysqli_fetch_assoc($result);
         $age=$row["DATEDIFF(CURDATE(), dob)/365.25"];
-
-        $caller="SELECT gender FROM public WHERE email='$user' LIMIT 1";
-        $result=mysqli_query($db, $caller);
-        $row=mysqli_fetch_assoc($result);
         $gender=$row["gender"];
 
         if($row){
@@ -64,12 +48,30 @@
             $id=mysqli_fetch_assoc($result);
             $patientID=$id["id"];
 
-            
+            // Find the closest hospital
+            $hospitals = "SELECT id, SQRT(POW(69.1 * (latitude - $lat), 2) + POW(69.1 * ($long - longitude) * COS(latitude / 57.3), 2)) AS distance 
+                          FROM hospital ORDER BY distance ASC LIMIT 1";
+            $result = mysqli_query($db, $hospitals);
+            $hospital = mysqli_fetch_assoc($result);
+            $hospitalID = $hospital["id"];
+
+
+
+
+        
+
+
+
+
             $status="pending";
 
-            $query="INSERT INTO incident(latitude, longitude, description, status, reported_datetime, patient_id, public_id) 
-                VALUES('$lat', '$long', '$subject', '$status', '$report', '$patientID', '$callerID')";
+            $query="INSERT INTO incident(latitude, longitude, description, status, reported_datetime, patient_id, public_id, hospital_id) 
+                VALUES('$lat', '$long', '$subject', '$status', '$report', '$patientID', '$callerID', '$hospitalID')";
             mysqli_query($db, $query);
+
+          
+
+
 
             echo "<h2>Incident successfully reported!</h2>";
             //header("location: ../htmlC/home.html");
