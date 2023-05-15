@@ -48,13 +48,7 @@
             $id=mysqli_fetch_assoc($result);
             $patientID=$id["id"];
 
-            // Find the closest hospital
-            $hospitals = "SELECT id, SQRT(POW(69.1 * (latitude - $lat), 2) + POW(69.1 * ($long - longitude) * COS(latitude / 57.3), 2)) AS distance 
-                          FROM hospital ORDER BY distance ASC LIMIT 1";
-            $result = mysqli_query($db, $hospitals);
-            $hospital = mysqli_fetch_assoc($result);
-            $hospitalID = $hospital["id"];
-
+            
 
 
 
@@ -65,9 +59,11 @@
 
             $status="pending";
 
-            $query="INSERT INTO incident(latitude, longitude, description, status, reported_datetime, patient_id, public_id, hospital_id) 
-                VALUES('$lat', '$long', '$subject', '$status', '$report', '$patientID', '$callerID', '$hospitalID')";
+            $query="INSERT INTO incident(latitude, longitude, description, status, reported_datetime, patient_id, public_id) 
+                VALUES('$lat', '$long', '$subject', '$status', '$report', '$patientID', '$callerID')";
             mysqli_query($db, $query);
+
+
 
           
 
