@@ -84,7 +84,12 @@
 
                 $query="UPDATE samu_staff
                         SET status = 'dispatched'
-                        WHERE id = $hID  AND id = $dID";
+                        WHERE id = $hID";
+                mysqli_query($db, $query);
+
+                $query="UPDATE samu_staff
+                        SET status = 'dispatched'
+                        WHERE id = $dID";
                 mysqli_query($db, $query);
 
             }
@@ -174,7 +179,22 @@
 
                 $query="UPDATE samu_staff
                         SET status = 'dispatched'
-                        WHERE id = $eID AND id = $nID1 AND id = $nID2 AND id = $dID";
+                        WHERE id = $eID";
+                mysqli_query($db, $query);
+
+                $query="UPDATE samu_staff
+                        SET status = 'dispatched'
+                        WHERE id = $nID1";
+                mysqli_query($db, $query);
+
+                $query="UPDATE samu_staff
+                        SET status = 'dispatched'
+                        WHERE id = $nID2";
+                mysqli_query($db, $query);
+
+                $query="UPDATE samu_staff
+                        SET status = 'dispatched'
+                        WHERE id = $dID";
                 mysqli_query($db, $query);
                 
 
