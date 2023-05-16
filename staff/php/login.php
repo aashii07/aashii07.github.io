@@ -26,19 +26,28 @@
         if($user){
             if($role=='c'){
                 $checkpsw="SELECT * FROM control_officer WHERE email='$email' AND password='$psw'";
+                $resultpsw=mysqli_query($db, $checkpsw);
+                if (mysqli_num_rows($resultpsw) == 1) {
+                    $_SESSION['email']=$email;
+                    header("location: ../html/resource.html");
+                }
+                else{
+                    echo "<h2>Invalid Email or Password</h2>";
+                }
             }
             else{
                 $checkpsw="SELECT * FROM samu_staff WHERE email='$email' AND password='$psw'";
+                $resultpsw=mysqli_query($db, $checkpsw);
+                if (mysqli_num_rows($resultpsw) == 1) {
+                    $_SESSION['email']=$email;
+                    header("location: ../html/Sstatus.html");
+                }
+                else{
+                    echo "<h2>Invalid Email or Password</h2>";
+                }
             }
            
-            $resultpsw=mysqli_query($db, $checkpsw);
-            if (mysqli_num_rows($resultpsw) == 1) {
-                $_SESSION['email']=$email;
-                header("location: ../html/dash.html");
-            }
-            else{
-                echo "<h2>Invalid Email or Password</h2>";
-            }
+            
         }
         else{
             echo "<h2>This email has not been registered yet.</h2>";
