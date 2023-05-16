@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html>
+    <style>
+        .active {
+            background-color: #03d9ffbc;
+            /* Replace with your desired color */
+            color: #000000 !important;
+            /* Replace with your desired text color */
+        }
+    </style>
 
 <head>
     <link rel="stylesheet" type="text/css" href="../css/dash.css" />
@@ -11,10 +19,10 @@
 
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="dash.html">Dashboard</a>
+        <a href="home.html">Home</a>
         <a href="resource.html">Resource Management</a>
-        <a href="log.html">Sign up</a>
-        <a href="../php/logout.php">Log out</a>
+        <a href="dash.html" class="active">Dashboard</a>
+        <a href="../php/logout.php">Log Out</a>
     </div>
 
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>

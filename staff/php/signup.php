@@ -18,17 +18,15 @@
     }
     else{
         //check if already has an account
-        if($role=='c'){
-            $check="SELECT * FROM control_officer WHERE email='$email' LIMIT 1";
-        }
-        else{
-            $check="SELECT * FROM samu_staff WHERE email='$email' LIMIT 1";
-        }
-        
-        $result=mysqli_query($db, $check);
-        $user=mysqli_fetch_assoc($result);
+        $check1 = "SELECT * FROM control_officer WHERE email='$email' LIMIT 1";
+        $result=mysqli_query($db, $check1);
+        $user1=mysqli_fetch_assoc($result);
 
-        if($user){
+        $check2 = "SELECT * FROM samu_staff WHERE email='$email' LIMIT 1";
+        $result=mysqli_query($db, $check2);
+        $user2=mysqli_fetch_assoc($result);
+
+        if($user1 || $user2){
             echo "<h2>This email has already been registered.</h2>";
             
         }
@@ -58,10 +56,10 @@
                 $_SESSION['email']=$email;
 
                 if($role=='c'){
-                    header("location: ../html/resource.html");
+                    header("location: ../html/home.html");
                 }
                 else{
-                    header("location: ../html/dash.html");
+                    header("location: ../html/Shome.html");
                 }
                 
             }

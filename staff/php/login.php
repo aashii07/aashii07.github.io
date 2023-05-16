@@ -13,23 +13,21 @@
     }
     else{
         //check if already has an account
-        if($role=='c'){
-            $check="SELECT * FROM control_officer WHERE email='$email' LIMIT 1";
-        }
-        else{
-            $check="SELECT * FROM samu_staff WHERE email='$email' LIMIT 1";
-        }
-      
-        $result=mysqli_query($db, $check);
-        $user=mysqli_fetch_assoc($result);
+        $check1 = "SELECT * FROM control_officer WHERE email='$email' LIMIT 1";
+        $result=mysqli_query($db, $check1);
+        $user1=mysqli_fetch_assoc($result);
 
-        if($user){
-            if($role=='c'){
+        $check2 = "SELECT * FROM samu_staff WHERE email='$email' LIMIT 1";
+        $result=mysqli_query($db, $check2);
+        $user2=mysqli_fetch_assoc($result);
+
+        if($user1 || $user2){
+            if($user1){
                 $checkpsw="SELECT * FROM control_officer WHERE email='$email' AND password='$psw'";
                 $resultpsw=mysqli_query($db, $checkpsw);
                 if (mysqli_num_rows($resultpsw) == 1) {
                     $_SESSION['email']=$email;
-                    header("location: ../html/resource.html");
+                    header("location: ../html/home.html");
                 }
                 else{
                     echo "<h2>Invalid Email or Password</h2>";
@@ -40,7 +38,7 @@
                 $resultpsw=mysqli_query($db, $checkpsw);
                 if (mysqli_num_rows($resultpsw) == 1) {
                     $_SESSION['email']=$email;
-                    header("location: ../html/Sstatus.html");
+                    header("location: ../html/Shome.html");
                 }
                 else{
                     echo "<h2>Invalid Email or Password</h2>";
