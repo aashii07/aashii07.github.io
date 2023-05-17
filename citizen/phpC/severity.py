@@ -7,26 +7,35 @@ data.drop(['incidentID'], axis=1, inplace=True)
 
 #missing values
 data.isna().sum()
-#data shape
-data.shape
-#target balance
-data['severity'].value_counts(normalize = True).plot.bar()
 
 #preprocessing
 import re
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+from nltk.corpus import wordnet
 
 nltk.download('stopwords')
 nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
 
 lemmatizer = WordNetLemmatizer()
 stop_words = set(stopwords.words('english')) - set(['not'])
 
+def lemmatize_with_pos(word, pos_tag):
+  pos_map = {'N': wordnet.NOUN, 'V': wordnet.VERB, 'R': wordnet.ADV, 'J': wordnet.ADJ}
+  pos = pos_map.get(pos_tag[0], wordnet.NOUN)
+  return lemmatizer.lemmatize(word, pos=pos)
+
+def preprocess_text(text):
+  words = re.findall(r'\b\w+\b', text)
+  words = [word.lower() for word in words if word.lower() not in stop_words]
+  pos_tags = nltk.pos_tag(words)
+  lemmatized_words = [lemmatize_with_pos(word, pos) for word, pos in pos_tags]
+  return ' '.join(lemmatized_words)
+
 #remove all special characters, lowercase all the words, tokenize, remove stopwords, lemmatize
-data['descr'] = data['description'].apply(lambda x: ' '.join([lemmatizer.lemmatize(word.lower()) for word in re.findall(r'\b\w+\b', x) if word.lower() not in stop_words]))
-data.head(50)
+data['descr'] = data['description'].apply(preprocess_text)
 
 x = data['descr']
 y = data['severity']
@@ -81,8 +90,21 @@ description = data['description'].iloc[0]
 lemmatizer = WordNetLemmatizer()
 stop_words = set(stopwords.words('english')) - set(['not'])
 
+def lemmatize_with_pos(word, pos_tag):
+  pos_map = {'N': wordnet.NOUN, 'V': wordnet.VERB, 'R': wordnet.ADV, 'J': wordnet.ADJ}
+  pos = pos_map.get(pos_tag[0], wordnet.NOUN)
+  return lemmatizer.lemmatize(word, pos=pos)
+
+def preprocess_description(description):
+  words = re.findall(r'\b\w+\b', description)
+  words = [word.lower() for word in words if word.lower() not in stop_words]
+  pos_tags = nltk.pos_tag(words)
+  lemmatized_words = [lemmatize_with_pos(word, pos) for word, pos in pos_tags]
+  return ' '.join(lemmatized_words)
+
 # Extract description from HTML form and preprocess it
-preprocessed_description = ' '.join([lemmatizer.lemmatize(word.lower()) for word in re.findall(r'\b\w+\b', description) if word.lower() not in stop_words])
+preprocessed_description = preprocess_description(description)
+
 
 # Load the trained CountVectorizer model
 cv = CountVectorizer()
