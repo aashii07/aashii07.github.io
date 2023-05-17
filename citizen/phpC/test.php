@@ -62,10 +62,10 @@ if ($db->connect_error) {
                         $vehID = $veh["id"];
                         $vehN = $veh["license"];
 
-                        $query = "UPDATE vehicle
+                        /*$query = "UPDATE vehicle
                         SET status = 'dispatched'
                         WHERE id = $vehID";
-                        mysqli_query($db, $query);
+                        mysqli_query($db, $query);*/
 
                         $staff = "SELECT s.id, s.firstname, s.lastname 
                             FROM samu_staff s
@@ -90,7 +90,7 @@ if ($db->connect_error) {
                         $dN1 = $staff["firstname"];
                         $dN2 = $staff["lastname"];
 
-                        $query = "INSERT INTO incident_staff(incident_id, staff_id)
+                        /*$query = "INSERT INTO incident_staff(incident_id, staff_id)
                         VALUES('$id', '$hID')";
                         mysqli_query($db, $query);
 
@@ -106,11 +106,11 @@ if ($db->connect_error) {
                         $query = "UPDATE samu_staff
                         SET status = 'dispatched'
                         WHERE id = $dID";
-                        mysqli_query($db, $query);
+                        mysqli_query($db, $query);*/
 
                          // JavaScript alert for vehicle dispatch
                         echo '<script>
-                                alert("Hospital - ' . $hospitalN . '\nAmbulance - ' . $vehN . '\nHelper - ' . $hN1 . ' ' . $hN2 . '\nDriver - ' . $dN1 . ' ' . $dN2 . '");
+                                alert("Hospital: ' . $hospitalN . '\nAmbulance: ' . $vehN . '\nHelper: ' . $hN1 . ' ' . $hN2 . '\nDriver: ' . $dN1 . ' ' . $dN2 . '");
                                 window.location.href = "../html/resource.html";
                                 </script>';
 
@@ -147,10 +147,10 @@ if ($db->connect_error) {
                         $vehID = $veh["id"];
                         $vehN = $veh["license"];
 
-                        $query = "UPDATE vehicle
+                        /*$query = "UPDATE vehicle
                         SET status = 'dispatched'
                         WHERE id = $vehID";
-                        mysqli_query($db, $query);
+                        mysqli_query($db, $query);*/
 
                         $staff = "SELECT s.id, s.firstname, s.lastname  
                             FROM samu_staff s
@@ -167,14 +167,9 @@ if ($db->connect_error) {
 
                                         $row = mysqli_fetch_assoc($result);
                                         $nID1 = $row["id"];
-                                        $n1N1 = $row["firstname"];
-                                        $n1N2 = $row["lastname"];
-                                        
 
                                         $row = mysqli_fetch_assoc($result);
                                         $nID2 = $row["id"];
-                                        $n2N1 = $row["firstname"];
-                                        $n2N2 = $row["lastname"];
 
                                 } else {
                                         echo "No available staff found.";
@@ -190,8 +185,6 @@ if ($db->connect_error) {
                         $result = mysqli_query($db, $staff);
                         $staff = mysqli_fetch_assoc($result);
                         $eID = $staff["id"];
-                        $eN1 = $staff["firstname"];
-                        $eN2 = $staff["lastname"];
 
                         $staff = "SELECT s.id, s.firstname, s.lastname 
                             FROM samu_staff s
@@ -201,10 +194,8 @@ if ($db->connect_error) {
                         $result = mysqli_query($db, $staff);
                         $staff = mysqli_fetch_assoc($result);
                         $dID = $staff["id"];
-                        $dN1 = $staff["firstname"];
-                        $dN2 = $staff["lastname"];
 
-                        $query = "INSERT INTO incident_staff(incident_id, staff_id)
+                        /*$query = "INSERT INTO incident_staff(incident_id, staff_id)
                         VALUES('$id', '$eID')";
                         mysqli_query($db, $query);
 
@@ -238,11 +229,11 @@ if ($db->connect_error) {
                         $query = "UPDATE samu_staff
                         SET status = 'dispatched'
                         WHERE id = $dID";
-                        mysqli_query($db, $query);
+                        mysqli_query($db, $query);*/
 
                          // JavaScript alert for vehicle dispatch
                         echo '<script>
-                                alert("Hospital - ' . $hospitalN . '\nSAMU - ' . $vehN . '\nEmergency Physician - ' . $eN1 . ' ' . $eN2 . '\nNurse 1 - ' . $n1N1 . ' ' . $n1N2 . '\nNurse 2 - ' . $n2N1 . ' ' . $n2N2 . '\nDriver - ' . $dN1 . ' ' . $dN2 . '\n");
+                                alert("Hospital: ' . $hospitalID . '\nVehicle: ' . $vehID . '\nEmergency Physician: ' . $eID . '\nNurse 1: ' . $nID1 . '\nNurse 2: ' . $nID2 . '\nDriver: ' . $dID . '\n");
                                 window.location.href = "../html/resource.html";
                                 </script>';
 
@@ -258,10 +249,10 @@ if ($db->connect_error) {
                 date_default_timezone_set("Indian/Mauritius");
                 $dispatch = date("Y-m-d H:i:s");
 
-                $query = "UPDATE incident
+                /*$query = "UPDATE incident
                     SET status = 'dispatched', dispatched_datetime = '$dispatch', hospital_id = '$hospitalID', co_id = '$coID', vehicle_id = '$vehID'
                     WHERE id = $id";
-                mysqli_query($db, $query);
+                mysqli_query($db, $query);*/
 
 
 

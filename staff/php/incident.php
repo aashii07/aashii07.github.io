@@ -28,33 +28,38 @@
                         WHERE (i.status = 'dispatched' OR i.status = 'resolving')";
             $result = mysqli_query($db, $query);
             $row = mysqli_fetch_assoc($result);
-            $id = $row['incident_id'];
-            $status = $row['status'];
-            $desc = $row['description'];
-            echo $desc;
+            
 
-            if($status=="dispatched"){
+            if($row){
 
-                echo '<form method="POST" action="../php/resolving.php">';
-                echo '<input type="hidden" name="incident_id" value="' . $id . '">';
-                echo '<button type="submit">RESOLVING</button>';
-                echo '</form>';
+                
+                $id = $row['incident_id'];
+                $status = $row['status'];
+                $desc = $row['description'];
+                echo $desc;
+
+                if($status=="dispatched"){
+
+                    echo '<form method="POST" action="../php/resolving.php">';
+                    echo '<input type="hidden" name="incident_id" value="' . $id . '">';
+                    echo '<button type="submit">RESOLVING</button>';
+                    echo '</form>';
+                }
+                else if ($status=="resolving"){
+                    echo '<form method="POST" action="../php/closed.php">';
+                    echo '<input type="hidden" name="incident_id" value="' . $id . '">';
+                    echo '<button type="submit">CLOSED</button>';
+                    echo '</form>';
+    
+                }
+    
             }
             else{
-                echo '<form method="POST" action="../php/closed.php">';
-                echo '<input type="hidden" name="incident_id" value="' . $id . '">';
-                echo '<button type="submit">CLOSED</button>';
-                echo '</form>';
-
+                echo "No incident has been assigned yet.";
             }
 
-            // Add a button to echo $id
-            echo '<button type="button" onclick="echoId()">Echo ID</button>';
-            echo '<script>
-                    function echoId() {
-                        alert("' . $id . '");
-                    }
-                </script>';
+            
+            
 
             
 

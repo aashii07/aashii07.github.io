@@ -35,6 +35,35 @@
                 if (mysqli_num_rows($result) > 0) {
                     
                     $currentSeverity=0;
+                    echo "<style>
+                            .message-box {
+                                border: none;
+                                padding: 0;
+                                margin-bottom: 10px;
+                                text-align: center;
+                            }
+                            .severity-1 {
+                                background-color: rgb(255, 80, 80);
+                            }
+                            .severity-2 {
+                                background-color: rgb(255, 255, 90);
+                            }
+                            .severity-3 {
+                                background-color: lightgreen;
+                            }
+                            .message-box a {
+                                display: block;
+                                padding: 10px;
+                                text-decoration: none;
+                                color: black;
+                                font-size: 120%;
+                                text-align: center;
+                                transition: background-color 0.3s;
+                            }
+                            .message-box a:hover {
+                                background-color: rgba(255, 255, 255, 0.5);
+                            }
+                          </style>";
                     while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row['id'];
                         $severity = $row['severity'];
@@ -43,12 +72,14 @@
                         // Check if the severity has changed
                     
                         if ($severity !== $currentSeverity) {
-                            echo "<br><h2>Severity: $severity</h2>";
+                            echo"<div class='message-box'><h2>Severity: $severity</h2></div>";
                             $currentSeverity = $severity;
                         }
                         
                         
-                        echo "<a href='../php/assign.php?id=" . urlencode($id) . "'>$description</a><br>";
+                        echo "<div class='message-box severity-$severity'>
+                                <a href='../php/assign.php?id=" . urlencode($id) . "'>$description</a>
+                              </div>";
                         
                         // Add additional formatting if desired
                         
