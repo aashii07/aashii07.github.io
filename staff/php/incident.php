@@ -46,8 +46,14 @@
                     echo '</form>';
                 }
                 else if ($status=="resolving"){
+
+
                     echo '<form method="POST" action="../php/closed.php">';
                     echo '<input type="hidden" name="incident_id" value="' . $id . '">';
+                    echo '<label for="treatment">Prehospital Treatment</label><br>';
+                    echo '<textarea name="treatment" id="treatment" required></textarea><br><br>';
+                    echo '<label for="condition">Post-Treatment Conditions</label><br>';
+                    echo '<textarea name="condition" id="condition" required></textarea><br><br>';
                     echo '<button type="submit">CLOSED</button>';
                     echo '</form>';
     

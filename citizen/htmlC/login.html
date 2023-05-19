@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../cssC/log.css" />
+    <script type="text/JavaScript" src="../jsC/log.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+
+    <div id="id01" class="modal">
+
+        <span onclick="document.getElementById('id01').style.display='none'" class="close2" title="Close Modal">&times;</span>
+        <form class="modal-content animate" action="../phpC/login.php" method="post">
+
+            <div class="container">
+                <h1>Login</h1>
+                <hr>
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter your email" name="email" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter your password" name="psw" required>
+                    
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
+            
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn2">Cancel</button>
+                <button type="submit" class="signupbtn">Login</button>
+            </div>
+
+            <br><br><br>
+            <p class="note">Don't have an account? <a href="signup.html">Sign up now</a>!</p>
+            <br>
+
+        </form>
+    </div>
+
+    
+</body>
+
+</html>
