@@ -19,7 +19,7 @@
         date_default_timezone_set("Indian/Mauritius");
         $onsite = date("Y-m-d H:i:s");
         
-    echo $condition, $treatment;
+   
 
         $query = "UPDATE incident
                     SET status='closed', closed_datetime='$onsite', treatment='$treatment', posttreatment_condition='$condition'

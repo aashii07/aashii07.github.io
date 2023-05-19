@@ -36,13 +36,26 @@
             else{
                 $checkpsw="SELECT * FROM samu_staff WHERE email='$email' AND password='$psw'";
                 $resultpsw=mysqli_query($db, $checkpsw);
-                if (mysqli_num_rows($resultpsw) == 1) {
+                $user=mysqli_fetch_assoc($resultpsw);
+                $role=$user['role'];
+                if ($role=="u") {
                     $_SESSION['email']=$email;
-                    header("location: ../html/Shome.html");
+                    header("location: ../html/Uhome.html");
+                }
+                else if ($role=="f") {
+                    $_SESSION['email']=$email;
+                    header("location: ../html/Fhome.html");
+                }
+                else if ($user){
+                    $_SESSION['email']=$email;
+                    header("location: ../html/Fhome.html");
                 }
                 else{
                     echo "<h2>Invalid Email or Password</h2>";
+
                 }
+                   
+                
             }
            
             

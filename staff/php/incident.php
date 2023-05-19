@@ -15,9 +15,10 @@
                     WHERE email='$staff'";
         $result = mysqli_query($db, $user);
         $staff = mysqli_fetch_assoc($result);
+        $rl = $staff['role'];
        
 
-        if($staff){
+        if($rl=="e"){
 
             // Disable ONLY_FULL_GROUP_BY mode for the current session
             mysqli_query($db, "SET SESSION sql_mode = ''");
@@ -73,7 +74,7 @@
 
            
         }else{
-            echo "Only SAMU Staff can access this page.";
+            echo "Only Emergency Physician can access this page.";
         }
 
         

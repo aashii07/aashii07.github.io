@@ -1,15 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Title: PyScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
 
-	<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-	<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+        table {
+            border-collapse: collapse;
+            
+        }
 
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        select {
+            padding: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+    <title>Include PHP on Button Click</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body> <py-script src="severity.py"> </py-script> </body>
+<body>
+    <button id="includeButton">Include test.php</button>
+    <div id="result"></div>
+
+    <script>
+        // Function to include test.php
+        function includeTestPhp() {
+            $.ajax({
+                url: 'test.php',
+                type: 'GET',
+                success: function(response) {
+                    $('#result').html(response);
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        // Event listener for the button click
+        document.getElementById('includeButton').addEventListener('click', includeTestPhp);
+    </script>
+</body>
 </html>
