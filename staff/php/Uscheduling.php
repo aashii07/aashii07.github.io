@@ -141,18 +141,40 @@ if ($db->connect_error) {
                     $currentDate = strtotime('last Saturday');
                     $currentDate = strtotime('+2 day', $currentDate); // Start from Monday
 
+                    
+
                     for ($day = 0; $day < 7; $day++) {
                         $dayName = date('D', $currentDate);
                         $date = date('Y-m-d', $currentDate); // Format date as YYYY-MM-DD
+
+                        $q="SELECT shift FROM staff_schedule WHERE date='$date' AND staff_id='$personId'";
+                        $r=mysqli_query($db, $q);
+                        $rw=mysqli_fetch_assoc($r);
+                        $s=$rw['shift'];
+                        if($s=="d"){
+                            $S="Day";
+                        }else if($s=="dn"){
+                            $S="Day + Night";
+                        }else if($s=="n"){
+                            $S="Night";
+                        }else{
+                            $S="Off Duty";
+                        }
+
                         echo "<td data-row='$personId' data-col='$day' class='grid-cell'>
                             <input type='hidden' name='shift[$personId][$day][date]' value='$date'>
                             <input type='hidden' name='shift[$personId][$day][staff_id]' value='$personId'>
+                            
                             <select name='shift[$personId][$day][shift]'>
-                                <option value=''>Select Shift</option>
-                                <option value='dn'>Day + Night</option>
-                                <option value='d'>Day</option>
-                                <option value='n'>Night</option>
-                                <option value='o'>Off Duty</option>
+                            <option value='$s'>$S</option>
+                            " . ($S !== 'Day + Night' ? "<option value='dn'>Day + Night</option>" : "") . "
+                            " . ($S !== 'Day' ? "<option value='d'>Day</option>" : "") . "
+                            " . ($S !== 'Night' ? "<option value='n'>Night</option>" : "") . "
+                            " . ($S !== 'Off Duty' ? "<option value='o'>Off Duty</option>" : "") . "
+                
+                                
+                                
+                                
                             </select>
                         </td>";
                         $currentDate = strtotime('+1 day', $currentDate);
