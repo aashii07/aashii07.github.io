@@ -27,38 +27,16 @@
 
             if($status=="break"){
 
-                echo '<form method="POST" action="../php/offduty.php">';
-                echo '<input type="hidden" name="id" value="' . $id . '">';
-                echo '<button type="submit">OFFDUTY</button>';
-                echo '</form>';
-
                 echo '<form method="POST" action="../php/stavailable.php">';
                 echo '<input type="hidden" name="id" value="' . $id . '">';
                 echo '<button type="submit">AVAILABLE</button>';
                 echo '</form>';
             }
-            else if($status=="offduty"){
+            else if($status=="available"){
 
                 echo '<form method="POST" action="../php/break.php">';
                 echo '<input type="hidden" name="id" value="' . $id . '">';
                 echo '<button type="submit">BREAK</button>';
-                echo '</form>';
-
-                echo '<form method="POST" action="../php/stavailable.php">';
-                echo '<input type="hidden" name="id" value="' . $id . '">';
-                echo '<button type="submit">AVAILABLE</button>';
-                echo '</form>';
-
-            }else{
-
-                echo '<form method="POST" action="../php/break.php">';
-                echo '<input type="hidden" name="id" value="' . $id . '">';
-                echo '<button type="submit">BREAK</button>';
-                echo '</form>';
-
-                echo '<form method="POST" action="../php/offduty.php">';
-                echo '<input type="hidden" name="id" value="' . $id . '">';
-                echo '<button type="submit">OFFDUTY</button>';
                 echo '</form>';
 
             }

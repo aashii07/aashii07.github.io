@@ -74,7 +74,7 @@ if ($db->connect_error) {
                     <a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeNav()\">&times;</a>
                     <a href=\"../html/Uhome.html\">Home</a>
                     <a href=\"Uscheduling.php\" class=\"active\">Staff Scheduling</a>
-                    <a href=\"../html/Udash.html\">Dashboard</a>
+                    <a href=\"../html/Uremove.html\">Remove Staff</a>
                     <a href=\"logout.php\">Log Out</a>
                 </div>
 
