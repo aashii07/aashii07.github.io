@@ -48,7 +48,7 @@
                 }
                 else if ($user){
                     $_SESSION['email']=$email;
-                    header("location: ../html/Fhome.html");
+                    header("location: ../html/Shome.html");
                 }
                 else{
                     echo "<h2>Invalid Email or Password</h2>";

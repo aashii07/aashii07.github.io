@@ -16,11 +16,11 @@ if ($db->connect_error) {
     $hos = $row['hospital_id'];
 
     // Retrieve all staff from the hospital
-    $query = "SELECT * FROM samu_staff WHERE hospital_id='$hos'";
-    $staffResult = mysqli_query($db, $query);
+    $query = "SELECT * FROM vehicle WHERE hospital_id='$hos'";
+    $result = mysqli_query($db, $query);
 
-    echo "<form method='post' action='Uremove.php'>";
-
+    echo "<form method='post' action='Fremove.php'>";
+    
     echo "<html>
             <style>
                 .active {
@@ -51,6 +51,8 @@ if ($db->connect_error) {
                     background-color: teal;
                     color: white;
                 }
+                
+                
             </style>
 
             <head>
@@ -60,86 +62,81 @@ if ($db->connect_error) {
             </head>
 
             <body>
-                
                 <div id=\"mySidenav\" class=\"sidenav\">
                     <a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeNav()\">&times;</a>
-                    <a href=\"../html/Uhome.html\">Home</a>
-                    <a href=\"Uscheduling.php\">Staff Scheduling</a>
-                    <a href=\"UselectS.php\" class=\"active\">Remove Staff</a>
+                    <a href=\"../html/Fhome.html\">Home</a>
+                    <a href=\"FavaiV.php\">Vehicle Availability</a>
+                    <a href=\"../html/Fadd.html\">Add Vehicle</a>
+                    <a href=\"FselectV.php\" class=\"active\">Remove Vehicle</a>
                     <a href=\"logout.php\">Log Out</a>
                 </div>
                 <span style=\"font-size:30px;cursor:pointer\" onclick=\"openNav()\">&#9776; Menu</span>
                 <br>
             </body>
         </html>";
-        echo "<input type='text' id='search-input' onkeyup='filterNames()' placeholder='Search for staff' style='margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);'>
-        <br>";
 
-    echo "<script>
-        var selectedIDs = [];
+        echo "<input type='text' id='search-input' onkeyup='filterNames()' placeholder='Search for vehicle' style='margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);'>";
 
-        function toggleSelection(element, id) {
-          element.classList.toggle('selected');
-          var index = selectedIDs.indexOf(id);
-          if (index !== -1) {
-            selectedIDs.splice(index, 1);
-          } else {
-            selectedIDs.push(id);
-          }
-        }
+    echo "<div id='vehicle-list'>";
+    while ($row = mysqli_fetch_assoc($result)) {
+        $license = $row['license'];
+        $type = $row['type'];
+        $id = $row['id'];
 
-        function submitForm() {
-          document.getElementById('selected-ids-input').value = selectedIDs.join(',');
-          document.forms[0].submit();
-        }
-
-        function filterNames() {
-          var input, filter, names, nameBox, i;
-          input = document.getElementById('search-input');
-          filter = input.value.toUpperCase();
-          names = document.getElementsByClassName('name-box');
-          
-          for (i = 0; i < names.length; i++) {
-            nameBox = names[i];
-            if (nameBox.innerText.toUpperCase().indexOf(filter) > -1) {
-              nameBox.style.display = '';
-            } else {
-              nameBox.style.display = 'none';
-            }
-          }
-        }
-    </script>";
-
-    while ($staffRow = mysqli_fetch_assoc($staffResult)) {
-        $fname = $staffRow['firstname'];
-        $lname = $staffRow['lastname'];
-        $id = $staffRow['id'];
-        $rl = $staffRow['role'];
-        if($rl=="f"){
-            $rl="Fleet Manager";
-        }else if($rl=="u"){
-            $rl="Unit Manager";
-        }else if($rl=="e"){
-            $rl="Emergency Physician";
-        }else if($rl=="h"){
-            $rl="Helper";
-        }else if($rl=="d"){
-            $rl="Driver";
-        }else if($rl=="n"){
-            $rl="Nurse";
+        if($type=="a"){
+            $type="Ambulance";
+        }else if($type=="s"){
+            $type="SAMU";
         }
 
         echo "<div class='name-box' onclick='toggleSelection(this, $id)'>
-                $id<br>$fname $lname<br>$rl
+                $id<br>$license<br>$type
               </div>";
     }
+    echo "</div>";
 
     echo "<input type='hidden' name='selected_ids' id='selected-ids-input'>";
 
     echo "<div style='text-align: center; margin-top: 20px;'>
-            <button type='button' onclick='submitForm()' style='display: inline-block; background-color: teal; color: white; padding: 15px 30px; border: none; border-radius: 4px; font-size: 20px; text-decoration: none;'>Remove Staff</button>
+            <button type='button' onclick='submitForm()' style='display: inline-block; background-color: teal; color: white; padding: 15px 30px; border: none; border-radius: 4px; font-size: 20px; text-decoration: none;'>Remove Vehicle</button>
         </div>";
 
     echo "</form>";
 }
 ?>
+
+<script>
+var selectedIDs = [];
+
+function toggleSelection(element, id) {
+  element.classList.toggle('selected');
+  var index = selectedIDs.indexOf(id);
+  if (index !== -1) {
+    selectedIDs.splice(index, 1);
+  } else {
+    selectedIDs.push(id);
+  }
+}
+
+function submitForm() {
+  document.getElementById('selected-ids-input').value = selectedIDs.join(',');
+  document.forms[0].submit();
+}
+
+function filterNames() {
+  var input, filter, container, names, name, i;
+  input = document.getElementById('search-input');
+  filter = input.value.toUpperCase();
+  container = document.getElementById('vehicle-list');
+  names = container.getElementsByClassName('name-box');
+
+  for (i = 0; i < names.length; i++) {
+    name = names[i];
+    if (name.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      name.style.display = '';
+    } else {
+      name.style.display = 'none';
+    }
+  }
+}
+</script>
