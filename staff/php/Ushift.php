@@ -165,6 +165,12 @@ if ($db->connect_error) {
                 }
                     
 
+            }else{
+                $updateQuery = "UPDATE samu_staff
+                                SET status='NA' 
+                                WHERE id='$Sid'";
+                $result = mysqli_query($db, $updateQuery);
+
             }
                 
 

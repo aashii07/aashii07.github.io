@@ -115,16 +115,37 @@ if ($db->connect_error) {
                         <th>Name</th>";
 
                 // Get the current date
-                $currentDate = strtotime('last Saturday');
-                $currentDate = strtotime('+2 day', $currentDate); // Start from Monday
+                $currentDate = strtotime('today');
+
+                // Get the day of the week (1 for Monday, 2 for Tuesday, etc.)
+                $dayOfWeek = date('N', $currentDate);
+
+                // Calculate the start date of the week
+                if ($dayOfWeek === '1') {
+                    // Current day is Monday, use the current date as the week start
+                    $weekStart = $currentDate;
+                } else {
+                    // Find the previous Monday
+                    $weekStart = strtotime('last Monday', $currentDate);
+                }
+
+                // Calculate the end date of the week
+                $weekEnd = strtotime('+6 days', $weekStart);
+
+                $start=$weekStart;
+                $wk=$weekStart;
 
                 for ($day = 0; $day < 7; $day++) {
-                    $dayName = date('D', $currentDate);
-                    $date = date('Y-m-d', $currentDate);
+                    $dayName = date('D', $weekStart);
+                    $date = date('Y-m-d', $weekStart);
                     echo "<th>$dayName<br><span style='font-size: 13px; font-weight: normal;'>($date)</span></th>";
 
-                    $currentDate = strtotime('+1 day', $currentDate);
+                    $weekStart = strtotime('+1 day', $weekStart);
+                    // $weekEnd can also be updated if needed
                 }
+
+
+
 
                 echo "</tr>";
 
@@ -137,18 +158,29 @@ if ($db->connect_error) {
                             <td>$personId</td>
                             <td>$firstName $lastName</td>";
 
-                    // Reset the current date for each person
-                    $currentDate = strtotime('last Saturday');
-                    $currentDate = strtotime('+2 day', $currentDate); // Start from Monday
-
                     
 
+                    $start=$wk;
                     for ($day = 0; $day < 7; $day++) {
-                        $dayName = date('D', $currentDate);
-                        $date = date('Y-m-d', $currentDate); // Format date as YYYY-MM-DD
+                        $dayName = date('D', $start);
+                        $date = date('Y-m-d', $start);
+                        
+                        
+                        
 
                         $q="SELECT shift FROM staff_schedule WHERE date='$date' AND staff_id='$personId'";
                         $r=mysqli_query($db, $q);
+                        if (mysqli_num_rows($r) == 0){
+                            
+                            $q1="INSERT INTO staff_schedule (date, staff_id)
+                                VALUES('$date', '$personId')";
+                            $r1=mysqli_query($db, $q1);
+                            
+                            $q="SELECT shift FROM staff_schedule WHERE date='$date' AND staff_id='$personId'";
+                            $r=mysqli_query($db, $q);
+
+                        }
+                        
                         $rw=mysqli_fetch_assoc($r);
                         $s=$rw['shift'];
                         if($s=="d"){
@@ -157,27 +189,38 @@ if ($db->connect_error) {
                             $S="Day + Night";
                         }else if($s=="n"){
                             $S="Night";
-                        }else{
+                        }else if($s=="o"){
                             $S="Off Duty";
+                        }else{
+                            $S="Select shift";
                         }
 
                         echo "<td data-row='$personId' data-col='$day' class='grid-cell'>
-                            <input type='hidden' name='shift[$personId][$day][date]' value='$date'>
-                            <input type='hidden' name='shift[$personId][$day][staff_id]' value='$personId'>
-                            
-                            <select name='shift[$personId][$day][shift]'>
+                        <input type='hidden' name='shift[$personId][$day][date]' value='$date'>
+                        
+                        <input type='hidden' name='shift[$personId][$day][staff_id]' value='$personId'>";
+                        
+                        
+
+                        if($date >= date('Y-m-d')){
+
+                            echo "<select name='shift[$personId][$day][shift]'>
                             <option value='$s'>$S</option>
                             " . ($S !== 'Day + Night' ? "<option value='dn'>Day + Night</option>" : "") . "
                             " . ($S !== 'Day' ? "<option value='d'>Day</option>" : "") . "
                             " . ($S !== 'Night' ? "<option value='n'>Night</option>" : "") . "
-                            " . ($S !== 'Off Duty' ? "<option value='o'>Off Duty</option>" : "") . "
-                
-                                
-                                
-                                
+                            " . ($S !== 'Off Duty' ? "<option value='o'>Off Duty</option>" : "") . "                                
                             </select>
-                        </td>";
-                        $currentDate = strtotime('+1 day', $currentDate);
+                            </td>";
+                        }else{
+                            echo "<select name='shift[$personId][$day][shift]'>
+                            <option value='$s'>$S</option>                        
+                            </select>
+                            </td>";
+                        }
+
+                        
+                        $start = strtotime('+1 day', $start);
                     }
 
                     echo "</tr>";
