@@ -65,20 +65,39 @@
 
             $q="INSERT INTO public(firstname, lastname, phonenum) 
             VALUES('$fname', '$lname', '$num')";
-            $res=mysqli_query($db, $query);
-
-            if (!$r) {
-                // Display the error message
-                echo "Error: " . $db->error;
-                // You can also log the error or perform additional actions as needed
+            $res=mysqli_query($db, $q);
+            if(!$res){
+                echo $db->error;
             }
+            
+
+            $caller="SELECT id FROM public ORDER BY id DESC LIMIT 1";
+            $result=mysqli_query($db, $caller);
+            $row=mysqli_fetch_assoc($result);
+            $id=$row['id'];
+
+            $q1="SELECT id FROM incident ORDER BY id DESC LIMIT 1";
+            $r1=mysqli_query($db, $q1);
+            $row1=mysqli_fetch_assoc($r1);
+            $id1=$row1['id'];
+
+            $q1="UPDATE incident
+                    SET public_id='$id'
+                    WHERE id='$id1'";
+            $r1=mysqli_query($db, $q1);
+
+           
+
+
+
+
             
 
             
 
 
             echo "<h2>Incident successfully reported!</h2>";
-            header("location: ../html/home.html");
+            //header("location: ../html/home.html");
             
         }
         else{

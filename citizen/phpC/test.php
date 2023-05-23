@@ -1,99 +1,108 @@
 <?php
+    // Start the session
+    session_start();
+   
+    $fnamep=$_POST['fnamep'];
+    $lnamep=$_POST['lnamep'];
+    $age=$_POST['age'];
+    $gender=$_POST['gender'];
+    $lat=$_POST['lat'];
+    $long=$_POST['long'];
+    $subject=$_POST['subject'];
 
+    $fname=$_POST['fname'];
+    $lname=$_POST['lname'];
+    $num=$_POST['num'];
+    
+    
+    date_default_timezone_set("Indian/Mauritius");
+    $report = date("Y-m-d H:i:s");
 
-// Create a connection
-$conn = new mysqli('localhost', 'root', '!AAshi4477', 'fyp');
+    
+    //DB connection
+    $db=new mysqli('localhost', 'root', '!AAshi4477', 'fyp');
+    if($db->connect_error){
+        die('Connection Failed : '.$db->connect_error);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    }
+    else{
+        
+        $user=$_SESSION['email'];
+        
+        
+        $caller="SELECT id FROM control_officer WHERE email='$user' LIMIT 1";
+        $result=mysqli_query($db, $caller);
+        $row=mysqli_fetch_assoc($result);
 
-// Retrieve the roles from the database
-$rolesQuery = "SELECT DISTINCT role FROM samu_staff";
-$rolesResult = $conn->query($rolesQuery);
+        if($row){
+            $query="INSERT INTO patient(firstname, lastname, age, gender) 
+                VALUES('$fnamep', '$lnamep', '$age', '$gender')";
+            mysqli_query($db, $query);
 
-if ($rolesResult->num_rows > 0) {
-    while ($roleRow = $rolesResult->fetch_assoc()) {
-        $role = $roleRow['role'];
+            
+            $status="pending";
 
-        // Retrieve the persons for the specific role
-        $sql = "SELECT id, firstname, lastname FROM samu_staff WHERE role = '$role'";
-        $result = $conn->query($sql);
+            if($fnamep!=""){
 
-        if ($result->num_rows > 0) {
+                $patient="SELECT id FROM patient ORDER BY id DESC LIMIT 1";
+                $result=mysqli_query($db, $patient);
+                $id=mysqli_fetch_assoc($result);
+                $patientID=$id["id"];
+
+                $query="INSERT INTO incident(latitude, longitude, description, status, reported_datetime, patient_id) 
+                VALUES('$lat', '$long', '$subject', '$status', '$report', '$patientID')";
+                $r=mysqli_query($db, $query);
+
                 
-            if($role=="e"){
-                $rl="Emergency Phisician";
-            }else if($role=="u"){
-                $rl="Unit Manager";
-            }else if($role=="f"){
-                $rl="Fleet Manager";
-            }else if($role=="n"){
-                $rl="Nurse";
-            }else if($role=="h"){
-                $rl="Helper";
+
+
+                
             }else{
-                $rl="Driver";
-            }
-            echo "<h2 style='text-align: center; color: teal; margin-top:60px; text-decoration: underline;'>$rl</h2>";
-
-            echo "<table style='margin: 0 auto;'>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>";
-
-            // Get the current date
-            $currentDate = strtotime('last Saturday');
-            $currentDate = strtotime('+2 day', $currentDate); // Start from Monday
-
-            for ($day = 0; $day < 7; $day++) {
-                $dayName = date('l', $currentDate);
-                $date = date('d/m', $currentDate);
-                echo "<th>$dayName<br>($date)</th>";
-                $currentDate = strtotime('+1 day', $currentDate);
+                $query="INSERT INTO incident(latitude, longitude, description, status, reported_datetime) 
+                VALUES('$lat', '$long', '$subject', '$status', '$report')";
+                $r=mysqli_query($db, $query);
             }
 
-            echo "</tr>";
-
-            while ($row = $result->fetch_assoc()) {
-                $personId = $row['id'];
-                $firstName = $row['firstname'];
-                $lastName = $row['lastname'];
-
-                echo "<tr>
-                        <td>$personId</td>
-                        <td>$firstName $lastName</td>";
-
-                // Reset the current date for each person
-                $currentDate = strtotime('last Saturday');
-                $currentDate = strtotime('+2 day', $currentDate); // Start from Monday
-
-                for ($day = 0; $day < 7; $day++) {
-                    $dayName = date('l', $currentDate);
-                    $date = date('d/m', $currentDate);
-                    echo "<td>
-                              <select name='shift[$personId][$dayName]'>
-                                  <option value='d'>Day + Night</option>
-                                  <option value='n'>Day</option>
-                                  <option value='dn'>Night</option>
-                                  <option value='o'>Off</option>
-                              </select>
-                          </td>";
-                    $currentDate = strtotime('+1 day', $currentDate);
-                }
-
-                echo "</tr>";
+            $q="INSERT INTO public(firstname, lastname, phonenum) 
+            VALUES('$fname', '$lname', '$num')";
+            $res=mysqli_query($db, $query);
+            if(!$res){
+                echo $db->error;
             }
+            
 
-            echo "</table>";
-        } else {
-            echo "<p>No persons found for role '$role'.</p>";
+            $caller="SELECT id FROM public ORDER BY id DESC LIMIT 1";
+            $result=mysqli_query($db, $caller);
+            $row=mysqli_fetch_assoc($result);
+            $id=$row['id'];
+
+            $q1="SELECT id FROM incident ORDER BY id DESC LIMIT 1";
+            $r1=mysqli_query($db, $q1);
+            $row1=mysqli_fetch_assoc($r1);
+            $id1=$row1['id'];
+
+            $q1="UPDATE incident
+                    SET public_id='$id'
+                    WHERE id='$id1'";
+            $r1=mysqli_query($db, $q1);
+
+           
+
+
+
+
+            
+
+            
+
+
+            echo "<h2>Incident successfully reported!</h2>";
+            //header("location: ../html/home.html");
+            
+        }
+        else{
+            echo "<h2>Invalid User!</h2>";
+            
         }
     }
-} else {
-    echo "<p>No roles found in the database.</p>";
-}
-
-$conn->close();
 ?>
