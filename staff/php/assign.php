@@ -243,7 +243,7 @@ if ($db->connect_error) {
                          // JavaScript alert for vehicle dispatch
                         echo '<script>
                                 alert("Hospital - ' . $hospitalN . '\nSAMU - ' . $vehN . '\nEmergency Physician - ' . $eN1 . ' ' . $eN2 . '\nNurse 1 - ' . $n1N1 . ' ' . $n1N2 . '\nNurse 2 - ' . $n2N1 . ' ' . $n2N2 . '\nDriver - ' . $dN1 . ' ' . $dN2 . '\n");
-                                window.location.href = "../html/resource.html";
+                                window.location.href = "priority.php";
                                 </script>';
 
 

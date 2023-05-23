@@ -9,6 +9,11 @@
     $lat=$_POST['lat'];
     $long=$_POST['long'];
     $subject=$_POST['subject'];
+
+    $fname=$_POST['fname'];
+    $lname=$_POST['lname'];
+    $num=$_POST['num'];
+    
     
     date_default_timezone_set("Indian/Mauritius");
     $report = date("Y-m-d H:i:s");
@@ -25,7 +30,7 @@
         $user=$_SESSION['email'];
         
         
-        $caller="SELECT id FROM public WHERE email='$user' LIMIT 1";
+        $caller="SELECT id FROM control_officer WHERE email='$user' LIMIT 1";
         $result=mysqli_query($db, $caller);
         $row=mysqli_fetch_assoc($result);
 
@@ -34,7 +39,7 @@
                 VALUES('$fnamep', '$lnamep', '$age', '$gender')";
             mysqli_query($db, $query);
 
-            $callerID=$row["id"];
+            
             $status="pending";
 
             if($fnamep!=""){
@@ -44,23 +49,36 @@
                 $id=mysqli_fetch_assoc($result);
                 $patientID=$id["id"];
 
-                $query="INSERT INTO incident(latitude, longitude, description, status, reported_datetime, patient_id, public_id) 
-                VALUES('$lat', '$long', '$subject', '$status', '$report', '$patientID', '$callerID')";
+                $query="INSERT INTO incident(latitude, longitude, description, status, reported_datetime, patient_id) 
+                VALUES('$lat', '$long', '$subject', '$status', '$report', '$patientID')";
                 $r=mysqli_query($db, $query);
+
+                
 
 
                 
             }else{
-                $query="INSERT INTO incident(latitude, longitude, description, status, reported_datetime, public_id) 
-                VALUES('$lat', '$long', '$subject', '$status', '$report', '$callerID')";
+                $query="INSERT INTO incident(latitude, longitude, description, status, reported_datetime) 
+                VALUES('$lat', '$long', '$subject', '$status', '$report')";
                 $r=mysqli_query($db, $query);
             }
+
+            $q="INSERT INTO public(firstname, lastname, phonenum) 
+            VALUES('$fname', '$lname', '$num')";
+            $res=mysqli_query($db, $query);
+
+            if (!$r) {
+                // Display the error message
+                echo "Error: " . $db->error;
+                // You can also log the error or perform additional actions as needed
+            }
+            
 
             
 
 
             echo "<h2>Incident successfully reported!</h2>";
-            header("location: ../htmlC/home.html");
+            header("location: ../html/home.html");
             
         }
         else{

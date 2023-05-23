@@ -1,3 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        .active {
+            background-color: #03d9ffbc;
+            /* Replace with your desired color */
+            color: #000000 !important;
+            /* Replace with your desired text color */
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .button-container {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+        
+        
+        form {
+            margin: 0 5px;
+        }
+        
+    </style>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/resource.css" />
+    <script type="text/JavaScript" src="../js/resource.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="../html/home.html">Home</a>
+        <a href="priority.php" class="active">Resource Management</a>
+        <a href="../html/form.html">Incident Reporting</a>
+        <a href="../html/dash.html">Dashboard</a>
+        <a href="logout.php">Log Out</a>
+    </div>
+
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+    <br>
+
+    <h4 style="text-align: center;" >Request other emergency services for last assigned incident:</h4>
+    <div class="button-container">
+        <form action="mfrs.php" method="post">
+            <button class="button">MFRS</button>
+        </form>
+        <form action="mpf.php" method="post">
+            <button class="button">MPF</button>
+        </form>
+        
+        
+    </div>
+
+    <br><hr>
+
+</body>
+
+</html>
 <?php
     // Start the session
     session_start();

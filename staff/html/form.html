@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .active {
+      background-color: #03d9ffbc;
+      color: #000000 !important;
+    }
+    #container {
+      display: flex;
+    }
+    #form-container {
+      flex: 1;
+      padding-right: 20px;
+    }
+    #map-container {
+      flex: 1;
+      position: relative;
+    }
+    #map {
+      height: 1150px;
+      width: 100%;
+    }
+    #search-container {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+    }
+    #search-input {
+      width: 200px;
+      height: 30px;
+      margin-right: 10px;
+      padding: 5px;
+    }
+    #search-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      cursor: pointer;
+      margin-top: -10px;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="../css/form.css" />
+  <script type="text/JavaScript" src="../js/form.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUQso1o7rMdoSw6dxo9dCBIfPOKgDX7D8&libraries=places"></script>
+  <script>
+    var markers = [];
+
+    function placeMarker(location) {
+      markers.forEach(function(marker) {
+        marker.setMap(null);
+      });
+      markers = [];
+
+      var marker = new google.maps.Marker({
+        position: location,
+        map: map
+      });
+
+      markers.push(marker);
+
+      document.getElementById('latitude').value = location.lat();
+      document.getElementById('longitude').value = location.lng();
+    }
+
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: -20.2067, lng: 57.6755 },
+        zoom: 13
+      });
+
+      var searchContainer = document.createElement('div');
+      searchContainer.setAttribute('id', 'search-container');
+
+      var searchInput = document.createElement('input');
+      searchInput.setAttribute('type', 'text');
+      searchInput.setAttribute('placeholder', 'Enter location');
+      searchInput.setAttribute('id', 'search-input');
+      searchInput.setAttribute('name', 'loc');
+
+      var searchButton = document.createElement('button');
+      searchButton.setAttribute('type', 'button');
+      searchButton.setAttribute('onclick', 'searchLocation()');
+      searchButton.setAttribute('id', 'search-button');
+      searchButton.textContent = 'Search';
+
+      searchContainer.appendChild(searchInput);
+      searchContainer.appendChild(searchButton);
+
+      document.getElementById('map-container').appendChild(searchContainer);
+
+      var searchBox = new google.maps.places.SearchBox(searchInput);
+
+      map.addListener('bounds_changed', function() {
+        searchBox.setBounds(map.getBounds());
+      });
+
+      searchButton.addEventListener('click', searchLocation);
+
+      searchInput.addEventListener('keydown', function(event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          searchLocation();
+        }
+      });
+
+      function searchLocation() {
+        var places = searchBox.getPlaces();
+        if (places.length === 0) {
+          alert('No results found');
+          return;
+        }
+
+        markers.forEach(function(marker) {
+          marker.setMap(null);
+        });
+        markers = [];
+
+        map.setCenter(places[0].geometry.location);
+
+        var marker = new google.maps.Marker({
+          map: map,
+          position: places[0].geometry.location
+        });
+
+        markers.push(marker);
+
+        document.getElementById('latitude').value = places[0].geometry.location.lat();
+        document.getElementById('longitude').value = places[0].geometry.location.lng();
+      }
+
+      map.addListener('click', function(event) {
+        placeMarker(event.latLng);
+      });
+    }
+  </script>
+</head>
+<body>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="home.html" >Home</a>
+    <a href="../php/priority.php">Resource Management</a>
+    <a href="form.html" class="active">Incident Reporting</a>
+    <a href="dash.html">Dashboard</a>
+    <a href="../php/logout.php">Log Out</a>
+</div>
+
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+    <br>
+  <div id="container">
+    <div id="form-container" class="container">
+      
+
+      <form action="../php/form.php" method="post">
+
+        <h1>Patient Details</h1>
+        <label for="fnamep"><b>First Name</b></label>
+        <input type="text" placeholder="Enter first name" name="fnamep">
+
+        <label for="lnamep"><b>Last Name</b></label>
+        <input type="text" placeholder="Enter your last name" name="lnamep">
+
+        <label for="age"><b>Age</b></label>
+        <input type="text" placeholder="Enter age" name="age">
+
+        <label><b>Gender</b></label>
+        <br><br>
+        <label class="choice">Male
+          <input type="radio" checked="checked" name="gender" value="m">
+          <span class="checkmark"></span>
+        </label>
+        <label class="choice">Female
+          <input type="radio" name="gender" value="f">
+          <span class="checkmark"></span>
+        </label>
+        <label class="choice">Other
+          <input type="radio" name="gender" value="o">
+          <span class="checkmark"></span>
+        </label>
+
+        <br><br>
+        <label for="lat"><b>Latitude</b></label>
+        <input type="text" id="latitude" placeholder="Latitude" name="lat">
+        <label for="long"><b>Longitude</b></label>
+        <input type="text" id="longitude" placeholder="Longitude" name="long">
+
+        <br>
+        <label for="subject"><b>Description</b></label>
+        <textarea id="subject" name="subject" placeholder="Write here.." style="height:100px" required></textarea>
+
+        <h1>Caller Details</h1>
+        <label for="fnamep"><b>First Name</b></label>
+        <input type="text" placeholder="Enter first name" name="fname">
+
+        <label for="lnamep"><b>Last Name</b></label>
+        <input type="text" placeholder="Enter your last name" name="lname">
+
+        <label for="num"><b>Phone Number</b></label>
+        <input type="text" placeholder="Enter your phone number" name="num">
+
+
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+
+    <div id="map-container">
+      <div id="map"></div>
+    </div>
+  </div>
+
+  <script>
+    initMap();
+  </script>
+</body>
+</html>

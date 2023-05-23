@@ -45,10 +45,13 @@
                 else if ($role=="f") {
                     $_SESSION['email']=$email;
                     header("location: ../html/Fhome.html");
+                }else if ($role=="e"){
+                    $_SESSION['email']=$email;
+                    header("location: EPhome.php");
                 }
                 else if ($user){
                     $_SESSION['email']=$email;
-                    header("location: ../html/Shome.html");
+                    header("location: Shome.php");
                 }
                 else{
                     echo "<h2>Invalid Email or Password</h2>";
