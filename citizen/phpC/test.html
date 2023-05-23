@@ -1,64 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
-        table {
-            border-collapse: collapse;
-            
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        select {
-            padding: 4px;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
-    <title>Include PHP on Button Click</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-    <button id="includeButton">Include test.php</button>
-    <div id="result"></div>
-
+  <head>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUQso1o7rMdoSw6dxo9dCBIfPOKgDX7D8"></script>
     <script>
-        // Function to include test.php
-        function includeTestPhp() {
-            $.ajax({
-                url: 'test.php',
-                type: 'GET',
-                success: function(response) {
-                    $('#result').html(response);
-                },
-                error: function(xhr, status, error) {
-                    console.log(error);
-                }
-            });
-        }
+      function checkApiKey() {
+        if (typeof google === 'undefined' || typeof google.maps === 'undefined') {
+          document.getElementById('result').innerText = 'Invalid or expired API key';
+        } else {
+          document.getElementById('result').innerText = 'API key is valid';
 
-        // Event listener for the button click
-        document.getElementById('includeButton').addEventListener('click', includeTestPhp);
+          // Initialize the map
+          var map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 40.712776, lng: -74.005974 }, // Set your desired coordinates
+            zoom: 12 // Set the initial zoom level
+          });
+        }
+      }
     </script>
-</body>
+    <style>
+      #map {
+        height: 50%;
+        width: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="result"></div>
+    <script>
+      // Call the checkApiKey function after the Maps API has finished loading
+      google.maps.event.addDomListener(window, 'load', checkApiKey);
+    </script>
+  </body>
 </html>

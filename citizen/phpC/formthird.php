@@ -6,7 +6,8 @@
     $lnamep=$_POST['lnamep'];
     $age=$_POST['age'];
     $gender=$_POST['gender'];
-    $loc=$_POST['loc'];
+    $lat=$_POST['lat'];
+    $long=$_POST['long'];
     $subject=$_POST['subject'];
     
     date_default_timezone_set("Indian/Mauritius");
@@ -41,12 +42,12 @@
             $callerID=$row["id"];
             $status="pending";
 
-            $query="INSERT INTO incident(location, description, status, reported_datetime, patient_id, public_id) 
-                VALUES('$loc', '$subject', '$status', '$report', '$patientID', '$callerID')";
+            $query="INSERT INTO incident(latitude, longitude, description, status, reported_datetime, patient_id, public_id) 
+                VALUES('$lat', '$long', '$subject', '$status', '$report', '$patientID', '$callerID')";
             mysqli_query($db, $query);
 
             echo "<h2>Incident successfully reported!</h2>";
-            //header("location: ../htmlC/home.html");
+            header("location: ../htmlC/home.html");
             
         }
         else{
