@@ -1,6 +1,24 @@
 <?php
     // Start the session
     session_start();
+    // Include the Composer autoloader
+    require 'PHPMailer-master/vendor/autoload.php';
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
+    // Create a new PHPMailer instance
+    $mail = new PHPMailer(true);
+
+    // Set up SMTP configuration
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';  // Specify your SMTP server
+    $mail->Port = 587;  // Specify the SMTP port
+    // Enable SMTP encryption
+    $mail->SMTPSecure = 'tls'; // or 'ssl' for SSL encryption
+    $mail->SMTPAuth = true;
+    $mail->Username = 'aashi.jaulim@gmail.com';  // Your SMTP username
+    $mail->Password = 'hhjqbxsjjwrqbpee';  // Your SMTP password
     
     $fname=$_POST['fname'];
     $lname=$_POST['lname'];
@@ -40,6 +58,11 @@
                 if($role=='c'){
                     $query="INSERT INTO control_officer(firstname, lastname, email, phonenum, password, password2) 
                         VALUES('$fname', '$lname', '$email', '$num', '$psw', '$psw2')";
+
+                    // Set up email parameters
+                    $mail->setFrom('aashi.jaulim@gmail.com', 'SAMU IMS');
+                    $mail->addAddress($email, 'Control Officer');
+                    $mail->Subject = 'Urgent: Immediate Attendance Required for Incident Response';
                 }
                 else{
                     $status="available";
@@ -49,7 +72,57 @@
                     $hospital_id=$row['id'];
                     $query="INSERT INTO samu_staff(firstname, lastname, email, phonenum, role, status, password, password2, hospital_id) 
                         VALUES('$fname', '$lname', '$email', '$num', '$role', '$status', '$psw', '$psw2', '$hospital_id')";
+                    
+                    // Set up email parameters
+                    $mail->setFrom('aashi.jaulim@gmail.com', 'SAMU IMS');
+                    $mail->addAddress($email, 'SAMU staff');
+                    $mail->Subject = 'Successful Signup Confirmation for SAMU IMS';
                 }
+
+                if($role=='c'){
+                    $rl="control officer";
+                }
+                else if ($role=='u'){
+                    $rl="unit manager";
+                }
+                else if ($role=='f'){
+                    $rl="fleet manager";
+                }
+                else if ($role=='e'){
+                    $rl="emergency physician";
+                }
+                else if ($role=='n'){
+                    $rl="nurse";
+                }
+                else if ($role=='h'){
+                    $rl="helper";
+                }
+                else if ($role=='d'){
+                    $rl="driver";
+                }
+
+               
+                $mail->Body = 'Dear '.$fname.',
+
+You have successfully signed up for SAMU IMS as '.$rl.'! 
+
+Our platform streamlines the incident response process and enables real-time communication between team members. Log in to your account to explore our various features and tools. If you have any questions, our support team is always available to assist you.
+
+Thank you for choosing SAMU IMS. We are confident that our platform will help you manage incidents more efficiently.
+
+Best regards,
+SAMU IMS Team';
+                
+            try {
+            // Send the email
+                    $mail->send();
+                    echo 'Email sent successfully.';
+            } catch (Exception $e) {
+                    echo 'An error occurred. Email not sent.';
+                    echo 'Error: ' . $mail->ErrorInfo;
+            }
+
+
                 
 
                 mysqli_query($db, $query);

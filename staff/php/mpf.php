@@ -66,7 +66,7 @@ $mail->Username = 'aashi.jaulim@gmail.com';  // Your SMTP username
 $mail->Password = 'hhjqbxsjjwrqbpee';  // Your SMTP password
 
 // Set up email parameters
-$mail->setFrom('aashi.jaulim@gmail.com', 'SAMU');
+$mail->setFrom('aashi.jaulim@gmail.com', 'SAMU IMS');
 $mail->addAddress('aashi.jaulim@gmail.com', 'MPF');
 $mail->Subject = 'Request for Incident Management Services';
 $mail->Body = 'Dear MPF,

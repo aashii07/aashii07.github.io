@@ -1,6 +1,25 @@
 <?php
     // Start the session
     session_start();
+
+    // Include the Composer autoloader
+    require 'PHPMailer-master/vendor/autoload.php';
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
+    // Create a new PHPMailer instance
+    $mail = new PHPMailer(true);
+
+    // Set up SMTP configuration
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';  // Specify your SMTP server
+    $mail->Port = 587;  // Specify the SMTP port
+    // Enable SMTP encryption
+    $mail->SMTPSecure = 'tls'; // or 'ssl' for SSL encryption
+    $mail->SMTPAuth = true;
+    $mail->Username = 'aashi.jaulim@gmail.com';  // Your SMTP username
+    $mail->Password = 'hhjqbxsjjwrqbpee';  // Your SMTP password
     
     $fname=$_POST['fname'];
     $lname=$_POST['lname'];
@@ -38,6 +57,31 @@
                 mysqli_query($db, $query);
                 $_SESSION['email']=$email;
                 echo $_SESSION['email'];
+
+                // Set up email parameters
+                $mail->setFrom('aashi.jaulim@gmail.com', 'SAMU IMS');
+                $mail->addAddress($email, 'SAMU staff');
+                $mail->Subject = 'Successful Signup Confirmation for SAMU IMS';
+                $mail->Body = 'Dear '.$fname.',
+
+You have successfully signed up for SAMU IMS! 
+
+Our platform streamlines the incident response process and enables real-time communication between team members. Log in to your account to explore our various features and tools. If you have any questions, our support team is always available to assist you.
+
+Thank you for choosing SAMU IMS. We are confident that our platform will help you manage incidents more efficiently.
+
+Best regards,
+SAMU IMS Team';
+                
+                try {
+                // Send the email
+                        $mail->send();
+                        echo 'Email sent successfully.';
+                } catch (Exception $e) {
+                        echo 'An error occurred. Email not sent.';
+                        echo 'Error: ' . $mail->ErrorInfo;
+                }
+
                 header("location: ../htmlC/home.html");
                 
             }

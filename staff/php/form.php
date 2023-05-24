@@ -12,6 +12,7 @@
 
     $fname=$_POST['fname'];
     $lname=$_POST['lname'];
+    $email=$_POST['email'];
     $num=$_POST['num'];
     
     
@@ -63,8 +64,8 @@
                 $r=mysqli_query($db, $query);
             }
 
-            $q="INSERT INTO public(firstname, lastname, phonenum) 
-            VALUES('$fname', '$lname', '$num')";
+            $q="INSERT INTO public(firstname, lastname, email, phonenum) 
+            VALUES('$fname', '$lname', '$email', '$num')";
             $res=mysqli_query($db, $q);
             if(!$res){
                 echo $db->error;
