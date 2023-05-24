@@ -130,16 +130,20 @@ SAMU IMS Team';
 
                 if($role=='c'){
                     header("location: ../html/home.html");
-                }
-                else if ($role=='u'){
+                }else if ($role=="u") {
                     header("location: ../html/Uhome.html");
                 }
-                else if ($role=='f'){
+                else if ($role=="f") {
                     header("location: ../html/Fhome.html");
+                }else if ($role=="e"){
+                    header("location: EPhome.php");
                 }
-                else{
-                    header("location: ../html/Shome.html");
+                else if ($user){
+                    header("location: Shome.php");
                 }
+
+                
+               
                 
             }
         }

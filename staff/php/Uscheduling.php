@@ -231,7 +231,7 @@ if ($db->connect_error) {
 
             } else {
 
-                echo "<p>No persons found for role '$role'.</p>";
+                //echo "<p>No persons found for role '$role'.</p>";
             }
         }
 

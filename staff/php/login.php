@@ -53,10 +53,7 @@
                     $_SESSION['email']=$email;
                     header("location: Shome.php");
                 }
-                else{
-                    echo "<h2>Invalid Email or Password</h2>";
-
-                }
+                
                    
                 
             }
@@ -65,7 +62,7 @@
         }
         else{
             echo "<h2>This email has not been registered yet.</h2>";
-            exit;
+        
             
         }
     }

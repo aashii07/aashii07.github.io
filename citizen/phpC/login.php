@@ -23,7 +23,7 @@
             $resultpsw=mysqli_query($db, $checkpsw);
             if (mysqli_num_rows($resultpsw) == 1) {
                 $_SESSION['email']=$email;
-                header("location: ../htmlC/home.html");
+                header("location: home.php");
             }
             else{
                 echo "<h2>Invalid Email or Password</h2>";

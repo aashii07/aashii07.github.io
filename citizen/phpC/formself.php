@@ -113,7 +113,7 @@ SAMU IMS Team';
 
 
             echo "<h2>Incident successfully reported!</h2>";
-            header("location: ../htmlC/home.html");
+            header("location: home.php");
             
         }
         else{

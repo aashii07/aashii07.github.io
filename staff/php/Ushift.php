@@ -180,7 +180,7 @@ if ($db->connect_error) {
             
 
     } else {
-    echo "No records found.";
+    //echo "No records found.";
     }
 
     header("location: ../php/Uscheduling.php");
