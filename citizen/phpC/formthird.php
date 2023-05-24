@@ -1,6 +1,25 @@
 <?php
     // Start the session
     session_start();
+
+    // Include the Composer autoloader
+    require 'PHPMailer-master/vendor/autoload.php';
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
+    // Create a new PHPMailer instance
+    $mail = new PHPMailer(true);
+
+    // Set up SMTP configuration
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';  // Specify your SMTP server
+    $mail->Port = 587;  // Specify the SMTP port
+    // Enable SMTP encryption
+    $mail->SMTPSecure = 'tls'; // or 'ssl' for SSL encryption
+    $mail->SMTPAuth = true;
+    $mail->Username = 'aashi.jaulim@gmail.com';  // Your SMTP username
+    $mail->Password = 'hhjqbxsjjwrqbpee';  // Your SMTP password
    
     $fnamep=$_POST['fnamep'];
     $lnamep=$_POST['lnamep'];
@@ -25,7 +44,7 @@
         $user=$_SESSION['email'];
         
         
-        $caller="SELECT id FROM public WHERE email='$user' LIMIT 1";
+        $caller="SELECT * FROM public WHERE email='$user' LIMIT 1";
         $result=mysqli_query($db, $caller);
         $row=mysqli_fetch_assoc($result);
 
@@ -35,6 +54,9 @@
             mysqli_query($db, $query);
 
             $callerID=$row["id"];
+            $callerN=$row["firstname"];
+            $callerE=$row["email"];
+
             $status="pending";
 
             if($fnamep!=""){
@@ -54,6 +76,29 @@
                 $query="INSERT INTO incident(latitude, longitude, description, status, reported_datetime, public_id) 
                 VALUES('$lat', '$long', '$subject', '$status', '$report', '$callerID')";
                 $r=mysqli_query($db, $query);
+            }
+
+            $mail->setFrom('aashi.jaulim@gmail.com', 'SAMU IMS');
+            $mail->addAddress($callerE, 'Public');
+            $mail->Subject = 'Incident Reporting';
+            $mail->Body = 'Dear '.$callerN.',
+
+You have successfully reported an incident.
+
+We will be at your service as soon as possible.
+
+Thank you for choosing SAMU IMS.
+
+Best regards,
+SAMU IMS Team';
+
+            try {
+            // Send the email
+                    $mail->send();
+                    echo 'Email sent successfully.';
+            } catch (Exception $e) {
+                    echo 'An error occurred. Email not sent.';
+                    echo 'Error: ' . $mail->ErrorInfo;
             }
 
             

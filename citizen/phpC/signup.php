@@ -42,7 +42,47 @@
         $user=mysqli_fetch_assoc($result);
 
         if($user){
-            echo "<h2>This email has already been registered.</h2>";
+            $pw=$user['password'];
+            echo $user['id'];
+            if($pw==""){
+                $query="UPDATE public
+                        SET firstname='$fname', lastname='$lname', phonenum='$num', gender='$gender', dob='$dob', password='$psw', password2='$psw2'
+                        WHERE email='$email'";
+                mysqli_query($db, $query);
+
+                $_SESSION['email']=$email;
+               
+
+                // Set up email parameters
+                $mail->setFrom('aashi.jaulim@gmail.com', 'SAMU IMS');
+                $mail->addAddress($email, 'Public');
+                $mail->Subject = 'Successful Signup Confirmation for SAMU IMS';
+                $mail->Body = 'Dear '.$fname.',
+
+You have successfully signed up for SAMU IMS! 
+
+Our platform streamlines the incident response process and enables real-time communication between team members. Log in to your account to explore our various features and tools. If you have any questions, our support team is always available to assist you.
+
+Thank you for choosing SAMU IMS. We are confident that our platform will help you manage incidents more efficiently.
+
+Best regards,
+SAMU IMS Team';
+                
+                try {
+                // Send the email
+                        $mail->send();
+                        echo 'Email sent successfully.';
+                } catch (Exception $e) {
+                        echo 'An error occurred. Email not sent.';
+                        echo 'Error: ' . $mail->ErrorInfo;
+                }
+                header("location: ../htmlC/home.html");
+
+            }else{
+                echo "<h2>This email has already been registered.</h2>";
+
+            }
+            
             
         }
         else{
@@ -56,11 +96,11 @@
                     VALUES('$fname', '$lname', '$email', '$num', '$gender', '$dob', '$psw', '$psw2')";
                 mysqli_query($db, $query);
                 $_SESSION['email']=$email;
-                echo $_SESSION['email'];
+               
 
                 // Set up email parameters
                 $mail->setFrom('aashi.jaulim@gmail.com', 'SAMU IMS');
-                $mail->addAddress($email, 'SAMU staff');
+                $mail->addAddress($email, 'Public');
                 $mail->Subject = 'Successful Signup Confirmation for SAMU IMS';
                 $mail->Body = 'Dear '.$fname.',
 

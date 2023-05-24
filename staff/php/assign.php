@@ -67,6 +67,7 @@ if ($db->connect_error) {
                                         ORDER BY SQRT(POW(69.1 * (h.latitude - $lat), 2) + POW(69.1 * ($long - h.longitude) * COS(h.latitude / 57.3), 2)) ASC
                                         LIMIT 1";
                         $result = mysqli_query($db, $hospitals);
+                        $assign="n";
                         if($result){
                                 $hospital = mysqli_fetch_assoc($result);
                                 $hospitalID = $hospital["id"];
@@ -155,7 +156,8 @@ if ($db->connect_error) {
                                         ORDER BY SQRT(POW(69.1 * (h.latitude - $lat), 2) + POW(69.1 * ($long - h.longitude) * COS(h.latitude / 57.3), 2)) ASC
                                         LIMIT 1";
                         $result = mysqli_query($db, $hospitals);
-                        if($result){
+                        $assign="n";
+                        if(mysqli_num_rows($result) > 0){
 
                                 $hospital = mysqli_fetch_assoc($result);
                                 $hospitalID = $hospital["id"];
@@ -380,6 +382,43 @@ SAMU IMS Team';
                 
                 
                         }
+
+                        $c = "SELECT * FROM incident WHERE id='$id'";
+                        $result = mysqli_query($db, $c);
+                        $c = mysqli_fetch_assoc($result);
+                        $cID = $c["public_id"];
+
+                        $c = "SELECT * FROM public WHERE id='$cID'";
+                        $result = mysqli_query($db, $c);
+                        $c = mysqli_fetch_assoc($result);
+                        $cE = $c["email"];
+                        $cN = $c["firstname"];
+
+                        if($cE !=""){
+                                // Set up email parameters
+                                $mail->setFrom('aashi.jaulim@gmail.com', 'SAMU IMS');
+                                $mail->addAddress($cE, 'Public');
+                                $mail->Subject = 'Incident Update';
+                                $mail->Body = 'Dear '.$cN.',
+
+The necessary resources have already been deployed to resolve the incident reported by you.
+
+Best regards,
+SAMU IMS Team';
+
+                                try {
+                                // Send the email
+                                        $mail->send();
+                                        echo 'Email sent successfully.';
+                                } catch (Exception $e) {
+                                        echo 'An error occurred. Email not sent.';
+                                        echo 'Error: ' . $mail->ErrorInfo;
+                                }
+                                
+                        }
+
+                        
+        
 
                         if($sev=="3"){
                                 // JavaScript alert for vehicle dispatch

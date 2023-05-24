@@ -62,7 +62,7 @@
                     // Set up email parameters
                     $mail->setFrom('aashi.jaulim@gmail.com', 'SAMU IMS');
                     $mail->addAddress($email, 'Control Officer');
-                    $mail->Subject = 'Urgent: Immediate Attendance Required for Incident Response';
+                    $mail->Subject = 'Successful Signup Confirmation for SAMU IMS';
                 }
                 else{
                     $status="available";

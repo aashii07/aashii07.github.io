@@ -1,6 +1,25 @@
 <?php
     // Start the session
     session_start();
+
+    // Include the Composer autoloader
+    require 'PHPMailer-master/vendor/autoload.php';
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
+    // Create a new PHPMailer instance
+    $mail = new PHPMailer(true);
+
+    // Set up SMTP configuration
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';  // Specify your SMTP server
+    $mail->Port = 587;  // Specify the SMTP port
+    // Enable SMTP encryption
+    $mail->SMTPSecure = 'tls'; // or 'ssl' for SSL encryption
+    $mail->SMTPAuth = true;
+    $mail->Username = 'aashi.jaulim@gmail.com';  // Your SMTP username
+    $mail->Password = 'hhjqbxsjjwrqbpee';  // Your SMTP password
    
     $fnamep=$_POST['fnamep'];
     $lnamep=$_POST['lnamep'];
@@ -64,28 +83,62 @@
                 $r=mysqli_query($db, $query);
             }
 
-            $q="INSERT INTO public(firstname, lastname, email, phonenum) 
-            VALUES('$fname', '$lname', '$email', '$num')";
-            $res=mysqli_query($db, $q);
-            if(!$res){
-                echo $db->error;
+            if($email !=""){
+
+                $p2="SELECT * FROM public WHERE email='$email'";
+                $r2=mysqli_query($db, $p2);
+                if(!$r2){
+
+                    $q="INSERT INTO public(firstname, lastname, email, phonenum) 
+                        VALUES('$fname', '$lname', '$email', '$num')";
+                    $res=mysqli_query($db, $q);
+                    if(!$res){
+                        echo $db->error;
+                    }
+
+                }
+
+                $caller="SELECT * FROM public WHERE email='$email'";
+                $result=mysqli_query($db, $caller);
+                $row=mysqli_fetch_assoc($result);
+                $id=$row['id'];
+
+                $q1="SELECT id FROM incident ORDER BY id DESC LIMIT 1";
+                $r1=mysqli_query($db, $q1);
+                $row1=mysqli_fetch_assoc($r1);
+                $id1=$row1['id'];
+
+                $q1="UPDATE incident
+                        SET public_id='$id'
+                        WHERE id='$id1'";
+                $r1=mysqli_query($db, $q1);
+
+                $mail->setFrom('aashi.jaulim@gmail.com', 'SAMU IMS');
+                $mail->addAddress($email, 'Public');
+                $mail->Subject = 'Incident Reporting';
+                $mail->Body = 'Dear '.$fname.',
+
+You have successfully reported an incident.
+
+We will be at your service as soon as possible.
+
+Thank you for choosing SAMU IMS.
+
+Best regards,
+SAMU IMS Team';
+
+                try {
+                // Send the email
+                        $mail->send();
+                        echo 'Email sent successfully.';
+                } catch (Exception $e) {
+                        echo 'An error occurred. Email not sent.';
+                        echo 'Error: ' . $mail->ErrorInfo;
+                }
             }
+
             
-
-            $caller="SELECT id FROM public ORDER BY id DESC LIMIT 1";
-            $result=mysqli_query($db, $caller);
-            $row=mysqli_fetch_assoc($result);
-            $id=$row['id'];
-
-            $q1="SELECT id FROM incident ORDER BY id DESC LIMIT 1";
-            $r1=mysqli_query($db, $q1);
-            $row1=mysqli_fetch_assoc($r1);
-            $id1=$row1['id'];
-
-            $q1="UPDATE incident
-                    SET public_id='$id'
-                    WHERE id='$id1'";
-            $r1=mysqli_query($db, $q1);
+                
 
            
 
@@ -98,7 +151,7 @@
 
 
             echo "<h2>Incident successfully reported!</h2>";
-            //header("location: ../html/home.html");
+            header("location: ../html/home.html");
             
         }
         else{

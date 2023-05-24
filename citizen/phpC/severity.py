@@ -58,6 +58,17 @@ from sklearn.ensemble import RandomForestClassifier
 rfc = RandomForestClassifier()
 rfc.fit(x_train_cv, y_train)
 
+#transform X_test using CV
+x_test_cv = cv.transform(x_test)
+
+#generate predictions
+predictionRFC = rfc.predict(x_test_cv)
+
+#accuracy
+from sklearn.metrics import accuracy_score
+accuracyRFC = accuracy_score(y_test, predictionRFC)
+print(f'Accuracyof RFC = {accuracyRFC}')
+
 
 
 
