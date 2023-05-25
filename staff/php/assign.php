@@ -68,12 +68,12 @@ if ($db->connect_error) {
                                         LIMIT 1";
                         $result = mysqli_query($db, $hospitals);
                         $assign="n";
-                        if($result){
+                        if(mysqli_num_rows($result) > 0){
                                 $hospital = mysqli_fetch_assoc($result);
                                 $hospitalID = $hospital["id"];
                                 $hospitalN = $hospital["name"];
 
-                                $vehicle = "SELECT v.id, v.license
+                                $vehicle = "SELECT v.id, v.license, v.type
                                 FROM vehicle v
                                 JOIN hospital h ON h.id = v.hospital_id
                                 WHERE (v.status = 'available' AND v.type = 'a' AND v.hospital_id = $hospitalID)
@@ -203,9 +203,7 @@ if ($db->connect_error) {
                                                 $n2N1 = $row["firstname"];
                                                 $n2N2 = $row["lastname"];
 
-                                        } else {
-                                                echo "No available staff found.";
-                                        }
+                                        } 
                                 }
 
 
@@ -418,42 +416,66 @@ SAMU IMS Team';
                         }
 
                         
-        
+                        include 'message.php';
 
                         if($sev=="3"){
-                                // JavaScript alert for vehicle dispatch
-                                echo '<script>
-                                        alert("Hospital - ' . $hospitalN . '\nAmbulance - ' . $vehN . '\nHelper - ' . $hN1 . ' ' . $hN2 . '\nDriver - ' . $dN1 . ' ' . $dN2 . '");
-                                        window.location.href = "priority.php";
-                                        </script>';
+                                
+                                $msg = '<h2>Resource Allocation<hr></h2>';
+                                $msg .= '<p>Hospital: ' . $hospitalN . '</p>';
+                                $msg .= '<p>Ambulance: ' . $vehN . '</p>';
+                                $msg .= '<p>Helper: ' . $hN1 . ' ' . $hN2 . '</p>';
+                                $msg .= '<p>Driver: ' . $dN1 . ' ' . $dN2 . '</p>';
+                                $msg .= '<div class="button-container">';
+                                $msg .= '<button onclick="window.location.href=\'priority.php\'">Okay</button>';
+                                $msg .= '</div>';
+                                generateMessageBox($msg);
+                                
 
                         }else{
 
-                                // JavaScript alert for vehicle dispatch
-                                echo '<script>
-                                        alert("Hospital - ' . $hospitalN . '\nSAMU - ' . $vehN . '\nEmergency Physician - ' . $eN1 . ' ' . $eN2 . '\nNurse 1 - ' . $n1N1 . ' ' . $n1N2 . '\nNurse 2 - ' . $n2N1 . ' ' . $n2N2 . '\nDriver - ' . $dN1 . ' ' . $dN2 . '\n");
-                                        window.location.href = "priority.php";
-                                        </script>';
+                                
+                                $msg = '<h2>Resource Allocation<hr></h2>';
+                                $msg .= '<p>Hospital: ' . $hospitalN . '</p>';
+                                $msg .= '<p>SAMU: ' . $vehN . '</p>';
+                                $msg .= '<p>Emergency Physician: ' . $eN1 . ' ' . $eN2 . '</p>';
+                                $msg .= '<p>Nurse 1: ' . $n1N1 . ' ' . $n1N2 . '</p>';
+                                $msg .= '<p>Nurse 2: ' . $n2N1 . ' ' . $n2N2 . '</p>';
+                                $msg .= '<p>Driver: ' . $dN1 . ' ' . $dN2 . '</p>';
+                                $msg .= '<div class="button-container">';
+                                $msg .= '<button onclick="window.location.href=\'priority.php\'">Okay</button>';
+                                $msg .= '</div>';
+                                generateMessageBox($msg);
+                               
                                 
                         }
 
                 }else{
+
+                        include 'message.php';
                         if($sev=="3"){
+
                             
-                                echo '<script>
-                                        alert("No hospital has the required resources right now. Please try again later.");
-                                        window.location.href = "priority.php";
-                                        </script>';
+                                $msg = '<h2>Resource Alert<hr></h2>';
+                                $msg .= '<p>No hospital has the required resources right now. <br>Please try again later.</p>';
+                                $msg .= '<div class="button-container">';
+                                $msg .= '<button onclick="window.location.href=\'priority.php\'">Okay</button>';
+                                $msg .= '</div>';
+                                generateMessageBox($msg);
 
                         }else{
+                               
 
-                                echo '<script>
-                                        alert("No hospital has the required resources right now. Please try again later.");
-                                        window.location.href = "priority.php";
-                                        </script>';
-                                        
-                        }
-                        
+                                $msg = '<h2>Resource Alert<hr></h2>';
+                                $msg .= '<p>No hospital has the required resources right now. <br>Do you want to assign an ambulance?</p>';
+                                $msg .= '<div class="button-container">';
+                                $msg .= '<button onclick="window.location.href=\'ambu.php?id='. $id .'\'">Yes</button>';
+                                $msg .= '<button onclick="window.location.href=\'priority.php\'" style="margin-left: 15px;">No</button>';
+                                $msg .= '</div>';
+                                generateMessageBox($msg);
+                        }    
+                     
+
+
                 }
 
                 
