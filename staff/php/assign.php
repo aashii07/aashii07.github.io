@@ -186,7 +186,7 @@ if ($db->connect_error) {
                                 ORDER BY RAND() LIMIT 2";
                                 $result = mysqli_query($db, $staff);
                                 if ($result === false) {
-                                        echo "Query error: " . mysqli_error($db);
+                                        //echo "Query error: " . mysqli_error($db);
                                 } else {
                                         if (mysqli_num_rows($result) > 0) {
                                                 $nID1 = null;
@@ -372,10 +372,10 @@ SAMU IMS Team';
                                 try {
                                 // Send the email
                                         $mail->send();
-                                        echo 'Email sent successfully.';
+                                        //echo 'Email sent successfully.';
                                 } catch (Exception $e) {
-                                        echo 'An error occurred. Email not sent.';
-                                        echo 'Error: ' . $mail->ErrorInfo;
+                                        //echo 'An error occurred. Email not sent.';
+                                        //echo 'Error: ' . $mail->ErrorInfo;
                                 }
                 
                 
@@ -407,10 +407,10 @@ SAMU IMS Team';
                                 try {
                                 // Send the email
                                         $mail->send();
-                                        echo 'Email sent successfully.';
+                                        //echo 'Email sent successfully.';
                                 } catch (Exception $e) {
-                                        echo 'An error occurred. Email not sent.';
-                                        echo 'Error: ' . $mail->ErrorInfo;
+                                        //echo 'An error occurred. Email not sent.';
+                                        //echo 'Error: ' . $mail->ErrorInfo;
                                 }
                                 
                         }
@@ -496,7 +496,7 @@ SAMU IMS Team';
 
         } else {
                 // If the id parameter is not present in the URL, handle the error accordingly
-                echo "No id parameter provided.";
+                //echo "No id parameter provided.";
         }
 
 

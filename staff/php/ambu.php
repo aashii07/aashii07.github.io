@@ -230,10 +230,10 @@ SAMU IMS Team';
                 try {
                 // Send the email
                     $mail->send();
-                    echo 'Email sent successfully.';
+                    //echo 'Email sent successfully.';
                 } catch (Exception $e) {
-                    echo 'An error occurred. Email not sent.';
-                    echo 'Error: ' . $mail->ErrorInfo;
+                    //echo 'An error occurred. Email not sent.';
+                    //echo 'Error: ' . $mail->ErrorInfo;
                 }
     
     
@@ -249,6 +249,7 @@ SAMU IMS Team';
             $c = mysqli_fetch_assoc($result);
             $cE = $c["email"];
             $cN = $c["firstname"];
+           
 
             if($cE !=""){
                 // Set up email parameters
@@ -265,10 +266,10 @@ SAMU IMS Team';
                 try {
                 // Send the email
                     $mail->send();
-                    echo 'Email sent successfully.';
+                    //echo 'Email sent successfully.';
                 } catch (Exception $e) {
-                    echo 'An error occurred. Email not sent.';
-                    echo 'Error: ' . $mail->ErrorInfo;
+                    //echo 'An error occurred. Email not sent.';
+                    //echo 'Error: ' . $mail->ErrorInfo;
                 }
                 
             }
@@ -323,7 +324,7 @@ SAMU IMS Team';
 
     } else {
         // If the id parameter is not present in the URL, handle the error accordingly
-        echo "No id parameter provided.";
+        //echo "No id parameter provided.";
     }
 
 
