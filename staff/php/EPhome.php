@@ -72,14 +72,14 @@
 
             echo '<form method="POST" action="../php/stavailable.php">';
             echo '<input type="hidden" name="id" value="' . $id . '">';
-            echo '<button type="submit">AVAILABLE</button>';
+            echo '<button type="submit">I am on break</button>';
             echo '</form>';
         }
         else if($status=="available"){
 
             echo '<form method="POST" action="../php/break.php">';
             echo '<input type="hidden" name="id" value="' . $id . '">';
-            echo '<button type="submit">BREAK</button>';
+            echo '<button type="submit">I am on duty</button>';
             echo '</form>';
 
         }
@@ -89,50 +89,52 @@
 
             
 
-            // Disable ONLY_FULL_GROUP_BY mode for the current session
-            mysqli_query($db, "SET SESSION sql_mode = ''");
+        // Disable ONLY_FULL_GROUP_BY mode for the current session
+        mysqli_query($db, "SET SESSION sql_mode = ''");
 
-            $query = "SELECT s.incident_id, i.status, i.description
-                        FROM incident_staff s
-                        JOIN incident i ON i.id = s.incident_id
-                        WHERE (i.status = 'dispatched' OR i.status = 'resolving')";
-            $result = mysqli_query($db, $query);
-            $row = mysqli_fetch_assoc($result);
+        $query = "SELECT s.incident_id, i.status, i.description
+                    FROM incident_staff s
+                    JOIN incident i ON i.id = s.incident_id
+                    WHERE (i.status = 'dispatched' OR i.status = 'resolving')";
+        $result = mysqli_query($db, $query);
+        $row = mysqli_fetch_assoc($result);
+        
+
+        if($row){
+
+            
+            $id = $row['incident_id'];
+            $status = $row['status'];
+            $desc = $row['description'];
             
 
-            if($row){
+            if($status=="dispatched"){
 
-                
-                $id = $row['incident_id'];
-                $status = $row['status'];
-                $desc = $row['description'];
-                echo $desc;
-
-                if($status=="dispatched"){
-
-                    echo '<form method="POST" action="../php/resolving.php">';
-                    echo '<input type="hidden" name="incident_id" value="' . $id . '">';
-                    echo '<button type="submit">RESOLVING</button>';
-                    echo '</form>';
-                }
-                else if ($status=="resolving"){
-
-
-                    echo '<form method="POST" action="../php/closed.php">';
-                    echo '<input type="hidden" name="incident_id" value="' . $id . '">';
-                    echo '<label for="treatment">Prehospital Treatment</label><br>';
-                    echo '<textarea name="treatment" id="treatment" required></textarea><br><br>';
-                    echo '<label for="condition">Post-Treatment Conditions</label><br>';
-                    echo '<textarea name="condition" id="condition" required></textarea><br><br>';
-                    echo '<button type="submit">CLOSED</button>';
-                    echo '</form>';
-    
-                }
-    
+                echo '<form method="POST" action="../php/resolving.php">';
+                echo 'Update status of incident '.$id.' to ';
+                echo '<input type="hidden" name="incident_id" value="' . $id . '">';
+                echo '<button type="submit">RESOLVING</button>';
+                echo '</form>';
             }
-            else{
-                echo "No incident has been assigned yet.";
+            else if ($status=="resolving"){
+
+
+                echo '<form method="POST" action="../php/closed.php">';
+                echo '<input type="hidden" name="incident_id" value="' . $id . '">';
+                echo '<label for="treatment">Prehospital Treatment</label><br>';
+                echo '<textarea name="treatment" id="treatment" required></textarea><br><br>';
+                echo '<label for="condition">Post-Treatment Conditions</label><br>';
+                echo '<textarea name="condition" id="condition" required></textarea><br><br>';
+                echo 'Update status of incident '.$id.' to ';
+                echo '<button type="submit">CLOSED</button>';
+                echo '</form>';
+
             }
+
+        }
+        else{
+            //echo "No incident has been assigned yet.";
+        }
 
             
             

@@ -34,7 +34,7 @@
                     WHERE i.incident_id = '$id'";
         $result = mysqli_query($db, $query);
 
-        header("location: ../html/Sstatus.html");
+        header("location: EPhome.php");
         
         
         

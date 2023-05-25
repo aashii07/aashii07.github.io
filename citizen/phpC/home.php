@@ -89,25 +89,29 @@
         $caller="SELECT * FROM public WHERE email='$user' LIMIT 1";
         $result=mysqli_query($db, $caller);
         $row=mysqli_fetch_assoc($result);
-        $cID=$row["id"];
+        if($row){
+
+            $cID=$row["id"];
 
         
-        $caller="SELECT * FROM incident 
-                WHERE public_id='$cID' AND status='pending'";
-        $result=mysqli_query($db, $caller);
-        echo "<div class='center'>";
-        echo "<table>";
-        while ($row = mysqli_fetch_assoc($result)) {
-            
-            echo "<tr>";
-            echo "<td style='text-align: center; font-weight: bold;' >" . $row['description'] . "</td>";
-            echo "<td><a href='cancel.php?id=" . $row['id'] . "' class='cancel-button'>Cancel Incident Report</a></td>";
-            echo "</tr>";
-            
-        }
-        echo "</table>";
-        echo "</div>";
+            $caller="SELECT * FROM incident 
+                    WHERE public_id='$cID' AND status='pending'";
+            $result=mysqli_query($db, $caller);
+            echo "<div class='center'>";
+            echo "<table>";
+            while ($row = mysqli_fetch_assoc($result)) {
+                
+                echo "<tr>";
+                echo "<td style='text-align: center; font-weight: bold;' >" . $row['description'] . "</td>";
+                echo "<td><a href='cancel.php?id=" . $row['id'] . "' class='cancel-button'>Cancel Incident Report</a></td>";
+                echo "</tr>";
+                
+            }
+            echo "</table>";
+            echo "</div>";
 
+        }
+        
         
     }
 ?>

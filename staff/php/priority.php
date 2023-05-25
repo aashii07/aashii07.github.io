@@ -18,7 +18,7 @@
             margin: 4px 2px;
             cursor: pointer;
         }
-        .button-container {
+        .button-container1 {
             text-align: center;
             display: flex;
             justify-content: center;
@@ -51,19 +51,7 @@
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
     <br>
 
-    <h4 style="text-align: center;" >Request other emergency services for last assigned incident:</h4>
-    <div class="button-container">
-        <form action="mfrs.php" method="post">
-            <button class="button">MFRS</button>
-        </form>
-        <form action="mpf.php" method="post">
-            <button class="button">MPF</button>
-        </form>
-        
-        
-    </div>
-
-    <br><hr>
+    
 
 </body>
 
@@ -103,6 +91,17 @@
                 // You can also consider logging the error for debugging purposes
             } else {
                 if (mysqli_num_rows($result) > 0) {
+
+                    echo '<h4 style="text-align: center;" >Request other emergency services for last assigned incident:</h4>
+                    <div class="button-container1">
+                        <form action="mfrs.php" method="post">
+                            <button class="button">MFRS</button>
+                        </form>
+                        <form action="mpf.php" method="post">
+                            <button class="button">MPF</button>
+                        </form>
+                    </div>
+                    <br><hr>';
                     
                     $currentSeverity=0;
                     echo "<style>
@@ -156,11 +155,18 @@
                         
                     }
                 } else {
-                    echo "No rows found.";
+                    include 'message.php';
+                    //echo "No rows found.";
+                    $msg = '<h2>No Incident<hr></h2>';
+                    $msg .= '<p>There is no incident to be assigned yet. Please come back later.</p>';
+                    $msg .= '<div class="button-container">';
+                    $msg .= '<button onclick="window.location.href=\'../html/home.html\'">Close</button>';
+                    $msg .= '</div>';
+                    generateMessageBox($msg);
                 }
             }
         }else{
-            echo "Only Control Officers can access this page.";
+            //echo "Only Control Officers can access this page.";
         }
 
         

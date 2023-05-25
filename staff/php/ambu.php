@@ -282,7 +282,7 @@ SAMU IMS Team';
             $msg .= '<p>Helper: ' . $hN1 . ' ' . $hN2 . '</p>';
             $msg .= '<p>Driver: ' . $dN1 . ' ' . $dN2 . '</p>';
             $msg .= '<div class="button-container">';
-            $msg .= '<button onclick="window.location.href=\'priority.php\'">Okay</button>';
+            $msg .= '<button onclick="window.location.href=\'priority.php\'">Close</button>';
             $msg .= '</div>';
             generateMessageBox($msg);
 
@@ -295,7 +295,7 @@ SAMU IMS Team';
             $msg = '<h2>Resource Alert<hr></h2>';
             $msg .= '<p>No hospital has the required resources right now. <br>Please try again later.</p>';
             $msg .= '<div class="button-container">';
-            $msg .= '<button onclick="window.location.href=\'priority.php\'">Okay</button>';
+            $msg .= '<button onclick="window.location.href=\'priority.php\'">Close</button>';
             $msg .= '</div>';
             generateMessageBox($msg);
 

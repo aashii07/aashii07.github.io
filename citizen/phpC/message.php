@@ -65,7 +65,6 @@
   <?php
   function generateMessageBox($msg) {
     echo '<div class="message">';
-    echo '<span class="close" onclick="this.parentElement.style.display=\'none\'">&times;</span>';
     echo '<p>' . $msg . '</p>';
     echo '</div>';
   }

@@ -14,20 +14,7 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .close {
-      color: #aaa;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 30px;
-      font-weight: bolder;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
-
-    .close:hover {
-      color: red;
-    }
+  
 
     h2 {
       margin-top: 0;
@@ -66,7 +53,6 @@
   <?php
   function generateMessageBox($msg) {
     echo '<div class="message">';
-    echo '<span class="close" onclick="this.parentElement.style.display=\'none\'">&times;</span>';
     echo '<p>' . $msg . '</p>';
     echo '</div>';
   }

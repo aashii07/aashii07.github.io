@@ -3,8 +3,7 @@
     // Start the session
     session_start();
 
-    $email=$_POST['email'];
-    $psw=$_POST['psw'];
+    
 
     //DB connection
     $db=new mysqli('localhost', 'root', '!AAshi4477', 'fyp');
@@ -12,6 +11,11 @@
         die('Connection Failed : '.$db->connect_error);
     }
     else{
+        $email=$_POST['email'];
+        $psw=$_POST['psw'];
+
+        include 'message.php';
+
         //check if already has an account
         $check="SELECT * FROM public WHERE email='$email' LIMIT 1";
         $result=mysqli_query($db, $check);
@@ -26,13 +30,25 @@
                 header("location: home.php");
             }
             else{
-                echo "<h2>Invalid Email or Password</h2>";
+                //echo "<h2>Invalid Email or Password</h2>";
+
+                $msg = '<h2>Error Message<hr></h2>';
+                $msg .= '<p>Invalid Email or Password</p>';
+                $msg .= '<div class="button-container">';
+                $msg .= '<button onclick="window.location.href=\'../htmlC/login.html\'">Close</button>';
+                $msg .= '</div>';
+                generateMessageBox($msg);
             }
         }
         else{
-            echo "<h2>This email has not been registered yet.</h2>";
-            exit;
-            
+            //echo "<h2>This email has not been registered yet.</h2>";
+            $msg = '<h2>Error Message<hr></h2>';
+            $msg .= '<p>Invalid Email or Password</p>';
+            $msg .= '<div class="button-container">';
+            $msg .= '<button onclick="window.location.href=\'../htmlC/login.html\'">Close</button>';
+            $msg .= '</div>';
+            generateMessageBox($msg);
+    
         }
     }
 ?>

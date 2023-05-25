@@ -30,6 +30,8 @@
     $psw=$_POST['psw'];
     $psw2=$_POST['psw2'];
 
+    include 'message.php';
+
     //DB connection
     $db=new mysqli('localhost', 'root', '!AAshi4477', 'fyp');
     if($db->connect_error){
@@ -43,7 +45,7 @@
 
         if($user){
             $pw=$user['password'];
-            echo $user['id'];
+            
             if($pw==""){
                 $query="UPDATE public
                         SET firstname='$fname', lastname='$lname', phonenum='$num', gender='$gender', dob='$dob', password='$psw', password2='$psw2'
@@ -71,15 +73,21 @@ SAMU IMS Team';
                 try {
                 // Send the email
                         $mail->send();
-                        echo 'Email sent successfully.';
+                        //echo 'Email sent successfully.';
                 } catch (Exception $e) {
-                        echo 'An error occurred. Email not sent.';
-                        echo 'Error: ' . $mail->ErrorInfo;
+                        //echo 'An error occurred. Email not sent.';
+                        //echo 'Error: ' . $mail->ErrorInfo;
                 }
                 header("location: ../htmlC/home.html");
 
             }else{
-                echo "<h2>This email has already been registered.</h2>";
+                //echo "<h2>This email has already been registered.</h2>";
+                $msg = '<h2>Error Message<hr></h2>';
+                $msg .= '<p>This email has already been registered.</p>';
+                $msg .= '<div class="button-container">';
+                $msg .= '<button onclick="window.location.href=\'../htmlC/login.html\'">Close</button>';
+                $msg .= '</div>';
+                generateMessageBox($msg);
 
             }
             
@@ -87,8 +95,13 @@ SAMU IMS Team';
         }
         else{
             if ($psw !== $psw2) {
-                echo "<h2>Passwords do not match!</h2>";
-                exit;
+                //echo "<h2>Passwords do not match!</h2>";
+                $msg = '<h2>Error Message<hr></h2>';
+                $msg .= '<p>Passwords do not match!</p>';
+                $msg .= '<div class="button-container">';
+                $msg .= '<button onclick="window.location.href=\'../htmlC/signup.html\'">Close</button>';
+                $msg .= '</div>';
+                generateMessageBox($msg);
             }
             else{
                 
@@ -122,7 +135,7 @@ SAMU IMS Team';
                         echo 'Error: ' . $mail->ErrorInfo;
                 }
 
-                header("location: ../htmlC/home.html");
+                header("location: home.php");
                 
             }
         }
