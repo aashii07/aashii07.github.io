@@ -15,22 +15,22 @@
 
     <div id="id02" class="modal2">
         <span onclick="document.getElementById('id02').style.display='none'" class="close2" title="Close Modal">&times;</span>
-        <form class="modal-content2 animate" action="../php/signup.php" method="post">
+        <form name="myform" class="modal-content2 animate" onsubmit="return validateform()" action="../php/signup.php" method="post">
             <div class="container2">
                 <h1>Sign Up</h1>
                 <p>Please fill in this form to create an account.</p>
                 <hr>
                 <label for="fname"><b>First Name</b></label>
-                <input type="text" placeholder="Enter your first name" name="fname" required>
+                <input type="text" placeholder="Enter your first name" name="fname">
 
                 <label for="lname"><b>Last Name</b></label>
-                <input type="text" placeholder="Enter your last name" name="lname" required>
+                <input type="text" placeholder="Enter your last name" name="lname">
 
                 <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter your email" name="email" required>
+                <input type="text" placeholder="Enter your email" name="email">
  
                 <label for="num"><b>Phone Number</b></label>
-                <input type="text" placeholder="Enter your phone number" name="num" required>
+                <input type="text" placeholder="Enter your phone number" name="num">
 
                 <br>
                 <label><b>Role</b></label><br>
@@ -61,10 +61,10 @@
                 <br>
 
                 <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter a password" name="psw" required>
+                <input type="password" placeholder="Enter a password" name="psw">
 
                 <label for="psw2"><b>Confirm Password</b></label>
-                <input type="password" placeholder="Repeat the password" name="psw2" required>
+                <input type="password" placeholder="Repeat the password" name="psw2">
                 
                 <label>
                     <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
@@ -82,6 +82,117 @@
             </div>
         </form>
     </div>
+
+    <script>
+        
+
+
+
+        //signup
+        function validateform() {
+            var fname = document.forms["myform"]["fname"].value;
+            var lname = document.forms["myform"]["lname"].value;
+            var email = document.forms["myform"]["email"].value;
+            var num = document.forms["myform"]["num"].value;
+            var psw = document.forms["myform"]["psw"].value;
+            var psw2 = document.forms["myform"]["psw2"].value;
+
+            // Perform validation checks
+            if (fname === "") {
+                alert("First name can't be blank");
+                return false;
+            }else if (!isValidName(fname)) {
+                alert("First name can contain letters, spaces, apostrophes, and hyphens only");
+                return false;
+            }
+
+            if (lname === "") {
+                alert("Last name can't be blank");
+                return false;
+            }else if (!isValidName(lname)) {
+                alert("Last name can contain letters, spaces, apostrophes, and hyphens only");
+                return false;
+            }
+
+            if (email === "") {
+                alert("Email address can't be blank");
+                return false;
+            }else if (!isValidEmail(email)) {
+                alert("Email address should be in the format: example@domain.com");
+                return false;
+            }
+
+
+            
+            if (num === "") {
+                alert("Phone number can't be blank");
+                return false;
+            }else if (!isValidPhoneNumber(num)) {
+                alert("Phone number should start with a 5 and be followed by 7 digits");
+                return false;
+            }
+
+            
+
+
+            if (psw === "") {
+                alert("Password can't be blank");
+                return false;
+            }else if (!isValidPassword(psw)) {
+                alert("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit");
+                return false;
+            }
+
+
+            if (psw !== psw2) {
+                alert("Passwords do not match");
+                return false;
+            }
+
+
+            // If all checks pass, the form is considered valid
+            return true;
+        }
+
+        // Function to validate name field
+        function isValidName(name) {
+        var nameRegex = /^[a-zA-Z\s'-]+$/; // Regular expression to allow letters, spaces, apostrophes, and hyphens
+
+        return nameRegex.test(name);
+        }
+
+        // Function to validate email field
+        function isValidEmail(email) {
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regular expression for email validation
+
+        return emailRegex.test(email);
+        }
+
+        // Function to validate phone number field
+        function isValidPhoneNumber(phoneNumber) {
+        var phoneNumberRegex = /^5\d{7}$/; // Regular expression for a 7-digit phone number starting with 5
+
+        if (!/^[0-9]+$/.test(phoneNumber)) {
+            alert("Please enter numeric characters only for phone number!");
+            return false;
+        }
+
+        return phoneNumberRegex.test(phoneNumber);
+        }
+
+        
+
+        function isValidPassword(password) {
+        // Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit
+        var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+        return passwordRegex.test(password);
+        }
+
+
+
+
+    </script>
 
 </body>
 

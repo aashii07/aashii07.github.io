@@ -1,61 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    /* Style for the message box */
-    .hidden {
-      display: none;
-    }
+  <title>Get Current Location</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ipinfo/4.0.1/ipinfo.min.js"></script>
+  <script>
+    function getLocation() {
+      ipinfo().then(function(response) {
+        var ip = response.ip;
+        var city = response.city;
+        var region = response.region;
+        var country = response.country;
+        var latitude = response.loc.split(',')[0];
+        var longitude = response.loc.split(',')[1];
 
-    .message-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 70vh;
+        alert("IP: " + ip +
+              "\nCity: " + city +
+              "\nRegion: " + region +
+              "\nCountry: " + country +
+              "\nLatitude: " + latitude +
+              "\nLongitude: " + longitude);
+      });
     }
-
-    .message {
-      width: 300px;
-      padding: 20px;
-      background-color: #f1f1f1;
-      border-radius: 5px;
-      position: relative;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    }
-
-    /* Style for the close button */
-    .close {
-      color: #000;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .close:hover {
-      color: #999;
-    }
-
-    h2 {
-      color: #333;
-    }
-
-    p {
-      color: #666;
-    }
-  </style>
+  </script>
 </head>
 <body>
-  <button onclick="document.getElementById('messageBox').classList.remove('hidden')">Show Message Box</button>
-  <div id="messageBox" class="hidden">
-    <div class="message-container">
-      <div class="message">
-        <span class="close" onclick="document.getElementById('messageBox').classList.add('hidden')">&times;</span>
-        <h2>Beautiful Message Box</h2>
-        <p>This is a beautiful message box!</p>
-        <button onclick="location.href = 'another_page.php';">Go to Another Page</button>
-      </div>
-    </div>
-  </div>
+  <button onclick="getLocation()">Get Location</button>
 </body>
 </html>

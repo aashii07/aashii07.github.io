@@ -95,13 +95,13 @@ SAMU IMS Team';
         }
         else{
             if ($psw !== $psw2) {
-                //echo "<h2>Passwords do not match!</h2>";
+                /*echo "<h2>Passwords do not match!</h2>";
                 $msg = '<h2>Error Message<hr></h2>';
                 $msg .= '<p>Passwords do not match!</p>';
                 $msg .= '<div class="button-container">';
                 $msg .= '<button onclick="window.location.href=\'../htmlC/signup.html\'">Close</button>';
                 $msg .= '</div>';
-                generateMessageBox($msg);
+                generateMessageBox($msg);*/
             }
             else{
                 

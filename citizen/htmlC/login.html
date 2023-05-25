@@ -14,7 +14,7 @@
     <div id="id01" class="modal">
 
         <span onclick="document.getElementById('id01').style.display='none'" class="close2" title="Close Modal">&times;</span>
-        <form class="modal-content animate" action="../phpC/login.php" method="post">
+        <form name="myform" class="modal-content animate" onsubmit="return validateform()" action="../phpC/login.php" method="post">
 
             <div class="container">
                 <h1>Login</h1>
@@ -41,6 +41,62 @@
 
         </form>
     </div>
+
+
+    <script>
+        
+
+        function validateform() {
+       
+        var email = document.forms["myform"]["email"].value;
+        var psw = document.forms["myform"]["psw"].value;
+        
+
+        // Perform validation checks
+        
+        if (email === "") {
+            alert("Email address can't be blank");
+            return false;
+        }else if (!isValidEmail(email)) {
+            alert("Email address should be in the format: example@domain.com");
+            return false;
+        }
+
+        if (psw === "") {
+            alert("Password can't be blank");
+            return false;
+        }else if (!isValidPassword(psw)) {
+            alert("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit");
+            return false;
+        }
+
+
+        // If all checks pass, the form is considered valid
+        return true;
+        }
+
+        
+
+        // Function to validate email field
+        function isValidEmail(email) {
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regular expression for email validation
+
+            return emailRegex.test(email);
+        }
+
+       
+
+        function isValidPassword(password) {
+            // Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit
+            var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+            return passwordRegex.test(password);
+        }
+
+
+
+
+    </script>
 
     
 </body>

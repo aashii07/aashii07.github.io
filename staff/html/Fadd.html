@@ -121,7 +121,7 @@
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
     <br>
 
-    <form action="../php/Fadd.php" method="POST">
+    <form onsubmit="return validateLicensePlate()" action="../php/Fadd.php" method="POST">
         <br><label for="license"><b>License Plate Number</b></label><br>
         <input type="text" placeholder="Enter the license plate number" id="license" name="license" required><br><br>
 
@@ -142,6 +142,21 @@
 
         <input type="submit" value="Add Vehicle">
     </form>
+
+    <script type="text/javascript">
+        function validateLicensePlate() {
+            var licensePlate = document.getElementById("license").value;
+            var regex = /^\d+\sRM\s\d{2}$/; // License plate format: digits followed by a space, followed by RM, followed by a space, followed by two digits
+    
+            if (!regex.test(licensePlate)) {
+                alert("License plate number should be in the format: digits RM ##");
+                return false;
+            }
+            return true;
+        }
+    </script>
+    
+    
 
 </body>
 </html>
