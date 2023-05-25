@@ -20,7 +20,6 @@
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="Shome.php" class="active">Home</a>
-        <a href="../html/Sstatus.html">Status Update</a>
         <a href="../html/Sdash.html">Dashboard</a>
         <a href="logout.php">Log Out</a>
     </div>
