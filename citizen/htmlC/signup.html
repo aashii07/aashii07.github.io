@@ -84,8 +84,8 @@
 
         //signup
         function validateform() {
-            var fname = document.forms["myform"]["fname"].value;
-            var lname = document.forms["myform"]["lname"].value;
+            var fname = document.forms["myform"]["fname"].value.trim();
+            var lname = document.forms["myform"]["lname"].value.trim();
             var email = document.forms["myform"]["email"].value;
             var num = document.forms["myform"]["num"].value;
             var dob = document.forms["myform"]["dob"].value;

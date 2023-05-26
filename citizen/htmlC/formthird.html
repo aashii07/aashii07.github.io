@@ -73,7 +73,7 @@
 
     function initMap() {
       var map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: -20.2067, lng: 57.6755 },
+        center: { lat: -20.212, lng: 57.57 },
         zoom: 13
       });
 
@@ -159,15 +159,15 @@
     <div id="form-container" class="container">
       <h1>Patient Details</h1>
 
-      <form action="../phpC/formthird.php" method="post">
+      <form onsubmit="return validateForm()" action="../phpC/formthird.php" method="post">
         <label for="fnamep"><b>First Name</b></label>
-        <input type="text" placeholder="Enter first name" name="fnamep">
+        <input type="text" placeholder="Enter first name" name="fnamep" id="fn">
 
         <label for="lnamep"><b>Last Name</b></label>
-        <input type="text" placeholder="Enter your last name" name="lnamep">
+        <input type="text" placeholder="Enter your last name" name="lnamep" id="ln">
 
         <label for="age"><b>Age</b></label>
-        <input type="text" placeholder="Enter age" name="age">
+        <input type="text" placeholder="Enter age" name="age" id="a">
 
         <label><b>Gender</b></label>
         <br><br>
@@ -192,7 +192,7 @@
 
         <br>
         <label for="subject"><b>Description</b></label>
-        <textarea id="subject" name="subject" placeholder="Write here.." style="height:100px" required></textarea>
+        <textarea id="subject" name="subject" placeholder="Write here.." style="height:100px"></textarea>
 
         <input type="submit" value="Submit">
       </form>
@@ -205,6 +205,63 @@
 
   <script>
     initMap();
+
+    function validateForm() {
+        var latitude = document.getElementById("latitude").value.trim();
+        var longitude = document.getElementById("longitude").value.trim();
+        var description = document.getElementById("subject").value.trim();
+        var fn = document.getElementById("fn").value.trim();
+        var ln = document.getElementById("ln").value.trim();
+        var age = document.getElementById("a").value.trim();
+
+        if (fn !== '' && !isValidName(fn)) {
+          alert("First name can contain letters, spaces, apostrophes, and hyphens only");
+          return false;
+        }
+
+        if (ln !== '' && !isValidName(ln)) {
+          alert("Last name can contain letters, spaces, apostrophes, and hyphens only");
+          return false;
+        }
+
+        if (age !== '') {
+          if (isNaN(age) || parseInt(age) < 0) {
+            alert("Age must be a positive number");
+            return false;
+          }
+        }
+          
+
+        // Check if latitude and longitude are valid numbers
+        if (latitude === "") {
+          alert("Latitude can't be blank");
+          return false;
+        }else if (latitude < -20.55 || latitude > -20) {
+          alert("Latitude must be between -20.55 and -20.00");
+          return false;
+        }
+
+        if (longitude === "") {
+          alert("Longitude can't be blank");
+          return false;
+        }else if (longitude < 57.31 || longitude > 57.82) {
+          alert("Longitude must be between 57.31 and 57.82");
+          return false;
+        }
+
+        if (description === "") {
+          alert("Description can't be blank");
+          return false;
+        }
+
+        return true; // Form submission will proceed if all validations pass
+      }
+
+      function isValidName(name) {
+        var nameRegex = /^[a-zA-Z\s'-]+$/; // Regular expression to allow letters, spaces, apostrophes, and hyphens
+
+        return nameRegex.test(name);
+      }
   </script>
 </body>
 </html>

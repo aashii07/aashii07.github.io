@@ -62,7 +62,7 @@
             
             $status="pending";
 
-            if($fnamep!=""){
+            if($fnamep!="" && $lnamep!="" && $age!=""){
 
                 $patient="SELECT id FROM patient ORDER BY id DESC LIMIT 1";
                 $result=mysqli_query($db, $patient);

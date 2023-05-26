@@ -78,7 +78,7 @@
        
         <button class="button-73" role="button" onclick="getLocation()">Get Location</button>
         <br><br>
-        <form action="../phpC/formself.php" method="post">
+        <form onsubmit="return validateForm()" action="../phpC/formself.php" method="post">
 
             
             
@@ -95,7 +95,7 @@
 
             
             <label for="subject"><b>Description</b></label>
-            <textarea id="subject" name="subject" placeholder="Write here.." style="height:100px" required></textarea>
+            <textarea id="subject" name="subject" placeholder="Write here.." style="height:100px"></textarea>
 
             
 
@@ -122,7 +122,39 @@
         document.getElementById("latitude").value = position.coords.latitude;
         document.getElementById("longitude").value = position.coords.longitude;
       }
-        </script>
+
+      
+      function validateForm() {
+        var latitude = document.getElementById("latitude").value.trim();
+        var longitude = document.getElementById("longitude").value.trim();
+        var description = document.getElementById("subject").value.trim();
+
+        // Check if latitude and longitude are valid numbers
+        if (latitude === "") {
+          alert("Latitude can't be blank");
+          return false;
+        }else if (latitude < -20.55 || latitude > -20) {
+          alert("Latitude must be between -20.55 and -20.00");
+          return false;
+        }
+
+        if (longitude === "") {
+          alert("Longitude can't be blank");
+          return false;
+        }else if (longitude < 57.31 || longitude > 57.82) {
+          alert("Longitude must be between 57.31 and 57.82");
+          return false;
+        }
+
+        if (description === "") {
+          alert("Description can't be blank");
+          return false;
+        }
+
+        return true; // Form submission will proceed if all validations pass
+      }
+  
+  </script>
         
 
 </body>
