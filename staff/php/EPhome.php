@@ -83,6 +83,28 @@
 
         }
 
+        $u = "SELECT *
+                    FROM incident_staff s
+                    JOIN incident i ON i.id = s.incident_id
+                    WHERE (i.status = 'dispatched' OR i.status = 'resolving') AND s.staff_id='$id'";
+
+            $r = mysqli_query($db, $u);
+            $r1 = mysqli_fetch_assoc($r);
+            $Iid = $r1['id'];
+
+            echo '<h4 style="text-align: center;" >Request other emergency services for incident '.$Iid.':</h4>
+                    <div class="button-container1">
+                        <form action="mfrs.php" method="get">
+                            <input type="hidden" name="id" value="' . $Iid . '">
+                            <button class="button">MFRS</button>
+                        </form>
+                        <form action="mpf.php" method="get">
+                            <input type="hidden" name="id" value="' . $Iid . '">
+                            <button class="button">MPF</button>
+                        </form>
+                    </div>
+                    <br><hr>';
+
            
        
 

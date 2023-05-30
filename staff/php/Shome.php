@@ -110,7 +110,7 @@
             $u = "SELECT *
                     FROM incident_staff s
                     JOIN incident i ON i.id = s.incident_id
-                    WHERE (i.status = 'assigned' OR i.status = 'resolving') AND s.staff_id='$id'";
+                    WHERE (i.status = 'dispatched' OR i.status = 'resolving') AND s.staff_id='$id'";
 
             $r = mysqli_query($db, $u);
             $r1 = mysqli_fetch_assoc($r);
