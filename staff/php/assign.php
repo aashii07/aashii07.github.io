@@ -426,7 +426,7 @@ SAMU IMS Team';
                                 $msg .= '<p>Helper: ' . $hN1 . ' ' . $hN2 . '</p>';
                                 $msg .= '<p>Driver: ' . $dN1 . ' ' . $dN2 . '</p>';
                                 $msg .= '<div class="button-container">';
-                                $msg .= '<button onclick="window.location.href=\'priority.php\'">Close</button>';
+                                $msg .= '<button onclick="window.location.href=\'requestmfrs.php?id=' . $id . '\'">Close</button>';
                                 $msg .= '</div>';
                                 generateMessageBox($msg);
                                 
@@ -442,13 +442,13 @@ SAMU IMS Team';
                                 $msg .= '<p>Nurse 2: ' . $n2N1 . ' ' . $n2N2 . '</p>';
                                 $msg .= '<p>Driver: ' . $dN1 . ' ' . $dN2 . '</p>';
                                 $msg .= '<div class="button-container">';
-                                $msg .= '<button onclick="window.location.href=\'priority.php\'">Close</button>';
+                                $msg .= '<button onclick="window.location.href=\'requestmfrs.php?id=' . $id . '\'">Close</button>';
                                 $msg .= '</div>';
                                 generateMessageBox($msg);
                                
                                 
                         }
-
+                        
                 }else{
 
                         include 'message.php';

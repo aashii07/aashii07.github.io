@@ -75,7 +75,7 @@
         $co = mysqli_fetch_assoc($result);
        
 
-        if($co){
+     
 
             // Disable ONLY_FULL_GROUP_BY mode for the current session
             mysqli_query($db, "SET SESSION sql_mode = ''");
@@ -92,16 +92,7 @@
             } else {
                 if (mysqli_num_rows($result) > 0) {
 
-                    echo '<h4 style="text-align: center;" >Request other emergency services for last assigned incident:</h4>
-                    <div class="button-container1">
-                        <form action="mfrs.php" method="post">
-                            <button class="button">MFRS</button>
-                        </form>
-                        <form action="mpf.php" method="post">
-                            <button class="button">MPF</button>
-                        </form>
-                    </div>
-                    <br><hr>';
+                    
                     
                     $currentSeverity=0;
                     echo "<style>
@@ -165,9 +156,7 @@
                     generateMessageBox($msg);
                 }
             }
-        }else{
-            //echo "Only Control Officers can access this page.";
-        }
+       
 
         
        

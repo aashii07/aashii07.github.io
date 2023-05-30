@@ -7,6 +7,28 @@
             color: #000000 !important;
             /* Replace with your desired text color */
         }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: none;
+        }
+        .button-container1 {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+        
+        
+        form {
+            margin: 0 5px;
+        }
     </style>
 
 <head>
@@ -82,6 +104,40 @@
 
             }
 
+
+
+            
+            $u = "SELECT *
+                    FROM incident_staff s
+                    JOIN incident i ON i.id = s.incident_id
+                    WHERE (i.status = 'assigned' OR i.status = 'resolving') AND s.staff_id='$id'";
+
+            $r = mysqli_query($db, $u);
+            $r1 = mysqli_fetch_assoc($r);
+            $Iid = $r1['id'];
+
+            echo '<h4 style="text-align: center;" >Request other emergency services for incident '.$Iid.':</h4>
+                    <div class="button-container1">
+                        <form action="mfrs.php" method="get">
+                            <input type="hidden" name="id" value="' . $Iid . '">
+                            <button class="button">MFRS</button>
+                        </form>
+                        <form action="mpf.php" method="get">
+                            <input type="hidden" name="id" value="' . $Iid . '">
+                            <button class="button">MPF</button>
+                        </form>
+                    </div>
+                    <br><hr>';
+          
+
+            
+
+            
+            
+
+            
+
+            
             
 
             

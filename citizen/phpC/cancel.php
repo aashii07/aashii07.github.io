@@ -42,7 +42,9 @@
         $des=$row['description'];
 
         
-        $caller="DELETE FROM incident WHERE id='$id'";
+        $caller="UPDATE incident 
+                    SET status='cancelled' 
+                    WHERE id='$id'";
         $result=mysqli_query($db, $caller);
 
         // Set up email parameters
