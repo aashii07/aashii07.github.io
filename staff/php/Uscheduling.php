@@ -7,6 +7,9 @@ $db = new mysqli('localhost', 'root', '!AAshi4477', 'fyp');
 if ($db->connect_error) {
     die('Connection Failed : ' . $db->connect_error);
 } else {
+    date_default_timezone_set("Indian/Mauritius");
+
+    
     $staff = $_SESSION['email'];
     $user = "SELECT *
                 FROM samu_staff
@@ -203,6 +206,7 @@ if ($db->connect_error) {
                         
 
                         if($date >= date('Y-m-d')){
+                        
 
                             echo "<select name='shift[$personId][$day][shift]'>
                             <option value='$s'>$S</option>

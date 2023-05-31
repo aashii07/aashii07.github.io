@@ -90,20 +90,23 @@
 
             $r = mysqli_query($db, $u);
             $r1 = mysqli_fetch_assoc($r);
-            $Iid = $r1['id'];
+            if($r1){
+                $Iid = $r1['id'];
 
-            echo '<h4 style="text-align: center;" >Request other emergency services for incident '.$Iid.':</h4>
-                    <div class="button-container1">
-                        <form action="mfrs.php" method="get">
-                            <input type="hidden" name="id" value="' . $Iid . '">
-                            <button class="button">MFRS</button>
-                        </form>
-                        <form action="mpf.php" method="get">
-                            <input type="hidden" name="id" value="' . $Iid . '">
-                            <button class="button">MPF</button>
-                        </form>
-                    </div>
-                    <br><hr>';
+                echo '<h4 style="text-align: center;" >Request other emergency services for incident '.$Iid.':</h4>
+                        <div class="button-container1">
+                            <form action="mfrs.php" method="get">
+                                <input type="hidden" name="id" value="' . $Iid . '">
+                                <button class="button">MFRS</button>
+                            </form>
+                            <form action="mpf.php" method="get">
+                                <input type="hidden" name="id" value="' . $Iid . '">
+                                <button class="button">MPF</button>
+                            </form>
+                        </div>
+                        <br><hr>';
+            }
+            
 
            
        

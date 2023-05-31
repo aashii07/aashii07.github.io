@@ -9,10 +9,9 @@
 
 <body>
     
-    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+    <button onclick="openLogInForm()" style="width:auto; display:none;">Login</button>
 
-    <div id="id01" class="modal">
-
+    <div  id="id01" class="modal" style="display: block;">
         <span onclick="document.getElementById('id01').style.display='none'" class="close2" title="Close Modal">&times;</span>
         <form name="myform" class="modal-content animate" onsubmit="return validateform()" action="../php/login.php" method="post">
 
@@ -43,6 +42,10 @@
     </div>
 
     <script>
+        function openLogInForm() {
+            document.getElementById('id01').style.display = 'block';
+            document.getElementById('loginButton').style.display = 'none';
+        }
         
 
         function validateform() {

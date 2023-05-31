@@ -58,8 +58,8 @@
     <br>
 
     <br><br>
-    <a href="formthird.html" class="button" style="text-decoration:none; background-color:rgb(0, 120, 255); color:white; padding:10px; border-radius: 4px;">Third-Party Reporting</a>
-    <a href="formself.html" class="button" style="text-decoration:none; background-color:rgb(0, 120, 255); color:white; padding:10px; border-radius: 4px;">Self-Reporting</a>
+    <a href="../htmlC/formthird.html" class="button" style="text-decoration:none; background-color:rgb(0, 120, 255); color:white; padding:10px; border-radius: 4px;">Third-Party Reporting</a>
+    <a href="../htmlC/formself.html" class="button" style="text-decoration:none; background-color:rgb(0, 120, 255); color:white; padding:10px; border-radius: 4px;">Self-Reporting</a>
     <a href="tel:114" class="button" style="text-decoration:none; background-color:rgb(0, 120, 255); color:white; padding:10px; border-radius: 4px;">Call 114</a>
 
     <br><br><br>
@@ -95,16 +95,58 @@
 
         
             $caller="SELECT * FROM incident 
-                    WHERE public_id='$cID' AND status='pending'";
+                    WHERE public_id='$cID' AND status<>'closed' AND status<>'cancelled'";
             $result=mysqli_query($db, $caller);
+
+           
             echo "<div class='center'>";
             echo "<table>";
             while ($row = mysqli_fetch_assoc($result)) {
+                
+                $res=$row['id'];
+                $q1="SELECT * FROM incident 
+                        WHERE id='$res'";
+                $r1=mysqli_query($db, $q1);
+                $stat = mysqli_fetch_assoc($r1);
                 
                 echo "<tr>";
                 echo "<td style='text-align: center; font-weight: bold;' >" . $row['description'] . "</td>";
                 echo "<td><a href='cancel.php?id=" . $row['id'] . "' class='cancel-button'>Cancel Incident Report</a></td>";
                 echo "</tr>";
+
+               
+                
+
+                echo "<tr>";
+                echo "<td colspan='4'>";
+                echo "<table style='margin: 0 auto;'>";
+                echo "<tr>";
+                if ($stat['status'] === "pending") {
+                    echo "<td style='text-align: center; color: red; font-weight: bold;'>Pending</td>";
+                } else {
+                    echo "<td style='text-align: center;'>Pending</td>";
+                }
+                if ($stat['status'] === "dispatched") {
+                    echo "<td style='text-align: center; color: red; font-weight: bold;'>Dispatched</td>";
+                } else {
+                    echo "<td style='text-align: center;'>Dispatched</td>";
+                }
+                if ($stat['status'] === "resolving") {
+                    echo "<td style='text-align: center; color: red; font-weight: bold;'>Resolving</td>";
+                } else {
+                    echo "<td style='text-align: center;'>Resolving</td>";
+                }
+                if ($stat['status'] === "closed") {
+                    echo "<td style='text-align: center; color: red; font-weight: bold;'>Closed</td>";
+                } else {
+                    echo "<td style='text-align: center;'>Closed</td>";
+                }
+              
+                echo "</tr>";
+                echo "</table>";
+                echo "</td>";
+                echo "</tr>";
+               
                 
             }
             echo "</table>";

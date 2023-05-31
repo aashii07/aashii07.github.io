@@ -11,6 +11,7 @@ if ($db->connect_error) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Retrieve the shift data from the form
         $shiftData = $_POST['shift'];
+        
        
 
         
@@ -23,6 +24,7 @@ if ($db->connect_error) {
                     $date = $shift['date'];
                     $selectedShift = $shift['shift'];
                     $staffId = $shift['staff_id'];
+                    
 
                     
 
@@ -71,11 +73,13 @@ if ($db->connect_error) {
 
     $shiftStart1 = date('Y-m-d H:i:s', strtotime($currentD . ' 08:00:00'));
     $shiftEnd1 = date('Y-m-d H:i:s', strtotime($currentD . ' 17:00:00'));
+    
 
     $shiftStart2 = date('Y-m-d H:i:s', strtotime($currentD . ' 17:00:00'));
     $next2 = date('Y-m-d', strtotime($current . ' +1 day'));
     $shiftEnd2 = date('Y-m-d H:i:s', strtotime($next2 . ' 08:00:00'));
 
+   
     
     
 
@@ -95,60 +99,163 @@ if ($db->connect_error) {
             $shift = $row['shift'];
 
             if($shift==='d'){
-                if($current>$shiftStart1 && $current<$shiftEnd1){
+                $query = "SELECT * FROM staff_schedule WHERE date='$last' AND staff_id='$Sid' AND (shift='n' OR shift='dn')";
+                $r1 = mysqli_query($db, $query);
+                $n = mysqli_fetch_assoc($r1);
+                if($n){
                     
-                    $updateQuery = "UPDATE samu_staff
-                                    SET status='available' 
-                                    WHERE id='$Sid' AND status='offduty'";
-                    $result = mysqli_query($db, $updateQuery);
+                        
+                    if($current>$shiftEnd2){
+                        if($current>$shiftStart1 && $current<$shiftEnd1){
+                        
+                            $updateQuery = "UPDATE samu_staff
+                                            SET status='available' 
+                                            WHERE id='$Sid' AND status='offduty'";
+                            $result = mysqli_query($db, $updateQuery);
+                        }else{
+                            
+                            $updateQuery = "UPDATE samu_staff
+                                            SET status='offduty' 
+                                            WHERE id='$Sid'";
+                            $result = mysqli_query($db, $updateQuery);
+                        }
+
+                    }
+                    else{
+                            
+                        $updateQuery = "UPDATE samu_staff
+                                        SET status='available' 
+                                        WHERE id='$Sid' AND status='offduty'";
+                        $result = mysqli_query($db, $updateQuery);
+                    }
                 }else{
-                    
-                    $updateQuery = "UPDATE samu_staff
-                                    SET status='offduty' 
-                                    WHERE id='$Sid'";
-                    $result = mysqli_query($db, $updateQuery);
+                    if($current>$shiftStart1 && $current<$shiftEnd1){
+                        
+                        $updateQuery = "UPDATE samu_staff
+                                        SET status='available' 
+                                        WHERE id='$Sid' AND status='offduty'";
+                        $result = mysqli_query($db, $updateQuery);
+                    }else{
+                        
+                        $updateQuery = "UPDATE samu_staff
+                                        SET status='offduty' 
+                                        WHERE id='$Sid'";
+                        $result = mysqli_query($db, $updateQuery);
+                    }
                 }
+                
+                
             }
             else if($shift==='n'){
-                if($current>$shiftStart2 && $current<$shiftEnd2){
+                $query = "SELECT * FROM staff_schedule WHERE date='$last' AND staff_id='$Sid' AND (shift='n' OR shift='dn')";
+                $r1 = mysqli_query($db, $query);
+                $n = mysqli_fetch_assoc($r1);
+                if($n){
+                    
+                        
+                    if($current>$shiftEnd2){
+                  
+                        if($current>$shiftStart2 && $current<$shiftEnd2){
+                        
+                            $updateQuery = "UPDATE samu_staff
+                                            SET status='available' 
+                                            WHERE id='$Sid' AND status='offduty'";
+                            $result = mysqli_query($db, $updateQuery);
+                        }else{
+                            
+                            $updateQuery = "UPDATE samu_staff
+                                            SET status='offduty' 
+                                            WHERE id='$Sid'";
+                            $result = mysqli_query($db, $updateQuery);
+                        }
 
-                    $updateQuery = "UPDATE samu_staff
-                                    SET status='available' 
-                                    WHERE id='$Sid' AND status='offduty'";
-                    $result = mysqli_query($db, $updateQuery);
+                    }
+                    else{
+                            
+                        $updateQuery = "UPDATE samu_staff
+                                        SET status='available' 
+                                        WHERE id='$Sid' AND status='offduty'";
+                        $result = mysqli_query($db, $updateQuery);
+                    }
                 }else{
-                    $updateQuery = "UPDATE samu_staff
-                                    SET status='offduty' 
-                                    WHERE id='$Sid'";
-                    $result = mysqli_query($db, $updateQuery);
-
+                    if($current>$shiftStart2 && $current<$shiftEnd2){
+                        
+                        $updateQuery = "UPDATE samu_staff
+                                        SET status='available' 
+                                        WHERE id='$Sid' AND status='offduty'";
+                        $result = mysqli_query($db, $updateQuery);
+                    }else{
+                        
+                        $updateQuery = "UPDATE samu_staff
+                                        SET status='offduty' 
+                                        WHERE id='$Sid'";
+                        $result = mysqli_query($db, $updateQuery);
+                    }
                 }
+
+
+
+
                     
             }
             else if($shift==='dn'){
-                if($current>$shiftStart1 && $current<$shiftEnd2){
-                    $updateQuery = "UPDATE samu_staff
-                                    SET status='available' 
-                                    WHERE id='$Sid' AND status='offduty'";
-                    $result = mysqli_query($db, $updateQuery);
 
+                $query = "SELECT * FROM staff_schedule WHERE date='$last' AND staff_id='$Sid' AND (shift='n' OR shift='dn')";
+                $r1 = mysqli_query($db, $query);
+                $n = mysqli_fetch_assoc($r1);
+                if($n){
+                    
+                        
+                    if($current>$shiftEnd2){
+                        if($current>$shiftStart1 && $current<$shiftEnd2){
+                        
+                            $updateQuery = "UPDATE samu_staff
+                                            SET status='available' 
+                                            WHERE id='$Sid' AND status='offduty'";
+                            $result = mysqli_query($db, $updateQuery);
+                        }else{
+                            
+                            $updateQuery = "UPDATE samu_staff
+                                            SET status='offduty' 
+                                            WHERE id='$Sid'";
+                            $result = mysqli_query($db, $updateQuery);
+                        }
+
+                    }
+                    else{
+                            
+                        $updateQuery = "UPDATE samu_staff
+                                        SET status='available' 
+                                        WHERE id='$Sid' AND status='offduty'";
+                        $result = mysqli_query($db, $updateQuery);
+                    }
                 }else{
-                    $updateQuery = "UPDATE samu_staff
-                                    SET status='offduty' 
-                                    WHERE id='$Sid'";
-                    $result = mysqli_query($db, $updateQuery);
-
+                    if($current>$shiftStart1 && $current<$shiftEnd2){
+                        
+                        $updateQuery = "UPDATE samu_staff
+                                        SET status='available' 
+                                        WHERE id='$Sid' AND status='offduty'";
+                        $result = mysqli_query($db, $updateQuery);
+                    }else{
+                        
+                        $updateQuery = "UPDATE samu_staff
+                                        SET status='offduty' 
+                                        WHERE id='$Sid'";
+                        $result = mysqli_query($db, $updateQuery);
+                    }
                 }
+               
             
             }
+            
             else if ($shift==='o'){
                 $query = "SELECT * FROM staff_schedule WHERE date='$last' AND staff_id='$Sid' AND (shift='n' OR shift='dn')";
                 $r1 = mysqli_query($db, $query);
-                
-                if($r1){
+                $n = mysqli_fetch_assoc($r1);
+                if($n){
+                    
                         
-                    if($current>date('Y-m-d H:i:s', strtotime($current . ' 08:00:00'))){
-                            
+                    if($current>$shiftEnd2){       
                         $updateQuery = "UPDATE samu_staff
                                         SET status='offduty' 
                                         WHERE id='$Sid'";
@@ -172,7 +279,7 @@ if ($db->connect_error) {
 
             }else{
                 $updateQuery = "UPDATE samu_staff
-                                SET status='NA' 
+                                SET status='offduty' 
                                 WHERE id='$Sid'";
                 $result = mysqli_query($db, $updateQuery);
 

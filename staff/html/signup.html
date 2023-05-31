@@ -11,9 +11,9 @@
     
     
 
-    <button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Sign Up</button>
+    <button onclick="openSignUpForm()" style="width:auto; display:none;">Sign Up</button>
 
-    <div id="id02" class="modal2">
+    <div  id="id02" class="modal2" style="display: block;">
         <span onclick="document.getElementById('id02').style.display='none'" class="close2" title="Close Modal">&times;</span>
         <form name="myform" class="modal-content2 animate" onsubmit="return validateform()" action="../php/signup.php" method="post">
             <div class="container2">
@@ -86,6 +86,9 @@
     <script>
         
 
+        function openSignUpForm() {
+            document.getElementById('id02').style.display = 'block';
+        }
 
 
         //signup
