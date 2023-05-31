@@ -99,7 +99,7 @@ if ($db->connect_error) {
                     
                     $updateQuery = "UPDATE samu_staff
                                     SET status='available' 
-                                    WHERE id='$Sid' AND status<>'break'";
+                                    WHERE id='$Sid' AND status='offduty'";
                     $result = mysqli_query($db, $updateQuery);
                 }else{
                     
@@ -114,7 +114,7 @@ if ($db->connect_error) {
 
                     $updateQuery = "UPDATE samu_staff
                                     SET status='available' 
-                                    WHERE id='$Sid' AND status<>'break'";
+                                    WHERE id='$Sid' AND status='offduty'";
                     $result = mysqli_query($db, $updateQuery);
                 }else{
                     $updateQuery = "UPDATE samu_staff
@@ -129,7 +129,7 @@ if ($db->connect_error) {
                 if($current>$shiftStart1 && $current<$shiftEnd2){
                     $updateQuery = "UPDATE samu_staff
                                     SET status='available' 
-                                    WHERE id='$Sid' AND status<>'break'";
+                                    WHERE id='$Sid' AND status='offduty'";
                     $result = mysqli_query($db, $updateQuery);
 
                 }else{
@@ -159,9 +159,14 @@ if ($db->connect_error) {
                             
                         $updateQuery = "UPDATE samu_staff
                                         SET status='available' 
-                                        WHERE id='$Sid' AND status<>'break'";
+                                        WHERE id='$Sid' AND status='offduty'";
                         $result = mysqli_query($db, $updateQuery);
                     }
+                }else{
+                    $updateQuery = "UPDATE samu_staff
+                                    SET status='offduty' 
+                                    WHERE id='$Sid'";
+                    $result = mysqli_query($db, $updateQuery);
                 }
                     
 
