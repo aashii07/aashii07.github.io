@@ -30,6 +30,30 @@
         form {
             margin: 0 5px;
         }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        select {
+            padding: 4px;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
     </style>
 
 <head>
@@ -53,7 +77,7 @@
 
 
     
-    <p>Hello EP</p>
+    <p>Hello SAMU</p>
 
 
 
@@ -90,13 +114,78 @@
         $staff = mysqli_fetch_assoc($result);
         $id = $staff['id'];
         $status = $staff['status'];
-       
+
+
+
+
+
+
+
+
+
+
+
+      
+
+        $currentDate = date('Y-m-d');  // Get the current date in 'YYYY-MM-DD' format
+        $weekStartDate = date('Y-m-d', strtotime("last Monday", strtotime($currentDate))); // Get the week start date
+
+        // Generate the week
+        $week = array();
+        for ($i = 0; $i < 7; $i++) {
+            $day = date('Y-m-d', strtotime("+$i days", strtotime($weekStartDate)));
+            $dayName = date('D', strtotime($day)); // Get the day name
+    
+            $week[$day] = $dayName;
+        }
+
+        // Print the week
+        echo "<table style='margin: 0 auto;' id='grid-table'>";
+
+        foreach ($week as $day => $dayName) {
+            echo "<th>$dayName<br><span style='font-size: 13px; font-weight: normal;'>($day)</span></th>";
+            
+        }
+        echo '<tr>';
         
+        
+
+        foreach ($week as $day => $dayName) {
+            $q = "SELECT * FROM staff_schedule
+                WHERE staff_id='$id' AND date='$day'";
+            $r = mysqli_query($db, $q);
+            $row = mysqli_fetch_assoc($r);
+            $shift = $row['shift'];
+
+            $S = "";
+            if ($shift == "d") {
+                $S = "Day";
+            } else if ($shift == "dn") {
+                $S = "Day + Night";
+            } else if ($shift == "n") {
+                $S = "Night";
+            } else if ($shift == "o") {
+                $S = "Off Duty";
+            }
+            
+           
+            
+            echo '<td>' . $S . '</td>';
+            
+        }
+
+        echo '</tr>';
+        echo '</table>';
+        echo '<br>';
+
+
+            
+                
        
 
         
 
-            // Disable ONLY_FULL_GROUP_BY mode for the current session
+        // Disable ONLY_FULL_GROUP_BY mode for the current session
         mysqli_query($db, "SET SESSION sql_mode = ''");
 
         if($status=="break"){
