@@ -178,6 +178,18 @@
         echo '</table>';
         echo '<br>';
 
+        echo "<div style='text-align: center;'>";
+        echo "For any request or issue concerning your working shift, please ";
+
+        $q = "SELECT * FROM samu_staff
+                WHERE role='u'";
+        $r = mysqli_query($db, $q);
+        $row = mysqli_fetch_assoc($r);
+        $email = $row['email'];
+        $message = "mail us";
+        $link = "<a href='mailto:$email'>$message</a>";
+        echo $link;
+        echo "</div>";
 
             
                 
