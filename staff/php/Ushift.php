@@ -1,6 +1,9 @@
 <?php
 // Start the session
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 
 // DB connection
 $db = new mysqli('localhost', 'root', '!AAshi4477', 'fyp');
@@ -55,7 +58,7 @@ if ($db->connect_error) {
                 }
             }
         } else {
-            echo "No shift data submitted.";
+            //echo "No shift data submitted.";
         }
 
 
@@ -63,7 +66,7 @@ if ($db->connect_error) {
 
        
     } else {
-        echo "Invalid request.";
+        //echo "Invalid request.";
     }
 
     date_default_timezone_set("Indian/Mauritius");
@@ -105,7 +108,7 @@ if ($db->connect_error) {
                 if($n){
                     
                         
-                    if($current>$shiftEnd2){
+                    if($current>$shiftStart1){
                         if($current>$shiftStart1 && $current<$shiftEnd1){
                         
                             $updateQuery = "UPDATE samu_staff
@@ -153,7 +156,7 @@ if ($db->connect_error) {
                 if($n){
                     
                         
-                    if($current>$shiftEnd2){
+                    if($current>$shiftStart1){
                   
                         if($current>$shiftStart2 && $current<$shiftEnd2){
                         
@@ -206,7 +209,7 @@ if ($db->connect_error) {
                 if($n){
                     
                         
-                    if($current>$shiftEnd2){
+                    if($current>$shiftStart1){
                         if($current>$shiftStart1 && $current<$shiftEnd2){
                         
                             $updateQuery = "UPDATE samu_staff
@@ -255,7 +258,7 @@ if ($db->connect_error) {
                 if($n){
                     
                         
-                    if($current>$shiftEnd2){       
+                    if($current>$shiftStart1){       
                         $updateQuery = "UPDATE samu_staff
                                         SET status='offduty' 
                                         WHERE id='$Sid'";
@@ -295,6 +298,12 @@ if ($db->connect_error) {
     //echo "No records found.";
     }
 
-    header("location: ../php/Uscheduling.php");
+    if ($_SESSION['schedule']==="1") {
+        header("location: Uscheduling.php");
+        exit;
+    }
+    
+
+    //header("location: ../php/Uscheduling.php");
 }
 ?>

@@ -109,9 +109,14 @@
                 $r1=mysqli_query($db, $q1);
                 $stat = mysqli_fetch_assoc($r1);
                 
+                
                 echo "<tr>";
                 echo "<td style='text-align: center; font-weight: bold;' >" . $row['description'] . "</td>";
-                echo "<td><a href='cancel.php?id=" . $row['id'] . "' class='cancel-button'>Cancel Incident Report</a></td>";
+                if($stat['status']=="pending"){
+                    echo "<td style='text-align: center; ><a href='cancel.php?id=" . $row['id'] . "' class='cancel-button'>Cancel Incident Report</a></td>";
+
+                }
+                
                 echo "</tr>";
 
                

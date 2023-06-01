@@ -85,9 +85,10 @@
 
             if($email !=""){
 
-                $p2="SELECT * FROM public WHERE email='$email'";
+                /*$p2="SELECT * FROM public WHERE email='$email'";
                 $r2=mysqli_query($db, $p2);
-                if(!$r2){
+                $res=mysqli_fetch_assoc($r2);
+                if(!$res){
 
                     $q="INSERT INTO public(firstname, lastname, email, phonenum) 
                         VALUES('$fname', '$lname', '$email', '$num')";
@@ -96,7 +97,7 @@
                         echo $db->error;
                     }
 
-                }
+                }*/
 
                 $caller="SELECT * FROM public WHERE email='$email'";
                 $result=mysqli_query($db, $caller);
@@ -111,6 +112,11 @@
                 $q1="UPDATE incident
                         SET public_id='$id'
                         WHERE id='$id1'";
+                $r1=mysqli_query($db, $q1);
+
+                $q1="UPDATE public
+                        SET firstname='$lname', lastname='$lname', phonenum='$num'
+                        WHERE id='$id'";
                 $r1=mysqli_query($db, $q1);
 
                 $mail->setFrom('aashi.jaulim@gmail.com', 'SAMU IMS');

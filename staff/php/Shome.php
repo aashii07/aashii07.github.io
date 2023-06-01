@@ -64,6 +64,8 @@
 <?php
     // Start the session
     session_start();
+    $_SESSION['schedule']="0";
+    require_once('Ushift.php');
 
     //DB connection
     $db=new mysqli('localhost', 'root', '!AAshi4477', 'fyp');

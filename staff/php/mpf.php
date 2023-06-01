@@ -123,7 +123,7 @@ if($co){
 
     header("location: priority.php");
 }else{
-    header("location: Shome.php");
+    header("location: EPhome.php");
 }
 
 ?>

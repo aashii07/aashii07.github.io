@@ -148,11 +148,9 @@ SAMU IMS Team';
                 }
                 else if ($role=="f") {
                     header("location: ../html/Fhome.html");
-                }else if ($role=="e"){
-                    header("location: EPhome.php");
                 }
                 else{
-                    header("location: Shome.php");
+                    header("location: EPhome.php");
                 }
 
                 

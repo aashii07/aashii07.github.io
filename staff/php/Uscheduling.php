@@ -1,6 +1,7 @@
 <?php
 // Start the session
 session_start();
+$_SESSION['schedule'] = "1";
 
 // DB connection
 $db = new mysqli('localhost', 'root', '!AAshi4477', 'fyp');

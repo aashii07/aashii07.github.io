@@ -112,8 +112,14 @@ SAMU IMS Team';
     }
     
 }
+if($co){
 
-header("Location: requestmpf.php?id=" . $id);
+    header("Location: requestmpf.php?id=" . $id);
+}else{
+    header("location: EPhome.php");
+}
+
+
 
 
 

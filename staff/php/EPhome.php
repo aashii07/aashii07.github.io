@@ -7,6 +7,29 @@
             color: #000000 !important;
             /* Replace with your desired text color */
         }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: none;
+        }
+        .button-container1 {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+        
+        
+        form {
+            margin: 0 5px;
+        }
     </style>
 
 <head>
@@ -40,8 +63,17 @@
 
 </html>
 <?php
+
+   
+    
+
+
+
     // Start the session
     session_start();
+    $_SESSION['schedule']="0";
+    require_once('Ushift.php');
+    
 
     //DB connection
     $db=new mysqli('localhost', 'root', '!AAshi4477', 'fyp');

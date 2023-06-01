@@ -26,7 +26,7 @@ if ($db->connect_error) {
         $msg .= '<p>Do you want request the services of MFRS for this incident?</p>';
         $msg .= '<div class="button-container">';
         $msg .= '<button onclick="window.location.href=\'mfrs.php?id='. $id .'\'">Yes</button>';
-        $msg .= '<button onclick="window.location.href=\'priority.php\'" style="margin-left: 15px;">No</button>';
+        $msg .= '<button onclick="window.location.href=\'requestmpf.php?id='. $id .'\'" style="margin-left: 15px;">No</button>';
         $msg .= '</div>';
         generateMessageBox($msg);
 

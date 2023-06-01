@@ -58,13 +58,10 @@
                     else if ($role=="f") {
                         $_SESSION['email']=$email;
                         header("location: ../html/Fhome.html");
-                    }else if ($role=="e"){
-                        $_SESSION['email']=$email;
-                        header("location: EPhome.php");
                     }
                     else if ($user){
                         $_SESSION['email']=$email;
-                        header("location: Shome.php");
+                        header("location: EPhome.php");
                     }
                    
                 }

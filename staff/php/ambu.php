@@ -1,6 +1,9 @@
 <?php
+
 // Start the session
 session_start();
+$_SESSION['schedule']="0";
+require_once('Ushift.php');
 
 // Include the Composer autoloader
 require 'PHPMailer-master/vendor/autoload.php';
