@@ -115,7 +115,7 @@
                 $r1=mysqli_query($db, $q1);
 
                 $q1="UPDATE public
-                        SET firstname='$lname', lastname='$lname', phonenum='$num'
+                        SET firstname='$fname', lastname='$lname', phonenum='$num'
                         WHERE id='$id'";
                 $r1=mysqli_query($db, $q1);
 
