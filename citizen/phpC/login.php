@@ -43,7 +43,7 @@
         else{
             //echo "<h2>This email has not been registered yet.</h2>";
             $msg = '<h2>Error Message<hr></h2>';
-            $msg .= '<p>Invalid Email or Password</p>';
+            $msg .= '<p>This email has not been registered yet.</p>';
             $msg .= '<div class="button-container">';
             $msg .= '<button onclick="window.location.href=\'../htmlC/login.html\'">Close</button>';
             $msg .= '</div>';
