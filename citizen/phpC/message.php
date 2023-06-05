@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
+  
 <head>
   <style>
+    body {
+        background-image: url(../../gallery/bg.jpg);
+        background-repeat: repeat;
+        font-family: Arial, Helvetica, sans-serif;
+    }
     /* Style for the message box */
     .message {
       width: 400px;
@@ -10,7 +16,7 @@
       border-radius: 10px;
       position: relative;
       margin: 50px auto;
-      margin-top: 20%;
+      margin-top: 200px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
@@ -47,17 +53,52 @@
     }
 
     .button-container button {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      background-color: #0080ff;
-      color: #fff;
-      font-size: 16px;
+      align-items: center;
+      background-image: linear-gradient(45deg,red, teal);
+      border: 0;
+      border-radius: 8px;
+      box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+      box-sizing: border-box;
+      color: #FFFFFF;
+      display: flex;
+      font-family: Phantomsans, sans-serif;
+      font-size: 16px; /* Updated font size */
+      justify-content: center;
+      line-height: 1em;
+      width: 120px; /* Updated width */
+      padding: 2.5px; /* Updated padding */
+      text-decoration: none;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      white-space: nowrap;
       cursor: pointer;
+      margin-left: 260px;
+      margin-top: 30px;
     }
 
-    .button-container button:hover {
-      background-color: #0059b3;
+    .button-container button:hover,
+    .button-container button:active {
+      outline: 0;
+    }
+
+    .button-container button span{
+      background-color: rgb(5, 6, 45);
+      padding: 12px; /* Updated padding */
+      border-radius: 6px;
+      width: 100px;
+      height: 20px;
+      transition: 300ms;
+    }
+
+    .button-container button:hover span{
+      background: none;
+    }
+
+    hr{
+        background-image: linear-gradient(to right, red, teal); /* Replace "red" and "blue" with your desired colors */
+        height: 2px; /* Adjust the height of the hr element as needed */
+        border: none;
     }
   </style>
 </head>

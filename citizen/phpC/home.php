@@ -1,21 +1,37 @@
 <!DOCTYPE html>
 <html>
     <style>
-        .active {
-            background-color: #03d9ffbc; /* Replace with your desired color */
-            color: #000000 !important; /* Replace with your desired text color */
+        body {
+            background-image: url(../../gallery/bg.jpg);
+            background-repeat: repeat;
+            font-family: Arial, Helvetica, sans-serif;
         }
+        .active {
+            background-color: rgb(150, 200, 200); /* Replace with your desired color */
+            color: teal !important; /* Replace with your desired text color */
+        }
+        hr{
+            background-image: linear-gradient(to right, red, teal); /* Replace "red" and "blue" with your desired colors */
+            height: 2px; /* Adjust the height of the hr element as needed */
+            border: none;
+        }
+
+        
+
+        
         .button:hover, .cancel-button:hover {
-            background-color: rgb(0, 120, 255, 0.5)!important;
+            background-color: rgb(0, 128, 128, 0.7);
+        
             color: black!important;
-            font-weight: bold;
+           
             
         }
         .cancel-button {
             text-decoration:none; 
-            background-color:rgb(0, 120, 255); 
-            color:white; padding:10px;
-            border-radius: 4px;
+            background-color:teal; 
+            color:white; 
+            padding:10px;
+            border-radius: 8px;
         }
         
        
@@ -23,11 +39,12 @@
         table td, table th {
             padding: 12px;
             text-align: left;
+            border-radius: 8px;
             
         }
 
         table tr {
-            background-color: #f2f2f2;
+            background-color: rgb(180, 200, 200)
             
            
         }
@@ -37,6 +54,70 @@
             align-items: center;
             
         }
+
+        .menu-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgb(150, 200, 200, 0.3);
+            height: 43px;
+            width: 100%;
+            background-color: rgb(150, 200, 200, 0.2);
+        }
+
+        .menu-icon {
+            font-size: 30px;
+            cursor: pointer;
+            color: rgb(150, 200, 200);
+            margin-left: 20px;
+        }
+
+        .firstname {
+            text-align: right;
+            padding-right: 30px;
+            color: rgb(100, 200, 200);
+        }
+
+        .call-button {
+            align-items: center !important;
+            background-image: linear-gradient(45deg, red, teal);
+            border: 0;
+            border-radius: 8px;
+            box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+            box-sizing: border-box;
+            color: #ffffff;
+            display: flex;
+            font-family: Phantomsans, sans-serif;
+            font-size: 16px;
+            justify-content: center;
+            line-height: 1em;
+            padding: 10px 20px;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+            cursor: pointer;
+            width: 260px;
+            margin-top: 50px;
+        }
+
+        .call-button:hover {
+            background-image: linear-gradient(45deg, teal, red);
+        }
+
+        .sidenav{
+            background-color: black !important;
+            
+        }
+        
+       
+        .sidenav a:hover{
+            color: rgb(150, 200, 200) !important;
+        }
+        
+
+        
     </style>
 <head>
     <link rel="stylesheet" type="text/css" href="../cssC/home.css" />
@@ -46,26 +127,23 @@
 
 <body>
 
-    <img src="../../logo.png" alt="logo" width="250">
+    <img src="../../gallery/logo.png" alt="logo" width="250">
     <br>
 
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <hr>
         <a href="home.php" class="active">Home</a>
-        <a href="../htmlC/formself.html">Self-Reporting</a>
-        <a href="../htmlC/formthird.html">Third-Party Reporting</a>
+        <hr>
+        <a href="../htmlC/formself.php">Self-Reporting</a>
+        <hr>
+        <a href="../htmlC/formthird.php">Third-Party Reporting</a>
+        <hr>
         <a href="logout.php">Log Out</a>
+        <hr>
     </div>
 
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
-    <br>
-
-    <br><br>
-    <a href="../htmlC/formthird.html" class="button" style="text-decoration:none; background-color:rgb(0, 120, 255); color:white; padding:10px; border-radius: 4px;">Third-Party Reporting</a>
-    <a href="../htmlC/formself.html" class="button" style="text-decoration:none; background-color:rgb(0, 120, 255); color:white; padding:10px; border-radius: 4px;">Self-Reporting</a>
-    <a href="tel:114" class="button" style="text-decoration:none; background-color:rgb(0, 120, 255); color:white; padding:10px; border-radius: 4px;">Call 114</a>
-
-    <br><br><br>
+    
     
 
 
@@ -92,9 +170,20 @@
         $caller="SELECT * FROM public WHERE email='$user' LIMIT 1";
         $result=mysqli_query($db, $caller);
         $row=mysqli_fetch_assoc($result);
+        
         if($row){
 
+            $n = $row["firstname"];
+            echo '<br>
+            <div class="menu-box">
+                <span class="menu-icon" onclick="openNav()">&#9776; Menu </span>
+                <span class="firstname">Hello '.$n.' &#x1F600;</span>
+            </div> <br> <br><br>';
+
+           
+
             $cID=$row["id"];
+            
 
         
             $caller="SELECT * FROM incident 
@@ -114,7 +203,7 @@
                 
                 
                 echo "<tr>";
-                echo "<td style='text-align: center; font-weight: bold;' >" . $row['description'] . "</td>";
+                echo "<td style=' text-align:center' >ID - " . $res."<hr>".$row['description'] . "</td>";
                 if($stat['status']=="pending"){
                     echo "<td style='text-align: center; ><a href='cancel.php?id=" . $row['id'] . "' class='cancel-button'>Cancel Incident Report</a></td>";
 
@@ -134,16 +223,19 @@
                 } else {
                     echo "<td style='text-align: center;'>Pending</td>";
                 }
+                echo "<td style='text-align: center;'>&#10230;</td>";
                 if ($stat['status'] === "dispatched") {
                     echo "<td style='text-align: center; color: red; font-weight: bold;'>Dispatched</td>";
                 } else {
                     echo "<td style='text-align: center;'>Dispatched</td>";
                 }
+                echo "<td style='text-align: center;'>&#10230;</td>";
                 if ($stat['status'] === "resolving") {
                     echo "<td style='text-align: center; color: red; font-weight: bold;'>Resolving</td>";
                 } else {
                     echo "<td style='text-align: center;'>Resolving</td>";
                 }
+                echo "<td style='text-align: center;'>&#10230;</td>";
                 if ($stat['status'] === "closed") {
                     echo "<td style='text-align: center; color: red; font-weight: bold;'>Closed</td>";
                 } else {
@@ -159,6 +251,10 @@
             }
             echo "</table>";
             echo "</div>";
+
+            echo '<div class="center">';
+            echo '<a class="call-button" href="tel:114">Call 114</a>';
+            echo '</div>';
 
         }
         

@@ -35,7 +35,7 @@
                 $msg = '<h2>Error Message<hr></h2>';
                 $msg .= '<p>Invalid Email or Password</p>';
                 $msg .= '<div class="button-container">';
-                $msg .= '<button onclick="window.location.href=\'../htmlC/login.html\'">Close</button>';
+                $msg .= '<button onclick="window.location.href=\'../htmlC/login.html\'"><span class="text">Close</span></button>';
                 $msg .= '</div>';
                 generateMessageBox($msg);
             }
@@ -45,7 +45,7 @@
             $msg = '<h2>Error Message<hr></h2>';
             $msg .= '<p>This email has not been registered yet.</p>';
             $msg .= '<div class="button-container">';
-            $msg .= '<button onclick="window.location.href=\'../htmlC/login.html\'">Close</button>';
+            $msg .= '<button onclick="window.location.href=\'../htmlC/login.html\'"><span class="text">Close</span></button>';
             $msg .= '</div>';
             generateMessageBox($msg);
     
