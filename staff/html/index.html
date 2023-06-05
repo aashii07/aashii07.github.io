@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        body {
+            background-image: url(../../gallery/bg.jpg);
+            background-repeat: repeat;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .centered-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding-top: 170px;
+        }
+        .welcome-message1 {
+            font-size: 35px;
+            margin-top: 20px;
+            text-align: center;
+            color: rgb(150, 200, 200);
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            
+        }
+        .welcome-message2 {
+            font-size: 16px;
+            margin-top: 0px;
+            text-align: center;
+            color: #ffffff;
+            padding-right: 30%;
+            padding-left: 30%;
+            padding-bottom: 15px;
+        }
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Create two equal-width columns */
+            gap: 18px; /* Adjust the gap between buttons */
+            justify-content: center; /* Center align buttons horizontally */
+            margin-top: 0px; /* Add margin for spacing */
+            margin-bottom: 20px;
+        }
+        .button-64 {
+            align-items: center;
+            background-image: linear-gradient(45deg,red, teal);
+            border: 0;
+            border-radius: 8px;
+            box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            display: flex;
+            font-family: Phantomsans, sans-serif;
+            font-size: 16px; /* Updated font size */
+            justify-content: center;
+            line-height: 1em;
+            width: 120px; /* Updated width */
+            padding: 2.5px; /* Updated padding */
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .button-64:active,
+        .button-64:hover {
+            outline: 0;
+        }
+
+        .button-64 span {
+            background-color: rgb(5, 6, 45);
+            padding: 12px; /* Updated padding */
+            border-radius: 6px;
+            width: 100px;
+            height: 20px;
+            transition: 300ms;
+        }
+
+        .button-64:hover span {
+            background: none;
+        }
+
+       
+
+        @media (min-width: 768px) {
+            .button-64 {
+                font-size: 20px; /* Updated font size */
+                
+            }
+        }
+    </style>
+
+    <head>
+      
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <body>
+        <div class="centered-logo">
+            <img src="../../gallery/logo.png" alt="logo" width="250">
+            <h1 class="welcome-message1">Welcome aboard!</h2>
+            <p class="welcome-message2">This system will streamline your work, boost collaboration, and improve overall efficiency. Take advantage of the various features and support available to make your job easier.</p>
+
+            <div class="button-container">
+                <form action="../html/signup.html" method="POST">
+                    <button class="button-64" role="button"><span class="text">Sign Up</span></button>
+                </form>
+
+                <form action="../html/login.html" method="POST">
+                    <button class="button-64" role="button"><span class="text">Login</span></button>
+                </form>
+
+                
+            </div>
+            
+            
+        </div>
+    </body>
+</html>

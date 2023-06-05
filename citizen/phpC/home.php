@@ -46,6 +46,9 @@
 
 <body>
 
+    <img src="../../logo.png" alt="logo" width="250">
+    <br>
+
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="home.php" class="active">Home</a>

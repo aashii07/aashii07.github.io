@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Get Current Location</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ipinfo/4.0.1/ipinfo.min.js"></script>
-  <script>
-    function getLocation() {
-      ipinfo().then(function(response) {
-        var ip = response.ip;
-        var city = response.city;
-        var region = response.region;
-        var country = response.country;
-        var latitude = response.loc.split(',')[0];
-        var longitude = response.loc.split(',')[1];
+    <head>
+        <title>Call Button Example</title>
+        <style>
+            .call-button {
+                align-items: center;
+                background-image: linear-gradient(45deg, red, teal);
+                border: 0;
+                border-radius: 8px;
+                box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+                box-sizing: border-box;
+                color: #ffffff;
+                display: flex;
+                font-family: Phantomsans, sans-serif;
+                font-size: 16px;
+                justify-content: center;
+                line-height: 1em;
+                padding: 10px 20px;
+                text-decoration: none;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
+                white-space: nowrap;
+                cursor: pointer;
+            }
 
-        alert("IP: " + ip +
-              "\nCity: " + city +
-              "\nRegion: " + region +
-              "\nCountry: " + country +
-              "\nLatitude: " + latitude +
-              "\nLongitude: " + longitude);
-      });
-    }
-  </script>
-</head>
-<body>
-  <button onclick="getLocation()">Get Location</button>
-</body>
+            .call-button:hover {
+                background-image: linear-gradient(45deg, teal, red);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="centered-logo">
+            <img src="../../logo.png" alt="logo" width="250">
+            <a class="call-button" href="tel:114">Call 114</a>
+        </div>
+    </body>
 </html>

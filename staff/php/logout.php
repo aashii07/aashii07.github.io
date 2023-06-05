@@ -6,5 +6,5 @@
 	// destroy the session
 	session_destroy();
 	
-	header('location: ../html/login.html')
+	header('location: ../html/index.html')
 ?>
