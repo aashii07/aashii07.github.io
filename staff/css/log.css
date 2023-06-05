@@ -15,7 +15,7 @@ input[type=text], input[type=password] {
   
 /* Set a style for all buttons */
 button {
-    background-color: #04AA6D;
+    background-color: teal;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -61,7 +61,7 @@ span.psw {
   
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
+    background-color: rgb(150, 200, 200);
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
     width: 40%; /* Could be more or less, depending on screen size */
@@ -138,7 +138,7 @@ span.psw {
   
 /* Modal Content/Box */
 .modal-content2 {
-    background-color: #fefefe;
+    background-color: rgb(150, 200, 200);
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
     width: 40%; /* Could be more or less, depending on screen size */
@@ -146,7 +146,7 @@ span.psw {
   
 /* Style the horizontal ruler */
 hr {
-    border: 1px solid #f1f1f1;
+    
     margin-bottom: 25px;
 }
    

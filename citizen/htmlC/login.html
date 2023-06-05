@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html>
+    <style>
+        hr{
+        background-image: linear-gradient(to right, red, teal); /* Replace "red" and "blue" with your desired colors */
+        height: 2px; /* Adjust the height of the hr element as needed */
+        border: none;
+    }
+    </style>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../../staff/css/log.css" />
+    <link rel="stylesheet" type="text/css" href="../cssC/log.css" />
     <script type="text/JavaScript" src="../jsC/log.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -29,13 +36,20 @@
                 </label>
             </div>
             
-            <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn2">Cancel</button>
+            <div class="container" >
+                <button type="button" onclick="redirectToIndex()" class="cancelbtn2">Cancel</button>
+
+                <script>
+                function redirectToIndex() {
+                    window.location.href = "index.html";
+                }
+                </script>                
+                
                 <button type="submit" class="signupbtn">Login</button>
             </div>
 
             <br><br><br>
-            <p class="note">Don't have an account? <a href="signup.html" style="text-decoration: none;">Sign up now</a>!</p>
+            <p class="note">Don't have an account? <a href="signup.html" style="text-decoration: none; color: teal;">Sign up now</a>!</p>
             <br>
 
         </form>
