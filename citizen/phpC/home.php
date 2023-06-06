@@ -1,3 +1,7 @@
+<?php
+    // Start the session
+    session_start();
+    ?>
 <!DOCTYPE html>
 <html>
     <style>
@@ -11,14 +15,11 @@
             color: teal !important; /* Replace with your desired text color */
         }
         hr{
-            background-image: linear-gradient(to right, red, teal); /* Replace "red" and "blue" with your desired colors */
+            background-image: linear-gradient(to left, red, teal); /* Replace "red" and "blue" with your desired colors */
             height: 2px; /* Adjust the height of the hr element as needed */
             border: none;
         }
 
-        
-
-        
         .button:hover, .cancel-button:hover {
             background-color: rgb(0, 128, 128, 0.7);
         
@@ -108,7 +109,11 @@
 
         .sidenav{
             background-color: black !important;
+            border-right: 2px solid red; 
             
+        }
+        .sidenav .active:hover{
+            color: teal !important;
         }
         
        
@@ -156,7 +161,7 @@
 </html>
 <?php
     // Start the session
-    session_start();
+    //session_start();
    
     //DB connection
     $db=new mysqli('localhost', 'root', '!AAshi4477', 'fyp');

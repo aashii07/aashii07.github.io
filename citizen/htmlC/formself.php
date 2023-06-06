@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+    // Start the session
+    session_start();
+   ?>
+   <!DOCTYPE html>
 <html>
 <style>
    body {
@@ -11,7 +15,7 @@
         color: teal !important; /* Replace with your desired text color */
     }
     hr{
-        background-image: linear-gradient(to right, red, teal); /* Replace "red" and "blue" with your desired colors */
+        background-image: linear-gradient(to left, red, teal); /* Replace "red" and "blue" with your desired colors */
         height: 2px; /* Adjust the height of the hr element as needed */
         border: none;
     }
@@ -39,6 +43,7 @@
     }
     .sidenav{
         background-color: black !important;
+        border-right: 2px solid red; 
         
     }
     
@@ -147,9 +152,9 @@
       <hr>
       <a href="../phpC/home.php" >Home</a>
       <hr>
-      <a href="formself.html" class="active">Self-Reporting</a>
+      <a href="formself.php" class="active">Self-Reporting</a>
       <hr>
-      <a href="../htmlC/formthird.html">Third-Party Reporting</a>
+      <a href="formthird.php">Third-Party Reporting</a>
       <hr>
       <a href="../phpC/logout.php">Log Out</a>
       <hr>
@@ -157,7 +162,7 @@
 
   <?php
     // Start the session
-    session_start();
+    //session_start();
    
     //DB connection
     $db=new mysqli('localhost', 'root', '!AAshi4477', 'fyp');
