@@ -53,11 +53,11 @@
                     $role=$user['role'];
                     if ($role=="u") {
                         $_SESSION['email']=$email;
-                        header("location: ../html/Uhome.html");
+                        header("location: ../html/Uhome.php");
                     }
                     else if ($role=="f") {
                         $_SESSION['email']=$email;
-                        header("location: ../html/Fhome.html");
+                        header("location: ../html/Fhome.php");
                     }
                     else if ($user){
                         $_SESSION['email']=$email;

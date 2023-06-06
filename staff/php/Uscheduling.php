@@ -1,6 +1,268 @@
 <?php
+    // Start the session
+    session_start();
+    ?>
+<!DOCTYPE html>
+<html>
+    <style>
+        body {
+            background-image: url(../../gallery/bg.jpg);
+            background-repeat: repeat;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .active {
+            background-color: rgb(150, 200, 200); /* Replace with your desired color */
+            color: teal !important; /* Replace with your desired text color */
+        }
+        hr{
+            background-image: linear-gradient(to left, red, teal); /* Replace "red" and "blue" with your desired colors */
+            height: 2px; /* Adjust the height of the hr element as needed */
+            border: none;
+        }
+
+        .menu-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgb(150, 200, 200, 0.3);
+            height: 43px;
+            width: 100%;
+            background-color: rgb(150, 200, 200, 0.2);
+            /*position: fixed;*/
+            
+          
+           
+        }
+
+        .menu-icon {
+            font-size: 30px;
+            cursor: pointer;
+            color: rgb(150, 200, 200);
+            margin-left: 20px;
+        }
+
+        .firstname {
+            text-align: right;
+            padding-right: 30px;
+            color: rgb(100, 200, 200);
+        }
+
+        .call-button {
+            align-items: center !important;
+            background-image: linear-gradient(45deg, red, teal);
+            border: 0;
+            border-radius: 8px;
+            box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+            box-sizing: border-box;
+            color: #ffffff;
+            display: flex;
+            font-family: Phantomsans, sans-serif;
+            font-size: 16px;
+            justify-content: center;
+            line-height: 1em;
+            padding: 10px 20px;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+            cursor: pointer;
+            width: 120px;
+            margin-top: 0px;
+            margin-left: 10px;
+            margin-bottom: 5px;
+        }
+
+        .call-button:hover {
+            background-image: linear-gradient(45deg, teal, red);
+        }
+
+        .sidenav{
+            background-color: black !important;
+            border-right: 2px solid red; 
+            
+        }
+        .sidenav .active:hover{
+            color: teal !important;
+        }
+        
+       
+        .sidenav a:hover{
+            color: rgb(150, 200, 200) !important;
+        }
+        
+
+
+       
+        .call-button {
+            align-items: center;
+            background-image: linear-gradient(45deg, red, teal);
+            border: 0;
+            border-radius: 8px;
+            box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+            box-sizing: border-box;
+            color: #ffffff;
+            display: flex;
+            font-family: Phantomsans, sans-serif;
+            font-size: 16px;
+            justify-content: center;
+            line-height: 1em;
+            padding: 10px 20px;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+            cursor: pointer;
+            width: 260px;
+            height: 50px;
+        }
+
+        .call-button:hover {
+            background-image: linear-gradient(45deg, teal, red);
+        }
+        form {
+            margin: 0 5px;
+            
+        }
+
+        table {
+            border-collapse: collapse;
+            background-color: rgb(150, 200, 200, 0.7);
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid teal;
+        }
+
+        th {
+            background-color: rgb(130, 200, 200);
+        }
+
+        select {
+            padding: 4px;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        
+
+        .box{
+            background-color: rgb(150, 200, 200, 0.5);
+            width: 50%;
+            margin-left: 25%;
+            border-radius: 10px;
+            
+           
+            
+        }
+        textarea{
+            background-color: rgb(170, 200, 200);
+        }
+    </style>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/home.css" />
+    <script type="text/JavaScript" src="../js/home.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+    <!--<img src="../../gallery/logo.png" alt="logo" width="250" style="position:fixed">
+    <br><br><br><br><br><br>-->
+
+    <img src="../../gallery/logo.png" alt="logo" width="250">
+    <br>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <hr>
+        <a href="../html/Uhome.php">Home</a>
+        <hr>
+        <a href="../php/Uscheduling.php" class="active">Staff Scheduling</a>
+        <hr>
+        <a href="../php/UselectS.php">Remove Staff</a>
+        <hr>
+        <a href="../php/logout.php">Log Out</a>
+        <hr>
+    </div>
+
+
+   
+
+
+
+
+
+</body>
+
+</html>
+<?php
+
+   
+    
+
+
+
+    // Start the session
+    //session_start();
+    $_SESSION['schedule']="0";
+    require_once('../php/Ushift.php');
+    
+
+    //DB connection
+    $db=new mysqli('localhost', 'root', '!AAshi4477', 'fyp');
+    if($db->connect_error){
+        die('Connection Failed : '.$db->connect_error);
+    }
+    else{
+        
+        $staff=$_SESSION['email'];
+        $user = "SELECT *
+                    FROM samu_staff
+                    WHERE email='$staff'";
+        $result = mysqli_query($db, $user);
+        $staff = mysqli_fetch_assoc($result);
+        $id = $staff['id'];
+        $status = $staff['status'];
+        $n = $staff['firstname'];
+
+        echo '<br>
+            <div class="menu-box">
+                <span class="menu-icon" onclick="openNav()">&#9776; Menu </span>
+                <span class="firstname">Hello '.$n.' &#x1F600;</span>
+            </div> <br>';
+
+
+
+
+
+
+
+
+
+
+
+       
+
+        
+        
+        
+       
+        
+    }
+?>
+
+<?php
 // Start the session
-session_start();
+//session_start();
 $_SESSION['schedule'] = "1";
 
 // DB connection
@@ -27,66 +289,6 @@ if ($db->connect_error) {
         echo "<form method='post' action='Ushift.php'>"; // Add the form element here
 
 
-        echo "<html>
-            <style>
-                .active {
-                    background-color: #03d9ffbc;
-                    /* Replace with your desired color */
-                    color: #000000 !important;
-                    /* Replace with your desired text color */
-                }
-
-                table {
-                    border-collapse: collapse;
-                }
-
-                th, td {
-                    padding: 8px;
-                    text-align: center;
-                    border: 1px solid #ddd;
-                }
-
-                th {
-                    background-color: #f2f2f2;
-                }
-
-                select {
-                    padding: 4px;
-                }
-
-                .center {
-                    display: flex;
-                    justify-content: center;
-                    margin-top: 20px;
-                }
-
-                /* Add CSS for highlighting */
-                .highlight-row td {
-                    background-color: #e6f4f1;
-                }
-            </style>
-
-            <head>
-                <link rel=\"stylesheet\" type=\"text/css\" href=\"../css/home.css\" />
-                <script type=\"text/JavaScript\" src=\"../js/home.js\"></script>
-                <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-            </head>
-
-            <body>
-
-                <div id=\"mySidenav\" class=\"sidenav\">
-                    <a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeNav()\">&times;</a>
-                    <a href=\"../html/Uhome.html\">Home</a>
-                    <a href=\"Uscheduling.php\" class=\"active\">Staff Scheduling</a>
-                    <a href=\"UselectS.php\">Remove Staff</a>
-                    <a href=\"logout.php\">Log Out</a>
-                </div>
-
-                <span style=\"font-size:30px;cursor:pointer\" onclick=\"openNav()\">&#9776; Menu</span>
-                <br>";
-            echo "</body>
-        </html>";
-
         while ($roleRow = mysqli_fetch_assoc($rolesResult)) {
             $role = $roleRow['role'];
 
@@ -111,7 +313,11 @@ if ($db->connect_error) {
                 }
                 
 
-                echo "<h2 style='text-align: center; color: teal; margin-top:60px; text-decoration: underline; font-size: 30px;'>$rl</h2>";
+                echo "<h2 style='text-align: center; margin-top: 50px; font-size: 30px;
+                background: linear-gradient(to right, red, red, red, teal, teal, teal);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;'>$rl</h2>";
+            
 
                 echo "<table style='margin: 0 auto;' id='grid-table'>
                         <tr>
@@ -240,11 +446,11 @@ if ($db->connect_error) {
             }
         }
 
-        echo "<div style='text-align: center; margin-top: 60px;'>
-            <button type='submit' style='display: inline-block; background-color: teal; color: white; padding: 15px 30px; border: none; border-radius: 4px; font-size: 20px; text-decoration: none;'>Save Shift</button>
-        </div>";
+        echo "<div style='display: flex; justify-content: center; align-items: center; margin-top:70px'>";
+        
+        echo '<button class="call-button" role="button"><span class="text">Save Shift</span></button></div>';
 
-        echo "</form>"; // Close the form element here
+        echo "</form><br> <br><br><br>"; // Close the form element here
 
 
                

@@ -142,12 +142,12 @@ SAMU IMS Team';
                 $_SESSION['email']=$email;
 
                 if($role=='c'){
-                    header("location: ../html/home.html");
+                    header("location: ../html/home.php");
                 }else if ($role=="u") {
-                    header("location: ../html/Uhome.html");
+                    header("location: ../html/Uhome.php");
                 }
                 else if ($role=="f") {
-                    header("location: ../html/Fhome.html");
+                    header("location: ../html/Fhome.php");
                 }
                 else{
                     header("location: EPhome.php");

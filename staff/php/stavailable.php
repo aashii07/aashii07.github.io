@@ -29,10 +29,12 @@
                     WHERE id='$id'";
         $result = mysqli_query($db, $query);
 
-        if($rl=="e"){
-            header("location: EPhome.php");
+        if($rl=="u"){
+            header("location: ../html/Uhome.php");
+        }else if($rl=="f"){
+            header("location: ../html/Fhome.php");
         }else{
-            header("location: Shome.php");
+            header("location: EPhome.php");
         }
 
        
