@@ -374,6 +374,7 @@ body {
       <div id="map"></div>
     </div>
   </div>
+  <br><br>
 
   <script>
     initMap();

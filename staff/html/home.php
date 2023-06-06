@@ -202,11 +202,11 @@
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <hr>
-        <a href="../html/home.php" >Home</a>
+        <a href="home.php" class="active">Home</a>
         <hr>
-        <a href="../php/priority.php" class="active">Resource Management</a>
+        <a href="../php/priority.php">Resource Management</a>
         <hr>
-        <a href="../html/form.php">Incident Reporting</a>
+        <a href="form.php">Incident Reporting</a>
         <hr>
         <a href="dash.html">Dashboard</a>
         <hr>
@@ -258,7 +258,7 @@
             <div class="menu-box">
                 <span class="menu-icon" onclick="openNav()">&#9776; Menu </span>
                 <span class="firstname">Hello '.$n.' &#x1F600;</span>
-            </div> ';
+            </div> <br>';
 
         
     }
@@ -266,157 +266,3 @@
 
 
 
-
-
-<!DOCTYPE html>
-<html>
-    <style>
-        
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-        }
-        .button-container1 {
-            text-align: center;
-            display: flex;
-            justify-content: center;
-        }
-        
-        
-        form {
-            margin: 0 5px;
-        }
-        
-    </style>
-
-
-
-</html>
-<?php
-    // Start the session
-   
-
-    //DB connection
-    $db=new mysqli('localhost', 'root', '!AAshi4477', 'fyp');
-    if($db->connect_error){
-        die('Connection Failed : '.$db->connect_error);
-    }
-    else{
-        
-        $staff=$_SESSION['email'];
-        $user = "SELECT *
-                    FROM control_officer
-                    WHERE email='$staff'";
-        $result = mysqli_query($db, $user);
-        $co = mysqli_fetch_assoc($result);
-       
-
-     
-
-            // Disable ONLY_FULL_GROUP_BY mode for the current session
-            mysqli_query($db, "SET SESSION sql_mode = ''");
-
-            $query = "SELECT id, severity, description FROM incident 
-            WHERE status = 'pending'
-            ORDER BY severity";
-
-            $result = mysqli_query($db, $query);
-
-            if ($result === false) {
-                echo "Query error: " . mysqli_error($db);
-                // You can also consider logging the error for debugging purposes
-            } else {
-                if (mysqli_num_rows($result) > 0) {
-
-                    
-                    
-                    $currentSeverity=0;
-                    echo "<style>
-                            .message-box {
-                                border: none;
-                                padding: 0;
-                                margin-bottom: 10px;
-                                text-align: center;
-                                color:white;
-                            }
-                            .severity-1 {
-                                background-color: rgb(255, 80, 80);
-                                width: 50%;
-                                margin-left: auto; 
-                                margin-right: auto;
-                                
-                            }
-                            .severity-2 {
-                                background-color: rgb(255, 255, 90);
-                                width: 50%;
-                                margin-left: auto; 
-                                margin-right: auto;
-
-                               
-                            }
-                            .severity-3 {
-                                background-color: lightgreen;
-                                width: 50%;
-                                margin-left: auto; 
-                                margin-right: auto;
-                            }
-                            .message-box a {
-                                display: block;
-                                padding: 10px;
-                                text-decoration: none;
-                                color: black;
-                                font-size: 120%;
-                                text-align: center;
-                                transition: background-color 0.3s;
-                            }
-                            .message-box a:hover {
-                                background-color: rgba(255, 255, 255, 0.5);
-                            }
-                          </style>";
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $id = $row['id'];
-                        $severity = $row['severity'];
-                        $description = $row['description'];
-                    
-                        // Check if the severity has changed
-                    
-                        if ($severity !== $currentSeverity) {
-                            echo"<div class='message-box'><br><br><hr><h2>Severity $severity</h2></div>";
-                            $currentSeverity = $severity;
-                        }
-                        
-                        
-                        echo "<div class='message-box severity-$severity' >
-                                <a href='../php/assign.php?id=" . urlencode($id) . "'>ID $id - $description</a>
-                              </div>";
-                        
-                        // Add additional formatting if desired
-                        
-                        
-                    }
-                    echo "<br><br><br>";
-                } else {
-                    include 'message.php';
-                    //echo "No rows found.";
-                    $msg = '<h2>No Incident<hr></h2>';
-                    $msg .= '<p>There is no incident to be assigned yet. Please come back later.</p>';
-                    $msg .= '<div class="button-container">';
-                    $msg .= '<button onclick="window.location.href=\'../html/home.html\'">Close</button>';
-                    $msg .= '</div>';
-                    generateMessageBox($msg);
-                }
-            }
-       
-
-        
-       
-        
-    }
-?>

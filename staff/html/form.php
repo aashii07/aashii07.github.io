@@ -1,13 +1,115 @@
-<!DOCTYPE html>
+<?php
+    // Start the session
+    session_start();
+   ?>
+   <!DOCTYPE html>
 <html>
 <head>
   <style>
-    .active {
-      background-color: #03d9ffbc;
-      color: #000000 !important;
+
+body {
+        background-image: url(../../gallery/bg.jpg);
+        background-repeat: repeat;
+        font-family: Arial, Helvetica, sans-serif;
     }
+    .active {
+        background-color: rgb(150, 200, 200); /* Replace with your desired color */
+        color: teal !important; /* Replace with your desired text color */
+    }
+    hr{
+        background-image: linear-gradient(to left, red, teal); /* Replace "red" and "blue" with your desired colors */
+        height: 2px; /* Adjust the height of the hr element as needed */
+        border: none;
+    }
+    .menu-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid rgb(150, 200, 200, 0.3);
+        height: 43px;
+        width: 100%;
+        background-color: rgb(150, 200, 200, 0.2);
+    }
+
+    .menu-icon {
+        font-size: 30px;
+        cursor: pointer;
+        color: rgb(150, 200, 200);
+        margin-left: 20px;
+    }
+
+    .firstname {
+        text-align: right;
+        padding-right: 30px;
+        color: rgb(100, 200, 200);
+    }
+    .sidenav{
+        background-color: black !important;
+        border-right: 2px solid red; 
+        
+    }
+
+    .button-64 {
+        align-items: center;
+        background-image: linear-gradient(45deg,red, teal);
+        border: 0;
+        border-radius: 8px;
+        box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        display: flex;
+        font-family: Phantomsans, sans-serif;
+        font-size: 16px; /* Updated font size */
+        justify-content: center;
+        line-height: 1em;
+        width: 100%; /* Updated width */
+        padding: 3px; /* Updated padding */
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        white-space: nowrap;
+        cursor: pointer;
+    }
+
+    .button-64:active,
+    .button-64:hover {
+        outline: 0;
+    }
+
+    .button-64 span {
+        background-color: rgb(5, 6, 45);
+        padding: 20px; /* Updated padding */
+        border-radius: 6px;
+        width: 100%;
+        height: 20px;
+        transition: 300ms;
+        padding-bottom: 30px;
+        padding-top: 15px;
+        
+    }
+
+    .button-64:hover span {
+        background: none;
+    }
+    
+    
+    .sidenav a:hover{
+        color: rgb(150, 200, 200) !important;
+    }
+    .sidenav .active:hover{
+        color: teal !important;
+    }
+
+    .container{
+      background-color: rgb(150, 200, 200) !important;
+      
+    }
+
+    
     #container {
       display: flex;
+     
     }
     #form-container {
       flex: 1;
@@ -16,9 +118,10 @@
     #map-container {
       flex: 1;
       position: relative;
+      
     }
     #map {
-      height: 1210px;
+      height: 1272px;
       width: 100%;
     }
     #search-container {
@@ -36,7 +139,7 @@
       padding: 5px;
     }
     #search-button {
-      background-color: #4CAF50;
+      background-color: red;
       border: none;
       color: white;
       padding: 5px 10px;
@@ -46,6 +149,9 @@
       font-size: 14px;
       cursor: pointer;
       margin-top: -10px;
+    }
+    #search-button:hover{
+      background-color: darkred;
     }
   </style>
   <link rel="stylesheet" type="text/css" href="../css/form.css" />
@@ -73,9 +179,30 @@
 
     function initMap() {
       var map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: -20.212, lng: 57.57 },
+        
+        
         zoom: 13
       });
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var currentLocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+
+          map.setCenter(currentLocation);
+
+          var marker = new google.maps.Marker({
+            position: currentLocation,
+            map: map,
+            title: 'Current Location'
+          });
+        }, function() {
+          // Handle error if the user denies geolocation access
+          handleLocationError(true, map.getCenter());
+        });
+      } 
 
       var searchContainer = document.createElement('div');
       searchContainer.setAttribute('id', 'search-container');
@@ -126,7 +253,10 @@
 
         map.setCenter(places[0].geometry.location);
 
+        
+
         var marker = new google.maps.Marker({
+          
           map: map,
           position: places[0].geometry.location
         });
@@ -145,24 +275,65 @@
 </head>
 <body>
 
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="home.html" >Home</a>
-    <a href="../php/priority.php">Resource Management</a>
-    <a href="form.html" class="active">Incident Reporting</a>
-    <a href="dash.html">Dashboard</a>
-    <a href="../php/logout.php">Log Out</a>
-</div>
-
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+  <img src="../../gallery/logo.png" alt="logo" width="250">
     <br>
+
+  <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <hr>
+      <a href="home.php" >Home</a>
+      <hr>
+      <a href="../php/priority.php">Resource Management</a>
+      <hr>
+      <a href="form.php" class="active">Incident Reporting</a>
+      <hr>
+      <a href="dash.html">Dashboard</a>
+      <hr>
+      <a href="../php/logout.php">Log Out</a>
+      <hr>
+  </div>
+
+  <?php
+    // Start the session
+    //session_start();
+   
+    //DB connection
+    $db=new mysqli('localhost', 'root', '!AAshi4477', 'fyp');
+    if($db->connect_error){
+        die('Connection Failed : '.$db->connect_error);
+
+    }
+    else{
+        
+        $user=$_SESSION['email'];
+        $caller="SELECT * FROM control_officer WHERE email='$user' LIMIT 1";
+        $result=mysqli_query($db, $caller);
+        $row=mysqli_fetch_assoc($result);
+        
+        if($row){
+
+            $n = $row["firstname"];
+            echo '<br>
+            <div class="menu-box">
+                <span class="menu-icon" onclick="openNav()">&#9776; Menu </span>
+                <span class="firstname">Hello '.$n.' &#x1F600;</span>
+            </div>';
+
+           
+        }
+        
+        
+    }
+?>
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>  
+
+    
   <div id="container">
     <div id="form-container" class="container">
-      
+      <h1>Patient Details</h1><hr><br>
 
       <form onsubmit="return validateForm()" action="../php/form.php" method="post">
-
-        <h1>Patient Details</h1>
         <label for="fnamep"><b>First Name</b></label>
         <input type="text" placeholder="Enter first name" name="fnamep" id="fn">
 
@@ -197,7 +368,8 @@
         <label for="subject"><b>Description</b></label>
         <textarea id="subject" name="subject" placeholder="Write here.." style="height:100px"></textarea>
 
-        <h1>Caller Details</h1>
+        <h1>Caller Details</h1><hr><br>
+
         <label for="fnamep"><b>First Name</b></label>
         <input type="text" placeholder="Enter first name" name="fname" id="cfn">
 
@@ -211,7 +383,7 @@
         <input type="text" placeholder="Enter email" name="email" id="cmail">
 
 
-        <input type="submit" value="Submit">
+        <button class="button-64" role="button"><span class="text">Submit</span></button>
       </form>
     </div>
 
@@ -219,6 +391,7 @@
       <div id="map"></div>
     </div>
   </div>
+  <br><br>
 
   <script>
     initMap();
@@ -337,3 +510,4 @@
   </script>
 </body>
 </html>
+
