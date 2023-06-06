@@ -333,10 +333,14 @@ if ($db->connect_error) {
                                 $q1 = "SELECT * FROM public WHERE id='$pid'";
                                 $r1 = mysqli_query($db, $q1);
                                 $row1 = mysqli_fetch_assoc($r1);
+                                if($row1){
 
-                                $fn=$row1['firstname'];
-                                $ln=$row1['lastname'];
-                                $num=$row1['phonenum'];
+                                        $fn=$row1['firstname'];
+                                        $ln=$row1['lastname'];
+                                        $num=$row1['phonenum'];
+                                }
+
+                                
 
                                                                 
 

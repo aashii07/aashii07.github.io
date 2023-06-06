@@ -1,48 +1,164 @@
+<?php
+    // Start the session
+    session_start();
+    ?>
 <!DOCTYPE html>
 <html>
     <style>
-        .active {
-            background-color: #03d9ffbc;
-            /* Replace with your desired color */
-            color: #000000 !important;
-            /* Replace with your desired text color */
+        body {
+            background-image: url(../../gallery/bg.jpg);
+            background-repeat: repeat;
+            font-family: Arial, Helvetica, sans-serif;
         }
-
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
+        .active {
+            background-color: rgb(150, 200, 200); /* Replace with your desired color */
+            color: teal !important; /* Replace with your desired text color */
+        }
+        hr{
+            background-image: linear-gradient(to left, red, teal); /* Replace "red" and "blue" with your desired colors */
+            height: 2px; /* Adjust the height of the hr element as needed */
             border: none;
         }
-        .button-container1 {
-            text-align: center;
+
+        .menu-box {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgb(150, 200, 200, 0.3);
+            height: 43px;
+            width: 100%;
+            background-color: rgb(150, 200, 200, 0.2);
+        }
+
+        .menu-icon {
+            font-size: 30px;
+            cursor: pointer;
+            color: rgb(150, 200, 200);
+            margin-left: 20px;
+        }
+
+        .firstname {
+            text-align: right;
+            padding-right: 30px;
+            color: rgb(100, 200, 200);
+        }
+
+        .call-button {
+            align-items: center !important;
+            background-image: linear-gradient(45deg, red, teal);
+            border: 0;
+            border-radius: 8px;
+            box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+            box-sizing: border-box;
+            color: #ffffff;
+            display: flex;
+            font-family: Phantomsans, sans-serif;
+            font-size: 16px;
             justify-content: center;
+            line-height: 1em;
+            padding: 10px 20px;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+            cursor: pointer;
+            width: 120px;
+            margin-top: 0px;
+            margin-left: 10px;
+            margin-bottom: 5px;
+        }
+
+        .call-button:hover {
+            background-image: linear-gradient(45deg, teal, red);
+        }
+
+        .sidenav{
+            background-color: black !important;
+            border-right: 2px solid red; 
+            
+        }
+        .sidenav .active:hover{
+            color: teal !important;
+        }
+        
+       
+        .sidenav a:hover{
+            color: rgb(150, 200, 200) !important;
+        }
+        
+
+
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Create two equal-width columns */
+            gap: 5px; /* Adjust the gap between buttons */
+            justify-content: center; /* Center align buttons horizontally */
+            margin-top: 0px; /* Add margin for spacing */
+            margin-bottom: 5px;
+            margin-left: 40%;
+            margin-right: 40%;
+        }
+        .button-64 {
+            align-items: center;
+            background-image: linear-gradient(45deg,red, teal);
+            border: 0;
+            border-radius: 8px;
+            box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            display: flex;
+            font-family: Phantomsans, sans-serif;
+            font-size: 16px; /* Updated font size */
+            justify-content: center;
+            line-height: 1em;
+            width: 120px; /* Updated width */
+            padding: 2.5px; /* Updated padding */
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .button-64:active,
+        .button-64:hover {
+            outline: 0;
+        }
+
+        .button-64 span {
+            background-color: rgb(5, 6, 45);
+            padding: 12px; /* Updated padding */
+            border-radius: 6px;
+            width: 100px;
+            height: 20px;
+            transition: 300ms;
+        }
+
+        .button-64:hover span {
+            background: none;
         }
         
         
         form {
             margin: 0 5px;
+            
         }
 
         table {
             border-collapse: collapse;
+            background-color: rgb(150, 200, 200, 0.7);
         }
 
         th, td {
             padding: 8px;
             text-align: center;
-            border: 1px solid #ddd;
+            border: 1px solid teal;
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: rgb(130, 200, 200);
         }
 
         select {
@@ -54,6 +170,21 @@
             justify-content: center;
             margin-top: 20px;
         }
+
+        
+
+        .box{
+            background-color: rgb(150, 200, 200, 0.5);
+            width: 50%;
+            margin-left: 25%;
+            border-radius: 10px;
+            
+           
+            
+        }
+        textarea{
+            background-color: rgb(170, 200, 200);
+        }
     </style>
 
 <head>
@@ -64,20 +195,29 @@
 
 <body>
 
+    <img src="../../gallery/logo.png" alt="logo" width="250">
+    <br>
+
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <hr>
         <a href="EPhome.php" class="active">Home</a>
+        <hr>
         <a href="../html/Sdash.html">Dashboard</a>
+        <hr>
         <a href="logout.php">Log Out</a>
+        <hr>
     </div>
 
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
-    <br>
+
+   
+
+    
 
 
 
     
-    <p>Hello SAMU</p>
+   
 
 
 
@@ -94,7 +234,7 @@
 
 
     // Start the session
-    session_start();
+    //session_start();
     $_SESSION['schedule']="0";
     require_once('Ushift.php');
     
@@ -107,13 +247,20 @@
     else{
         
         $staff=$_SESSION['email'];
-        $user = "SELECT id, status
+        $user = "SELECT *
                     FROM samu_staff
                     WHERE email='$staff'";
         $result = mysqli_query($db, $user);
         $staff = mysqli_fetch_assoc($result);
         $id = $staff['id'];
         $status = $staff['status'];
+        $n = $staff['firstname'];
+
+        echo '<br>
+            <div class="menu-box">
+                <span class="menu-icon" onclick="openNav()">&#9776; Menu </span>
+                <span class="firstname">Hello '.$n.' &#x1F600;</span>
+            </div> <br>';
 
 
 
@@ -126,6 +273,129 @@
 
 
       
+
+        
+
+       
+
+            
+                
+       
+        
+
+        
+
+        // Disable ONLY_FULL_GROUP_BY mode for the current session
+        mysqli_query($db, "SET SESSION sql_mode = ''");
+
+        if($status=="break"){
+
+            echo '<form method="POST" action="../php/stavailable.php">';
+            echo '<input type="hidden" name="id" value="' . $id . '">';
+            echo '<div style="display: flex; justify-content: flex-end; margin-right:1%">';
+            echo '<button class="call-button">I am on break</button>';
+            echo '</div>';
+            echo '</form><br>';
+        }
+        else if($status=="available"){
+
+            echo '<form method="POST" action="../php/break.php">';
+            echo '<input type="hidden" name="id" value="' . $id . '">';
+            echo '<div style="display: flex; justify-content: flex-end; margin-right:1%">';
+            echo '<button class="call-button">I am on duty</button>';
+            echo '</div>';
+            echo '</form><br>';
+
+        }
+        
+        
+
+        $u = "SELECT *
+                    FROM incident_staff s
+                    JOIN incident i ON i.id = s.incident_id
+                    WHERE (i.status = 'dispatched' OR i.status = 'resolving') AND s.staff_id='$id'";
+
+            $r = mysqli_query($db, $u);
+            $r1 = mysqli_fetch_assoc($r);
+            if($r1){
+                $Iid = $r1['id'];
+
+                echo '<div class="box">';
+
+                echo '<h2 class="center"><br>Managing Incident '.$Iid.'</h2><hr>';
+                echo '<h4 style="text-align: center;" >Request other emergency services</h4>
+                        <div class="button-container">
+                            <form action="mfrs.php" method="get">
+                                <input type="hidden" name="id" value="' . $Iid . '">
+                                
+                                <button class="button-64" role="button"><span class="text">MFRS</span></button>
+                            </form>
+                            <form action="mpf.php" method="get">
+                                <input type="hidden" name="id" value="' . $Iid . '">
+                                
+                                <button class="button-64" role="button"><span class="text">MPF</span></button>
+                            </form>
+                        </div>
+                        <br>';
+            }
+            
+
+           
+       
+
+            
+
+        // Disable ONLY_FULL_GROUP_BY mode for the current session
+        mysqli_query($db, "SET SESSION sql_mode = ''");
+
+        $query = "SELECT s.incident_id, i.status, i.description
+                    FROM incident_staff s
+                    JOIN incident i ON i.id = s.incident_id
+                    WHERE (i.status = 'dispatched' OR i.status = 'resolving')";
+        $result = mysqli_query($db, $query);
+        $row = mysqli_fetch_assoc($result);
+        
+
+        if($row){
+
+            
+            $id = $row['incident_id'];
+            $status = $row['status'];
+            $desc = $row['description'];
+            
+
+            if($status=="dispatched"){
+
+                echo '<form class="center" method="POST" action="../php/resolving.php">';
+                echo '<h4 style="text-align: center;" >Update status to </h4>';
+                echo '<input type="hidden" name="incident_id" value="' . $id . '">';
+                echo '<button class="call-button">RESOLVING</button>';
+                echo '</form>';
+            }
+            else if ($status=="resolving"){
+
+
+                echo '<form  method="POST" action="../php/closed.php">';
+                echo '<div style="text-align: center;" >';
+                echo '<input type="hidden" name="incident_id" value="' . $id . '">';
+                echo '<label for="treatment"><b>Prehospital Treatment</b></label><br>';
+                echo '<textarea name="treatment" id="treatment" required></textarea><br><br>';
+                echo '<label for="condition"><b>Post-Treatment Conditions</b></label><br>';
+                echo '<textarea name="condition" id="condition" required></textarea>';
+                echo '</div >';
+                echo '<div class="center"><br><h4 style="text-align: center;" >Update status to </h4>';
+
+                echo '<button class="call-button">CLOSED</button></div>';
+                echo '</form>';
+
+            }
+            echo '<br></div><br><br><hr><br><br>';
+
+        }
+        else{
+            //echo "No incident has been assigned yet.";
+        }
+        
 
         $currentDate = date('Y-m-d');  // Get the current date in 'YYYY-MM-DD' format
         $weekStartDate = date('Y-m-d', strtotime("last Monday", strtotime($currentDate))); // Get the week start date
@@ -178,120 +448,17 @@
         echo '</table>';
         echo '<br>';
 
-        echo "<div style='text-align: center;'>";
+        echo "<div style='text-align: center; color:rgb(190, 200, 200)'>";
         echo "For any request or issue concerning your working shift, please ";
-
         $q = "SELECT * FROM samu_staff
-                WHERE role='u'";
+        WHERE role='u'";
         $r = mysqli_query($db, $q);
         $row = mysqli_fetch_assoc($r);
         $email = $row['email'];
         $message = "mail us";
         $link = "<a href='mailto:$email'>$message</a>";
         echo $link;
-        echo "</div>";
-
-            
-                
-       
-
-        
-
-        // Disable ONLY_FULL_GROUP_BY mode for the current session
-        mysqli_query($db, "SET SESSION sql_mode = ''");
-
-        if($status=="break"){
-
-            echo '<form method="POST" action="../php/stavailable.php">';
-            echo '<input type="hidden" name="id" value="' . $id . '">';
-            echo '<button type="submit">I am on break</button>';
-            echo '</form>';
-        }
-        else if($status=="available"){
-
-            echo '<form method="POST" action="../php/break.php">';
-            echo '<input type="hidden" name="id" value="' . $id . '">';
-            echo '<button type="submit">I am on duty</button>';
-            echo '</form>';
-
-        }
-
-        $u = "SELECT *
-                    FROM incident_staff s
-                    JOIN incident i ON i.id = s.incident_id
-                    WHERE (i.status = 'dispatched' OR i.status = 'resolving') AND s.staff_id='$id'";
-
-            $r = mysqli_query($db, $u);
-            $r1 = mysqli_fetch_assoc($r);
-            if($r1){
-                $Iid = $r1['id'];
-
-                echo '<h4 style="text-align: center;" >Request other emergency services for incident '.$Iid.':</h4>
-                        <div class="button-container1">
-                            <form action="mfrs.php" method="get">
-                                <input type="hidden" name="id" value="' . $Iid . '">
-                                <button class="button">MFRS</button>
-                            </form>
-                            <form action="mpf.php" method="get">
-                                <input type="hidden" name="id" value="' . $Iid . '">
-                                <button class="button">MPF</button>
-                            </form>
-                        </div>
-                        <br><hr>';
-            }
-            
-
-           
-       
-
-            
-
-        // Disable ONLY_FULL_GROUP_BY mode for the current session
-        mysqli_query($db, "SET SESSION sql_mode = ''");
-
-        $query = "SELECT s.incident_id, i.status, i.description
-                    FROM incident_staff s
-                    JOIN incident i ON i.id = s.incident_id
-                    WHERE (i.status = 'dispatched' OR i.status = 'resolving')";
-        $result = mysqli_query($db, $query);
-        $row = mysqli_fetch_assoc($result);
-        
-
-        if($row){
-
-            
-            $id = $row['incident_id'];
-            $status = $row['status'];
-            $desc = $row['description'];
-            
-
-            if($status=="dispatched"){
-
-                echo '<form method="POST" action="../php/resolving.php">';
-                echo 'Update status of incident '.$id.' to ';
-                echo '<input type="hidden" name="incident_id" value="' . $id . '">';
-                echo '<button type="submit">RESOLVING</button>';
-                echo '</form>';
-            }
-            else if ($status=="resolving"){
-
-
-                echo '<form method="POST" action="../php/closed.php">';
-                echo '<input type="hidden" name="incident_id" value="' . $id . '">';
-                echo '<label for="treatment">Prehospital Treatment</label><br>';
-                echo '<textarea name="treatment" id="treatment" required></textarea><br><br>';
-                echo '<label for="condition">Post-Treatment Conditions</label><br>';
-                echo '<textarea name="condition" id="condition" required></textarea><br><br>';
-                echo 'Update status of incident '.$id.' to ';
-                echo '<button type="submit">CLOSED</button>';
-                echo '</form>';
-
-            }
-
-        }
-        else{
-            //echo "No incident has been assigned yet.";
-        }
+        echo "</div><br><br>";
 
             
             
