@@ -64,7 +64,7 @@
             touch-action: manipulation;
             white-space: nowrap;
             cursor: pointer;
-            width: 120px;
+            width: 300px;
             margin-top: 0px;
             margin-left: 10px;
             margin-bottom: 5px;
@@ -100,46 +100,7 @@
             margin-left: 40%;
             margin-right: 40%;
         }
-        .button-64 {
-            align-items: center;
-            background-image: linear-gradient(45deg,red, teal);
-            border: 0;
-            border-radius: 8px;
-            box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-            box-sizing: border-box;
-            color: #FFFFFF;
-            display: flex;
-            font-family: Phantomsans, sans-serif;
-            font-size: 16px; /* Updated font size */
-            justify-content: center;
-            line-height: 1em;
-            width: 120px; /* Updated width */
-            padding: 2.5px; /* Updated padding */
-            text-decoration: none;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            white-space: nowrap;
-            cursor: pointer;
-        }
-
-        .button-64:active,
-        .button-64:hover {
-            outline: 0;
-        }
-
-        .button-64 span {
-            background-color: rgb(5, 6, 45);
-            padding: 12px; /* Updated padding */
-            border-radius: 6px;
-            width: 100px;
-            height: 20px;
-            transition: 300ms;
-        }
-
-        .button-64:hover span {
-            background: none;
-        }
+        
         
         
         form {
@@ -175,17 +136,13 @@
         
 
         .box{
-            background-color: rgb(150, 200, 200, 0.5);
+            background-color: rgb(150, 200, 200);
             width: 50%;
             margin-left: 25%;
             border-radius: 10px;
             
-           
-            
         }
-        textarea{
-            background-color: rgb(170, 200, 200);
-        }
+      
     </style>
 
 <head>
@@ -202,19 +159,19 @@
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <hr>
-        <a href="Uhome.php" class="active">Home</a>
+        <a href="Fhome.php" >Home</a>
         <hr>
-        <a href="../php/Uscheduling.php">Staff Scheduling</a>
+        <a href="../php/FavaiV.php">Vehicle Availability</a>
         <hr>
-        <a href="../php/UselectS.php">Remove Staff</a>
+        <a href="../html/Fadd.php" class="active">Add Vehicle</a>
+        <hr>
+        <a href="../php/FselectV.php">Remove Vehicle</a>
         <hr>
         <a href="../php/logout.php">Log Out</a>
         <hr>
     </div>
 
-
-   
-
+    
 
 
 
@@ -259,136 +216,174 @@
             </div> <br>';
 
 
-
-
-
-
-
-
-
-
-
-      
-
-        
-
-       
-
-            
-                
-       
-        
-
-        
-
-        // Disable ONLY_FULL_GROUP_BY mode for the current session
-        mysqli_query($db, "SET SESSION sql_mode = ''");
-
-        if($status=="break"){
-
-            echo '<form method="POST" action="../php/stavailable.php">';
-            echo '<input type="hidden" name="id" value="' . $id . '">';
-            echo '<div style="display: flex; justify-content: flex-end; margin-right:1%">';
-            echo '<button class="call-button">I am on break</button>';
-            echo '</div>';
-            echo '</form><br>';
-        }
-        else if($status=="available"){
-
-            echo '<form method="POST" action="../php/break.php">';
-            echo '<input type="hidden" name="id" value="' . $id . '">';
-            echo '<div style="display: flex; justify-content: flex-end; margin-right:1%">';
-            echo '<button class="call-button">I am on duty</button>';
-            echo '</div>';
-            echo '</form><br>';
-
-        }
-        
-        
-
-        
-        
-
-        $currentDate = date('Y-m-d');  // Get the current date in 'YYYY-MM-DD' format
-        $weekStartDate = date('Y-m-d', strtotime("last Monday", strtotime($currentDate))); // Get the week start date
-
-        // Generate the week
-        $week = array();
-        for ($i = 0; $i < 7; $i++) {
-            $day = date('Y-m-d', strtotime("+$i days", strtotime($weekStartDate)));
-            $dayName = date('D', strtotime($day)); // Get the day name
-    
-            $week[$day] = $dayName;
-        }
-
-        // Print the week
-        echo "<br><br><table style='margin: 0 auto;' id='grid-table'>";
-
-        foreach ($week as $day => $dayName) {
-            echo "<th>$dayName<br><span style='font-size: 13px; font-weight: normal;'>($day)</span></th>";
-            
-        }
-        echo '<tr>';
-        
-        
-
-        foreach ($week as $day => $dayName) {
-            $q = "SELECT * FROM staff_schedule
-                WHERE staff_id='$id' AND date='$day'";
-            $r = mysqli_query($db, $q);
-            $row = mysqli_fetch_assoc($r);
-            $shift = $row['shift'];
-
-            $S = "";
-            if ($shift == "d") {
-                $S = "Day";
-            } else if ($shift == "dn") {
-                $S = "Day + Night";
-            } else if ($shift == "n") {
-                $S = "Night";
-            } else if ($shift == "o") {
-                $S = "Off Duty";
-            }
-            
-           
-            
-            echo '<td>' . $S . '</td>';
-            
-        }
-
-        echo '</tr>';
-        echo '</table>';
-        echo '<br>';
-
-        echo "<div style='text-align: center; color:rgb(190, 200, 200)'>";
-        echo "For any request or issue concerning your working shift, please ";
-        $q = "SELECT * FROM samu_staff
-        WHERE role='u'";
-        $r = mysqli_query($db, $q);
-        $row = mysqli_fetch_assoc($r);
-        $email = $row['email'];
-        $message = "mail us";
-        $link = "<a href='mailto:$email'>$message</a>";
-        echo $link;
-        echo "</div><br><br>";
-
-            
-            
-
-            
-
-            
-
-       
-
-            
-
-            
-
-        
-
-        
+  
        
         
     }
 ?>
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+    <style>
+        
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .choice {
+            display: inline-flex;
+            position: relative;
+            padding-left: 37px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        /* Hide the browser's default radio button */
+        .choice input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Create a custom radio button */
+        .checkmark {
+            position: absolute;
+            top: -2px;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: rgb(180, 220, 230);
+            border-radius: 50%;
+            margin-left: 15px;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .choice:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+
+        /* When the radio button is checked, add a blue background */
+        .choice input:checked ~ .checkmark {
+            background-color: #2196F3;
+        }
+
+        /* Create the indicator (the dot/circle - hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the indicator (dot/circle) when checked */
+        .choice input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the indicator (dot/circle) */
+        .choice .checkmark:after {
+            top: 6.18px;
+            left: 6.4px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgb(255, 255, 255);
+        }
+
+
+    </style>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/home.css" />
+    <script type="text/JavaScript" src="../js/home.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="Fhome.html">Home</a>
+        <a href="../php/FavaiV.php">Vehicle Availability</a>
+        <a href="Fadd.html" class="active">Add Vehicle</a>
+        <a href="../php/FselectV.php">Remove Vehicle</a>
+        <a href="../php/logout.php">Log Out</a>
+    </div>
+
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+    <br>
+
+    <div class="box">
+    <form onsubmit="return validateLicensePlate()" action="../php/Fadd.php" method="POST">
+        <br><label for="license"><b>License Plate Number</b></label><br>
+        <input type="text" placeholder="Enter the license plate number" id="license" name="license" required><br><br>
+
+        <label><b>Vehicle Type</b></label>
+        <br><br>
+        <label class="choice">SAMU Vehicle
+            <input type="radio" checked="checked" name="type" value="s">
+            <span class="checkmark"></span>
+        </label>
+        <label class="choice">Ambulance
+            <input type="radio" name="type" value="a">
+            <span class="checkmark"></span>
+        </label>
+        <br><br>
+        </div><br>
+        
+
+        
+
+        <div style='text-align: center; margin-top: 20px;'>
+            <button class='call-button' onclick='submitForm()' style='display: inline-block; color: white; padding: 15px 30px; border: none; border-radius: 4px; font-size: 20px; text-decoration: none;'>Add Vehicle</button>
+        </div>
+    </form>
+    
+
+    <script type="text/javascript">
+        function validateLicensePlate() {
+            var licensePlate = document.getElementById("license").value;
+            var regex = /^\d+\sRM\s\d{2}$/; // License plate format: digits followed by a space, followed by RM, followed by a space, followed by two digits
+    
+            if (!regex.test(licensePlate)) {
+                alert("License plate number should be in the format: digits RM ##");
+                return false;
+            }
+            return true;
+        }
+    </script>
+    
+    
+
+</body>
+</html>

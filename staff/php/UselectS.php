@@ -324,7 +324,7 @@ if ($db->connect_error) {
 
     echo "<div style='text-align: center; margin-top: 20px;'>
             <button class='call-button' onclick='submitForm()' style='display: inline-block; background-color: teal; color: white; padding: 15px 30px; border: none; border-radius: 4px; font-size: 20px; text-decoration: none;'>Remove Staff</button>
-        </div>";
+    </div>";
 
     echo "</form>";
 }

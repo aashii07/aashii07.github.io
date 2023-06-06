@@ -202,19 +202,19 @@
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <hr>
-        <a href="Uhome.php" class="active">Home</a>
+        <a href="Fhome.php" class="active">Home</a>
         <hr>
-        <a href="../php/Uscheduling.php">Staff Scheduling</a>
+        <a href="../php/FavaiV.php">Vehicle Availability</a>
         <hr>
-        <a href="../php/UselectS.php">Remove Staff</a>
+        <a href="../html/Fadd.php">Add Vehicle</a>
+        <hr>
+        <a href="../php/FselectV.php">Remove Vehicle</a>
         <hr>
         <a href="../php/logout.php">Log Out</a>
         <hr>
     </div>
 
-
-   
-
+    
 
 
 
@@ -392,3 +392,8 @@
         
     }
 ?>
+
+
+
+
+
