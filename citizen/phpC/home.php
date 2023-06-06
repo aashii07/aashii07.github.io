@@ -208,9 +208,9 @@
                 
                 
                 echo "<tr>";
-                echo "<td style=' text-align:center' >ID - " . $res."<hr>".$row['description'] . "</td>";
+                echo "<td style=' text-align:center' ><b>ID - " . $res."</b><hr>".$row['description'] . "</td>";
                 if($stat['status']=="pending"){
-                    echo "<td style='text-align: center; ><a href='cancel.php?id=" . $row['id'] . "' class='cancel-button'>Cancel Incident Report</a></td>";
+                    echo "<td style='text-align: center;' ><a href='cancel.php?id=" . $row['id'] . "' class='cancel-button'>Cancel Incident Report</a></td>";
 
                 }
                 
