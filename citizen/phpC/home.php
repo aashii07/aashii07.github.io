@@ -100,7 +100,8 @@
             white-space: nowrap;
             cursor: pointer;
             width: 260px;
-            margin-top: 50px;
+            margin-top: 10px;
+            
         }
 
         .call-button:hover {
@@ -196,9 +197,10 @@
             $result=mysqli_query($db, $caller);
 
            
-            echo "<div class='center'>";
-            echo "<table>";
+            
             while ($row = mysqli_fetch_assoc($result)) {
+                echo "<div class='center'>";
+                echo "<table>";
                 
                 $res=$row['id'];
                 $q1="SELECT * FROM incident 
@@ -251,15 +253,18 @@
                 echo "</table>";
                 echo "</td>";
                 echo "</tr>";
+                echo "</table>";
+                echo "</div><br><br><br>";
+                
                
                 
             }
-            echo "</table>";
-            echo "</div>";
+
+           
 
             echo '<div class="center">';
             echo '<a class="call-button" href="tel:114">Call 114</a>';
-            echo '</div>';
+            echo '</div><br><br><br>';
 
         }
         
