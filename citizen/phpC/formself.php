@@ -108,20 +108,28 @@ SAMU IMS Team';
 
 
 
-            // Function to make an HTTP request using cURL
-            function makeRequest($url) {
-                $curl = curl_init($url);
-                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                $response = curl_exec($curl);
-                curl_close($curl);
-                return $response;
+            // PHP code
+            $pythonScript = 'severity.py';
+            $command = 'C:\Users\aashi\AppData\Local\Programs\Python\Python311\python.exe ' . $pythonScript . ' 2>&1';
+
+            // Execute the command and capture output and error streams
+            exec($command, $outputLines, $returnStatus);
+
+            if ($returnStatus === 0) {
+                // Execution was successful
+                echo "Output:<br>";
+                foreach ($outputLines as $line) {
+                    echo $line . "<br>";
+                }
+            } else {
+                // Execution encountered an error
+                echo "Error occurred:<br>";
+                foreach ($outputLines as $line) {
+                    echo $line . "<br>";
+                }
+                echo "Return status: " . $returnStatus;
             }
 
-            // Replace "http://localhost:5000" with the actual URL where your Flask server is running
-            $flaskUrl = "http://localhost:5000";
-
-            // Make a GET request to the Flask server
-            $response = makeRequest($flaskUrl);
           
 
 
