@@ -336,7 +336,7 @@ body {
         <input type="text" placeholder="Enter first name" name="fnamep" id="fn">
 
         <label for="lnamep"><b>Last Name</b></label>
-        <input type="text" placeholder="Enter your last name" name="lnamep" id="ln">
+        <input type="text" placeholder="Enter last name" name="lnamep" id="ln">
 
         <label for="age"><b>Age</b></label>
         <input type="text" placeholder="Enter age" name="age" id="a">
