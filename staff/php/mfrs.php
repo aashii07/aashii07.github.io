@@ -112,6 +112,12 @@ SAMU IMS Team';
     }
     
 }
+$staff=$_SESSION['email'];
+$user = "SELECT *
+            FROM control_officer
+            WHERE email='$staff'";
+$result = mysqli_query($db, $user);
+$co = mysqli_fetch_assoc($result);
 if($co){
 
     header("Location: requestmpf.php?id=" . $id);

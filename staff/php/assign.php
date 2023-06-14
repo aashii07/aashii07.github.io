@@ -396,8 +396,11 @@ SAMU IMS Team';
                         $c = "SELECT * FROM public WHERE id='$cID'";
                         $result = mysqli_query($db, $c);
                         $c = mysqli_fetch_assoc($result);
-                        $cE = $c["email"];
-                        $cN = $c["firstname"];
+                        if($c){
+
+                                $cE = $c["email"];
+                                $cN = $c["firstname"];
+                        }
 
                         if($cE !=""){
                                 // Set up email parameters
