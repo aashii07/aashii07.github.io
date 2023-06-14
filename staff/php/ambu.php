@@ -192,9 +192,12 @@ if ($db->connect_error) {
                 $r1 = mysqli_query($db, $q1);
                 $row1 = mysqli_fetch_assoc($r1);
 
-                $fn=$row1['firstname'];
-                $ln=$row1['lastname'];
-                $num=$row1['phonenum'];
+                if($row1){
+
+                    $fn=$row1['firstname'];
+                    $ln=$row1['lastname'];
+                    $num=$row1['phonenum'];
+                }
 
                                                 
 
