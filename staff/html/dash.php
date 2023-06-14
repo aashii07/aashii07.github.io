@@ -202,13 +202,13 @@
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <hr>
-        <a href="home.php" class="active">Home</a>
+        <a href="home.php">Home</a>
         <hr>
         <a href="../php/priority.php">Resource Management</a>
         <hr>
         <a href="form.php">Incident Reporting</a>
         <hr>
-        <a href="dash.php">Dashboard</a>
+        <a href="dash.php" class="active">Dashboard</a>
         <hr>
         <a href="../php/logout.php">Log Out</a>
         <hr>
@@ -262,7 +262,19 @@
 
         
     }
+
+    
 ?>
+<iframe title="test" width="100%" height="845" src="https://app.powerbi.com/reportEmbed?reportId=b1be3cd3-0a82-42a8-9491-248fa36137a0&autoAuth=true&ctid=5a236243-d31a-49db-a7bb-8ff4bd42ea1a&filterPaneEnabled=false&navContentPaneEnabled=false" frameborder="0" allowFullScreen="true"></iframe>
+
+
+
+
+
+
+
+
+
 
 
 

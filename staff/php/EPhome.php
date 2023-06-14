@@ -252,7 +252,7 @@
                     WHERE email='$staff'";
         $result = mysqli_query($db, $user);
         $staff = mysqli_fetch_assoc($result);
-        $id = $staff['id'];
+        $idS = $staff['id'];
         $status = $staff['status'];
         $n = $staff['firstname'];
 
@@ -291,7 +291,7 @@
         if($status=="break"){
 
             echo '<form method="POST" action="../php/stavailable.php">';
-            echo '<input type="hidden" name="id" value="' . $id . '">';
+            echo '<input type="hidden" name="id" value="' . $idS . '">';
             echo '<div style="display: flex; justify-content: flex-end; margin-right:1%">';
             echo '<button class="call-button">I am on break</button>';
             echo '</div>';
@@ -300,7 +300,7 @@
         else if($status=="available"){
 
             echo '<form method="POST" action="../php/break.php">';
-            echo '<input type="hidden" name="id" value="' . $id . '">';
+            echo '<input type="hidden" name="id" value="' . $idS . '">';
             echo '<div style="display: flex; justify-content: flex-end; margin-right:1%">';
             echo '<button class="call-button">I am on duty</button>';
             echo '</div>';
@@ -313,7 +313,7 @@
         $u = "SELECT *
                     FROM incident_staff s
                     JOIN incident i ON i.id = s.incident_id
-                    WHERE (i.status = 'dispatched' OR i.status = 'resolving') AND s.staff_id='$id'";
+                    WHERE (i.status = 'dispatched' OR i.status = 'resolving') AND s.staff_id='$idS'";
 
             $r = mysqli_query($db, $u);
             $r1 = mysqli_fetch_assoc($r);
@@ -422,11 +422,16 @@
 
         foreach ($week as $day => $dayName) {
             $q = "SELECT * FROM staff_schedule
-                WHERE staff_id='$id' AND date='$day'";
+                WHERE staff_id='$idS' AND date='$day'";
             $r = mysqli_query($db, $q);
             $row = mysqli_fetch_assoc($r);
-            $shift = $row['shift'];
+            if($row){
 
+                $shift = $row['shift'];
+            }
+            
+
+            $shift = $row['shift'];
             $S = "";
             if ($shift == "d") {
                 $S = "Day";

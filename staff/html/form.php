@@ -287,7 +287,7 @@ body {
       <hr>
       <a href="form.php" class="active">Incident Reporting</a>
       <hr>
-      <a href="dash.html">Dashboard</a>
+      <a href="dash.php">Dashboard</a>
       <hr>
       <a href="../php/logout.php">Log Out</a>
       <hr>

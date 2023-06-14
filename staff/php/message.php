@@ -2,6 +2,12 @@
 <html>
 <head>
   <style>
+
+    body {
+        background-image: url(../../gallery/bg.jpg);
+        background-repeat: repeat;
+        font-family: Arial, Helvetica, sans-serif;
+    }
     /* Style for the message box */
     .message {
       width: 400px;
