@@ -337,64 +337,67 @@
                             </form>
                         </div>
                         <br>';
+
+
+                    
+
+                // Disable ONLY_FULL_GROUP_BY mode for the current session
+                mysqli_query($db, "SET SESSION sql_mode = ''");
+
+                $query = "SELECT s.incident_id, i.status, i.description
+                            FROM incident_staff s
+                            JOIN incident i ON i.id = s.incident_id
+                            WHERE (i.status = 'dispatched' OR i.status = 'resolving')";
+                $result = mysqli_query($db, $query);
+                $row = mysqli_fetch_assoc($result);
+                
+
+                if($row){
+
+                    
+                    $id = $row['incident_id'];
+                    $status = $row['status'];
+                    $desc = $row['description'];
+                    
+
+                    if($status=="dispatched"){
+
+                        echo '<form class="center" method="POST" action="../php/resolving.php">';
+                        echo '<h4 style="text-align: center;" >Update status to </h4>';
+                        echo '<input type="hidden" name="incident_id" value="' . $id . '">';
+                        echo '<button class="call-button">RESOLVING</button>';
+                        echo '</form>';
+                    }
+                    else if ($status=="resolving"){
+
+
+                        echo '<form  method="POST" action="../php/closed.php">';
+                        echo '<div style="text-align: center;" >';
+                        echo '<input type="hidden" name="incident_id" value="' . $id . '">';
+                        echo '<label for="treatment"><b>Prehospital Treatment</b></label><br>';
+                        echo '<textarea name="treatment" id="treatment" required></textarea><br><br>';
+                        echo '<label for="condition"><b>Post-Treatment Conditions</b></label><br>';
+                        echo '<textarea name="condition" id="condition" required></textarea>';
+                        echo '</div >';
+                        echo '<div class="center"><br><h4 style="text-align: center;" >Update status to </h4>';
+
+                        echo '<button class="call-button">CLOSED</button></div>';
+                        echo '</form>';
+
+                    }
+                    echo '<br></div><br><br><hr><br><br>';
+
+                }
+                else{
+                    //echo "No incident has been assigned yet.";
+                }
+        
+                        
             }
             
 
            
        
-
-            
-
-        // Disable ONLY_FULL_GROUP_BY mode for the current session
-        mysqli_query($db, "SET SESSION sql_mode = ''");
-
-        $query = "SELECT s.incident_id, i.status, i.description
-                    FROM incident_staff s
-                    JOIN incident i ON i.id = s.incident_id
-                    WHERE (i.status = 'dispatched' OR i.status = 'resolving')";
-        $result = mysqli_query($db, $query);
-        $row = mysqli_fetch_assoc($result);
-        
-
-        if($row){
-
-            
-            $id = $row['incident_id'];
-            $status = $row['status'];
-            $desc = $row['description'];
-            
-
-            if($status=="dispatched"){
-
-                echo '<form class="center" method="POST" action="../php/resolving.php">';
-                echo '<h4 style="text-align: center;" >Update status to </h4>';
-                echo '<input type="hidden" name="incident_id" value="' . $id . '">';
-                echo '<button class="call-button">RESOLVING</button>';
-                echo '</form>';
-            }
-            else if ($status=="resolving"){
-
-
-                echo '<form  method="POST" action="../php/closed.php">';
-                echo '<div style="text-align: center;" >';
-                echo '<input type="hidden" name="incident_id" value="' . $id . '">';
-                echo '<label for="treatment"><b>Prehospital Treatment</b></label><br>';
-                echo '<textarea name="treatment" id="treatment" required></textarea><br><br>';
-                echo '<label for="condition"><b>Post-Treatment Conditions</b></label><br>';
-                echo '<textarea name="condition" id="condition" required></textarea>';
-                echo '</div >';
-                echo '<div class="center"><br><h4 style="text-align: center;" >Update status to </h4>';
-
-                echo '<button class="call-button">CLOSED</button></div>';
-                echo '</form>';
-
-            }
-            echo '<br></div><br><br><hr><br><br>';
-
-        }
-        else{
-            //echo "No incident has been assigned yet.";
-        }
         
 
         $currentDate = date('Y-m-d');  // Get the current date in 'YYYY-MM-DD' format
@@ -413,12 +416,21 @@
         echo "<table style='margin: 0 auto;' id='grid-table'>";
 
         foreach ($week as $day => $dayName) {
-            echo "<th>$dayName<br><span style='font-size: 13px; font-weight: normal;'>($day)</span></th>";
+            $q = "SELECT * FROM staff_schedule
+                WHERE staff_id='$idS' AND date='$day'";
+            $r = mysqli_query($db, $q);
+            $row = mysqli_fetch_assoc($r);
+            if($row){
+
+                echo "<th>$dayName<br><span style='font-size: 13px; font-weight: normal;'>($day)</span></th>";
+            
+            }
             
         }
         echo '<tr>';
         
         
+      
 
         foreach ($week as $day => $dayName) {
             $q = "SELECT * FROM staff_schedule
@@ -427,25 +439,27 @@
             $row = mysqli_fetch_assoc($r);
             if($row){
 
+               
+
                 $shift = $row['shift'];
+                $S = "";
+                if ($shift == "d") {
+                    $S = "Day";
+                } else if ($shift == "dn") {
+                    $S = "Day + Night";
+                } else if ($shift == "n") {
+                    $S = "Night";
+                } else if ($shift == "o") {
+                    $S = "Off Duty";
+                }
+                
+            
+                
+                echo '<td>' . $S . '</td>';
             }
             
 
-            $shift = $row['shift'];
-            $S = "";
-            if ($shift == "d") {
-                $S = "Day";
-            } else if ($shift == "dn") {
-                $S = "Day + Night";
-            } else if ($shift == "n") {
-                $S = "Night";
-            } else if ($shift == "o") {
-                $S = "Off Duty";
-            }
             
-           
-            
-            echo '<td>' . $S . '</td>';
             
         }
 

@@ -91,11 +91,6 @@ The details of the incident are as follows:
 - Location: '.$link.'
 - Date and Time: '.$dt.'
 
-The details of the incident caller are as follows:
-
-- Name: '.$fn.' '.$ln.'
-- Phone Number: '.$num.'
-
 Please dispatch your team to the location mentioned above as soon as possible. 
 Your prompt response and assistance in this matter will be greatly appreciated.
 

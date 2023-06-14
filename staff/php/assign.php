@@ -333,12 +333,7 @@ if ($db->connect_error) {
                                 $q1 = "SELECT * FROM public WHERE id='$pid'";
                                 $r1 = mysqli_query($db, $q1);
                                 $row1 = mysqli_fetch_assoc($r1);
-                                if($row1){
-
-                                        $fn=$row1['firstname'];
-                                        $ln=$row1['lastname'];
-                                        $num=$row1['phonenum'];
-                                }
+                                
 
                                 
 
@@ -349,7 +344,13 @@ if ($db->connect_error) {
                                 $mail->setFrom('aashi.jaulim@gmail.com', 'SAMU IMS');
                                 $mail->addAddress($e, 'SAMU staff');
                                 $mail->Subject = 'Urgent: Immediate Attendance Required for Incident Response';
-                                $mail->Body = 'Dear '.$n.',
+                                if($row1){
+
+                                        $fn=$row1['firstname'];
+                                        $ln=$row1['lastname'];
+                                        $num=$row1['phonenum'];
+                                
+                                        $mail->Body = 'Dear '.$n.',
 
 We have an incident that demands your immediate attention. 
 Please report to the location below promptly to assist in resolving the situation. 
@@ -376,6 +377,30 @@ Thank you for your immediate action.
 Best regards,
 SAMU IMS Team';
 
+                                }else{
+                                        $mail->Body = 'Dear '.$n.',
+
+We have an incident that demands your immediate attention. 
+Please report to the location below promptly to assist in resolving the situation. 
+
+Vehicle assigned: '.$vehN.' ('.$type.' '.$vehID.')
+
+The details of the incident are as follows:
+
+        - ID: '.$id.'
+        - Description: '.$des.'
+        - Location: '.$link.'
+        - Date and Time: '.$dt.'
+
+Your expertise and cooperation are vital in resolving this incident swiftly. 
+If you have any questions or concerns, please contact us on +230 57647416.
+
+Thank you for your immediate action.
+
+Best regards,
+SAMU IMS Team';
+
+                                }
                                 try {
                                 // Send the email
                                         $mail->send();
@@ -402,7 +427,7 @@ SAMU IMS Team';
                                 $cN = $c["firstname"];
                         }
 
-                        if($cE !=""){
+                        if($c){
                                 // Set up email parameters
                                 $mail->setFrom('aashi.jaulim@gmail.com', 'SAMU IMS');
                                 $mail->addAddress($cE, 'Public');
