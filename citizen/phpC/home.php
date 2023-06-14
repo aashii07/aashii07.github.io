@@ -207,10 +207,32 @@
                         WHERE id='$res'";
                 $r1=mysqli_query($db, $q1);
                 $stat = mysqli_fetch_assoc($r1);
+                $dt=$row['reported_datetime'];
                 
                 
                 echo "<tr>";
-                echo "<td style=' text-align:center' ><b>ID - " . $res."</b><hr>".$row['description'] . "</td>";
+                //echo "<td style=' text-align:center' ><b>ID - " . $res."</b><hr>".$row['description'] . "</td>";
+                
+
+                echo '<style>
+                            .clickable {
+                                color: teal;
+                                text-decoration: underline;
+                                cursor: pointer;
+                            }
+                        </style>';
+                    echo "<td style='text-align:center'><b>" . $row['description'] . "</b><hr><span class='clickable' onclick='showMessage(\"$res\", \"$dt\")'>Click for more details</span></td>";
+
+                echo '<script>
+                        function showMessage(res, dt) {
+                           
+                            window.alert("ID - " + res + "\nReported date and time - " + dt);
+                            
+                        }
+
+                    </script>';
+
+
                 if($stat['status']=="pending"){
                     echo "<td style='text-align: center;' ><a href='cancel.php?id=" . $row['id'] . "' class='cancel-button'>Cancel Incident Report</a></td>";
 
