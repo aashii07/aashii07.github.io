@@ -1,0 +1,55 @@
+Description,Severity,Category,Description_synonym_replacement,Description_back_translation,Description_character_level_augmentation
+Car collision,2,RTA,car collision,car crash,Car collisiow
+Fall from a height,1,Other,fall from angstrom height,fall from a height,Fahl from a height
+Slip and fall,3,Other,faux_pas and fall,slip and fall,SlZp and fall
+Bicycle accident,3,RTA,bicycle accident,bicycle accident,BicyAle accident
+Construction site incident,1,Other,construction site incident,Site incident,ConstrQction site incident
+Electric shock,1,Other,electric daze,Electrical shock,ElectTic shock
+Drowning,1,Other,submerge,Drowning,Drlwning
+Severe burns,1,Other,severe Burns,Severe burns,Severe burYs
+Minor injuries,3,Other,child injury,Minor injuries,Minbr injuries
+Cardiac arrest,1,Health problems,cardiac apprehension,Cardiac arrest,Caddiac arrest
+Breathing difficulties,2,Health problems,breathing trouble,Breathing difficulties,Breathing difficulthes
+Allergic reaction,2,Other,allergic chemical_reaction,Allergic reaction,Allergic reactnon
+Seizure,1,Health problems,seizure,Epileptic crisis,Seidure
+Fracture,2,Other,fracture,Fracture,FraFture
+Labor pain,1,Health problems,labor pain,The pain of labor,Lzbor pain
+Pregnant and abdominal pain,3,Health problems,pregnant and abdominal pain,Pregnant and abdominal pain,aregnant and abdominal pain
+Asthma,3,Health problems,asthma,Asthma,Astzma
+Stomach pain,3,Health problems,stomach pain,stomach pain,Stomach paMn
+Body pain,3,Health problems,body pain,Body pain,BodyMpain
+Unconscious,2,Health problems,unconscious_mind,Unconscious,UncoLscious
+Dizziness,3,Health problems,dizziness,Dizziness,Dizzcness
+Vomiting,3,Health problems,vomit,Vomiting,Vomqting
+Major road accident,1,RTA,major road accident,Major road accident,Major Qoad accident
+Excessive bleeding,1,Other,excessive bleeding,Excessive bleeding,Excessive bkeeding
+Fits,2,Health problems,fit,Agrees,FitY
+Weakness,3,Health problems,failing,Weakness,Weakneis
+Severe fever,1,Health problems,severe fever,Severe fever,Severeafever
+Diarrhea,3,Health problems,diarrhea,Diarrhea,DiarZhea
+Mild fever,3,Health problems,mild fever,Slight fever,Mild Kever
+Building fire,1,Fire,building fire,building fire,BuiVding fire
+Kitchen fire,3,Fire,kitchen fire,kitchen fire,KitcAen fire
+Head injury,2,Other,head injury,Head injury,Head Knjury
+Food poisoning,3,Other,food poisoning,Food poisoning,Food poisJning
+Corrosive substances,2,Other,corrosive substance,Substances corrosives,Corrosiwe substances
+Physical trauma,2,Other,physical injury,Physical trauma,Physical brauma
+Bleeding,2,Other,bleeding,Bleeding,BleediLg
+Animal attack,1,Other,animal attack,animal attack,Animalrattack
+Chest pain,1,Health problems,thorax pain,Chest pain,Chevt pain
+Smoke inhalation,2,Fire,smoke inhalation,Smoke inhalation,Smoke anhalation
+Poisoning,2,Other,poisoning,Poisoning,PoiVoning
+Overdose,1,Other,overdose,Overdose,yverdose
+Stroke,1,Health problems,stroke,Stroke,StroYe
+Heart attack,1,Health problems,heart attack,Heart attack,Heard attack
+Mental health crisis,2,Health problems,mental health crisis,mental health crisis,Mental health criRis
+Suicidal attempts,1,Violence and Abuse,self-destructive attempt,suicide attempts,Sugcidal attempts
+Domestic violence,1,Violence and Abuse,domestic violence,Domestic violence,Domejtic violence
+Sexual assault,1,Violence and Abuse,sexual assault,sexual assault,Aexual assault
+Natural disasters,1,Other,natural catastrophe,Natural disasters,NatuOal disasters
+Industrial accidents,1,Other,industrial accident,Industrial accidents,Industrial accidNnts
+Foreign object lodged in the body,2,Other,foreign object lodge inch the body,Foreign body lodged in the body,Foreign object lTdged in the body
+Sprain,3,Other,sprain,Sprain,Spraio
+Gunshot,1,Other,gunfire,Gunshot,Gunshwt
+Choking,2,Other,choking,Choking,Choking
+Eye injury,3,Other,eye injury,eye injury,Eye injurx

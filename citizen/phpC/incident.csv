@@ -1,0 +1,55 @@
+Description,Severity,Category
+Car collision,2,RTA
+Fall from a height,1,Other
+Slip and fall,3,Other
+Bicycle accident,3,RTA
+Construction site incident,1,Other
+Electric shock,1,Other
+Drowning,1,Other
+Severe burns,1,Other
+Minor injuries,3,Other
+Cardiac arrest,1,Health problems
+Breathing difficulties,2,Health problems
+Allergic reaction,2,Other
+Seizure,1,Health problems
+Fracture,2,Other
+Labor pain,1,Health problems
+Pregnant and abdominal pain,3,Health problems
+Asthma,3,Health problems
+Stomach pain,3,Health problems
+Body pain,3,Health problems
+Unconscious,2,Health problems
+Dizziness,3,Health problems
+Vomiting,3,Health problems
+Major road accident,1,RTA
+Excessive bleeding,1,Other
+Fits,2,Health problems
+Weakness,3,Health problems
+Severe fever,1,Health problems
+Diarrhea,3,Health problems
+Mild fever,3,Health problems
+Building fire,1,Fire
+Kitchen fire,3,Fire
+Head injury,2,Other
+Food poisoning,3,Other
+Corrosive substances,2,Other
+Physical trauma,2,Other
+Bleeding,2,Other
+Animal attack,1,Other
+Chest pain,1,Health problems
+Smoke inhalation,2,Fire
+Poisoning,2,Other
+Overdose,1,Other
+Stroke,1,Health problems
+Heart attack,1,Health problems
+Mental health crisis,2,Health problems
+Suicidal attempts,1,Violence and Abuse
+Domestic violence,1,Violence and Abuse
+Sexual assault,1,Violence and Abuse
+Natural disasters,1,Other
+Industrial accidents,1,Other
+Foreign object lodged in the body,2,Other
+Sprain,3,Other
+Gunshot,1,Other
+Choking,2,Other
+Eye injury,3,Other

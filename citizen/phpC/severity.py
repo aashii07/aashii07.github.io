@@ -1,6 +1,6 @@
 #importing dataset
 import pandas as pd
-data = pd.read_csv('filename.csv')
+data = pd.read_csv('citizen/phpC/filename.csv')
 
 #drop columns
 data.drop(['incidentID'], axis=1, inplace=True)
