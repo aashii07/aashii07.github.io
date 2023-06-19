@@ -1,6 +1,6 @@
 <?php
 // PHP code
-$pythonScript = 'severityfull.py';
+$pythonScript = 'severity.py';
 $command = 'C:\Users\aashi\AppData\Local\Programs\Python\Python311\python.exe ' . $pythonScript . ' 2>&1';
 
 // Execute the command and capture output and error streams

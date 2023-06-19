@@ -1,79 +1,61 @@
-#importing dataset
-import pandas as pd
-data = pd.read_csv('citizen/phpC/filename.csv')
+import pandas as pd, nltk, re, string, pickle
 
-#drop columns
-data.drop(['incidentID'], axis=1, inplace=True)
 
-#missing values
-data.isna().sum()
-
-#preprocessing
-import re
-import nltk
 from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
-from nltk.corpus import wordnet
 
+nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
-nltk.download('averaged_perceptron_tagger')
 
-lemmatizer = WordNetLemmatizer()
-stop_words = set(stopwords.words('english')) - set(['not'])
 
-def lemmatize_with_pos(word, pos_tag):
-  pos_map = {'N': wordnet.NOUN, 'V': wordnet.VERB, 'R': wordnet.ADV, 'J': wordnet.ADJ}
-  pos = pos_map.get(pos_tag[0], wordnet.NOUN)
-  return lemmatizer.lemmatize(word, pos=pos)
+# Preprocessing
+def preprocess(text):
 
-def preprocess_text(text):
-  words = re.findall(r'\b\w+\b', text)
-  words = [word.lower() for word in words if word.lower() not in stop_words]
-  pos_tags = nltk.pos_tag(words)
-  lemmatized_words = [lemmatize_with_pos(word, pos) for word, pos in pos_tags]
-  return ' '.join(lemmatized_words)
+  # Tokenization
+  tokens = word_tokenize(text)
 
-#remove all special characters, lowercase all the words, tokenize, remove stopwords, lemmatize
-data['descr'] = data['description'].apply(preprocess_text)
+  # Convert tokens to lowercase
+  tokens = [token.lower() for token in tokens]
 
-x = data['descr']
-y = data['severity']
+  # Remove stopwords, punctuation, and special characters
+  stop_words = set(stopwords.words('english'))
+  tokens = [
+    token for token in tokens
+    if token not in stop_words and token not in string.punctuation
+  ]
+  tokens = [
+    re.sub(r"[^\w\s]", "", token)  # Remove special characters
+    for token in tokens
+  ]
 
-#train test split (75% train - 25% test)
-from sklearn.model_selection import train_test_split
+  # Lemmatization
+  lemmatizer = WordNetLemmatizer()
+  tokens = [lemmatizer.lemmatize(token) for token in tokens]
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=1)
+  # Join tokens back into a single string
+  preprocessed_text = ' '.join(tokens)
 
-#train Bag of Words model
-from sklearn.feature_extraction.text import CountVectorizer
-
-cv = CountVectorizer()
-x_train_cv = cv.fit_transform(x_train)
-x_train_cv.shape
-
-#Random Forest Classifier
-from sklearn.ensemble import RandomForestClassifier
-
-rfc = RandomForestClassifier()
-rfc.fit(x_train_cv, y_train)
-
-#transform X_test using CV
-x_test_cv = cv.transform(x_test)
-
-#generate predictions
-predictionRFC = rfc.predict(x_test_cv)
-
-#accuracy
-from sklearn.metrics import accuracy_score
-accuracyRFC = accuracy_score(y_test, predictionRFC)
-print(f'Accuracyof RFC = {accuracyRFC}')
+  return preprocessed_text
 
 
 
+# Load the saved model from file
+with open("../../model1.pkl", "rb") as file:
+    model1 = pickle.load(file)
 
+# Load the CountVectorizer used during training
+with open("../../vectorizer1.pkl", "rb") as file:
+    vectorizer1 = pickle.load(file)
 
+# Load the saved model from file
+with open("../../model2.pkl", "rb") as file:
+    model2 = pickle.load(file)
 
+# Load the CountVectorizer used during training
+with open("../../vectorizer2.pkl", "rb") as file:
+    vectorizer2 = pickle.load(file)
 
 
 
@@ -97,42 +79,30 @@ data = pd.read_sql(query, mydb)
 # Extract the description from the data dataframe
 description = data['description'].iloc[0]
 
-# Initialize lemmatizer and stop words
-lemmatizer = WordNetLemmatizer()
-stop_words = set(stopwords.words('english')) - set(['not'])
+# Preprocess the data
+description = preprocess(description)
 
-def lemmatize_with_pos(word, pos_tag):
-  pos_map = {'N': wordnet.NOUN, 'V': wordnet.VERB, 'R': wordnet.ADV, 'J': wordnet.ADJ}
-  pos = pos_map.get(pos_tag[0], wordnet.NOUN)
-  return lemmatizer.lemmatize(word, pos=pos)
+# Preprocess the new text using the same vectorizer
+descr_vectorized = vectorizer1.transform([description])
 
-def preprocess_description(description):
-  words = re.findall(r'\b\w+\b', description)
-  words = [word.lower() for word in words if word.lower() not in stop_words]
-  pos_tags = nltk.pos_tag(words)
-  lemmatized_words = [lemmatize_with_pos(word, pos) for word, pos in pos_tags]
-  return ' '.join(lemmatized_words)
+# Make predictions using the loaded model
+predicted_severity = model1.predict(descr_vectorized)[0]
 
-# Extract description from HTML form and preprocess it
-preprocessed_description = preprocess_description(description)
+print("Severity:", predicted_severity)
 
+# Preprocess the new text using the same vectorizer
+descr_vectorized = vectorizer2.transform([description])
 
-# Load the trained CountVectorizer model
-cv = CountVectorizer()
-x_train_cv = cv.fit_transform(x_train)
+# Make predictions using the loaded model
+predicted_category = model2.predict(descr_vectorized)[0]
 
-# Transform the preprocessed description using the CountVectorizer model
-desc_cv = cv.transform([preprocessed_description])
-
-# Use the trained Random Forest Classifier model to predict the severity
-predicted_severity = rfc.predict(desc_cv)[0]
-print("Predicted Severity:", predicted_severity)
+print("Category:", predicted_category)
 
 # Update the incident table with the predicted severity value
 query = "SELECT id FROM incident ORDER BY id DESC LIMIT 1"
 data = pd.read_sql(query, mydb)
 id = data['id'].iloc[0]
-update_query = "UPDATE incident SET severity = '{}' WHERE id = {}".format(predicted_severity, id)
+update_query = "UPDATE incident SET severity = '{}', category = '{}' WHERE id = {}".format(predicted_severity, predicted_category, id)
 cursor = mydb.cursor()
 cursor.execute(update_query)
 mydb.commit()

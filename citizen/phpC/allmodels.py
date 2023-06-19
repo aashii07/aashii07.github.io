@@ -12,6 +12,8 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, AdaBoostClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.svm import LinearSVC
+from sklearn.linear_model import SGDClassifier
+from sklearn.linear_model import RidgeClassifier
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
@@ -88,7 +90,10 @@ models = [
     GradientBoostingClassifier(),
     MLPClassifier(),
     AdaBoostClassifier(),
-    LinearSVC()
+    LinearSVC(),
+    SGDClassifier(),
+    RidgeClassifier()
+
 ]
 
 model_names = [
@@ -101,7 +106,9 @@ model_names = [
     "Gradient Boosting",
     "Multilayer Perceptron",
     "AdaBoost",
-    "Linear SVM"
+    "Linear SVM",
+    "SGD Classifier",
+    "Ridge Classifier"
 ]
 
 # Train and evaluate models

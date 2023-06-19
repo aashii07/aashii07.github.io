@@ -1,55 +1,1055 @@
-Description,Severity,Category,Description_synonym_replacement,Description_back_translation,Description_character_level_augmentation
-Car collision,2,RTA,car collision,car crash,Car collisiow
-Fall from a height,1,Other,fall from angstrom height,fall from a height,Fahl from a height
-Slip and fall,3,Other,faux_pas and fall,slip and fall,SlZp and fall
-Bicycle accident,3,RTA,bicycle accident,bicycle accident,BicyAle accident
-Construction site incident,1,Other,construction site incident,Site incident,ConstrQction site incident
-Electric shock,1,Other,electric daze,Electrical shock,ElectTic shock
-Drowning,1,Other,submerge,Drowning,Drlwning
-Severe burns,1,Other,severe Burns,Severe burns,Severe burYs
-Minor injuries,3,Other,child injury,Minor injuries,Minbr injuries
-Cardiac arrest,1,Health problems,cardiac apprehension,Cardiac arrest,Caddiac arrest
-Breathing difficulties,2,Health problems,breathing trouble,Breathing difficulties,Breathing difficulthes
-Allergic reaction,2,Other,allergic chemical_reaction,Allergic reaction,Allergic reactnon
-Seizure,1,Health problems,seizure,Epileptic crisis,Seidure
-Fracture,2,Other,fracture,Fracture,FraFture
-Labor pain,1,Health problems,labor pain,The pain of labor,Lzbor pain
-Pregnant and abdominal pain,3,Health problems,pregnant and abdominal pain,Pregnant and abdominal pain,aregnant and abdominal pain
-Asthma,3,Health problems,asthma,Asthma,Astzma
-Stomach pain,3,Health problems,stomach pain,stomach pain,Stomach paMn
-Body pain,3,Health problems,body pain,Body pain,BodyMpain
-Unconscious,2,Health problems,unconscious_mind,Unconscious,UncoLscious
-Dizziness,3,Health problems,dizziness,Dizziness,Dizzcness
-Vomiting,3,Health problems,vomit,Vomiting,Vomqting
-Major road accident,1,RTA,major road accident,Major road accident,Major Qoad accident
-Excessive bleeding,1,Other,excessive bleeding,Excessive bleeding,Excessive bkeeding
-Fits,2,Health problems,fit,Agrees,FitY
-Weakness,3,Health problems,failing,Weakness,Weakneis
-Severe fever,1,Health problems,severe fever,Severe fever,Severeafever
-Diarrhea,3,Health problems,diarrhea,Diarrhea,DiarZhea
-Mild fever,3,Health problems,mild fever,Slight fever,Mild Kever
-Building fire,1,Fire,building fire,building fire,BuiVding fire
-Kitchen fire,3,Fire,kitchen fire,kitchen fire,KitcAen fire
-Head injury,2,Other,head injury,Head injury,Head Knjury
-Food poisoning,3,Other,food poisoning,Food poisoning,Food poisJning
-Corrosive substances,2,Other,corrosive substance,Substances corrosives,Corrosiwe substances
-Physical trauma,2,Other,physical injury,Physical trauma,Physical brauma
-Bleeding,2,Other,bleeding,Bleeding,BleediLg
-Animal attack,1,Other,animal attack,animal attack,Animalrattack
-Chest pain,1,Health problems,thorax pain,Chest pain,Chevt pain
-Smoke inhalation,2,Fire,smoke inhalation,Smoke inhalation,Smoke anhalation
-Poisoning,2,Other,poisoning,Poisoning,PoiVoning
-Overdose,1,Other,overdose,Overdose,yverdose
-Stroke,1,Health problems,stroke,Stroke,StroYe
-Heart attack,1,Health problems,heart attack,Heart attack,Heard attack
-Mental health crisis,2,Health problems,mental health crisis,mental health crisis,Mental health criRis
-Suicidal attempts,1,Violence and Abuse,self-destructive attempt,suicide attempts,Sugcidal attempts
-Domestic violence,1,Violence and Abuse,domestic violence,Domestic violence,Domejtic violence
-Sexual assault,1,Violence and Abuse,sexual assault,sexual assault,Aexual assault
-Natural disasters,1,Other,natural catastrophe,Natural disasters,NatuOal disasters
-Industrial accidents,1,Other,industrial accident,Industrial accidents,Industrial accidNnts
-Foreign object lodged in the body,2,Other,foreign object lodge inch the body,Foreign body lodged in the body,Foreign object lTdged in the body
-Sprain,3,Other,sprain,Sprain,Spraio
-Gunshot,1,Other,gunfire,Gunshot,Gunshwt
-Choking,2,Other,choking,Choking,Choking
-Eye injury,3,Other,eye injury,eye injury,Eye injurx
+Description,Severity,Category
+Car collision,2,RTA
+Fall from a height,1,Other
+Slip and fall,3,Other
+Bicycle accident,3,RTA
+Construction site incident,1,Other
+Electric shock,1,Other
+Drowning,1,Other
+Severe burns,1,Other
+Minor injuries,3,Other
+Cardiac arrest,1,Health problems
+Breathing difficulties,2,Health problems
+Allergic reaction,2,Other
+Seizure,1,Health problems
+Fracture,2,Other
+Labor pain,1,Health problems
+Pregnant and abdominal pain,3,Health problems
+Asthma,3,Health problems
+Stomach pain,3,Health problems
+Body pain,3,Health problems
+Unconscious,2,Health problems
+Dizziness,3,Health problems
+Vomiting,3,Health problems
+Major road accident,1,RTA
+Excessive bleeding,1,Other
+Fits,2,Health problems
+Weakness,3,Health problems
+Severe fever,1,Health problems
+Diarrhea,3,Health problems
+Mild fever,3,Health problems
+Building fire,1,Fire
+Kitchen fire,3,Fire
+Head injury,2,Other
+Food poisoning,3,Other
+Corrosive substances,2,Other
+Physical trauma,2,Other
+Bleeding,2,Other
+Animal attack,1,Other
+Chest pain,1,Health problems
+Smoke inhalation,2,Fire
+Poisoning,2,Other
+Overdose,1,Other
+Stroke,1,Health problems
+Heart attack,1,Health problems
+Mental health crisis,2,Health problems
+Suicidal attempts,1,Violence and Abuse
+Domestic violence,1,Violence and Abuse
+Sexual assault,1,Violence and Abuse
+Natural disasters,1,Other
+Industrial accidents,1,Other
+Foreign object lodged in the body,2,Other
+Sprain,3,Other
+Gunshot,1,Other
+Choking,2,Other
+Eye injury,3,Other
+Dizziness,3,Health problems
+DroKning,1,Other
+animal attack,1,Other
+Smoke inhalatiln,2,Fire
+overdose,1,Other
+Choking,2,Other
+asthma,3,Health problems
+Sprain,3,Other
+hsthma,3,Health problems
+Fracture,2,Other
+Head injury,2,Other
+breathing trouble,2,Health problems
+Saip and fall,3,Other
+electric daze,1,Other
+animal attack,1,Other
+Unconsciots,2,Health problems
+Weakness,3,Health problems
+choking,2,Other
+food poisoning,3,Other
+Fracture,2,Other
+seizure,1,Health problems
+ChestKpain,1,Health problems
+Gunshot,1,Other
+stomach pain,3,Health problems
+Dizzineps,3,Health problems
+Excessive bleedinr,1,Other
+Industrial accidents,1,Other
+Epileptic crisis,1,Health problems
+fit,2,Health problems
+bleeding,2,Other
+MenIal health crisis,2,Health problems
+fracture,2,Other
+Industryal accidents,1,Other
+Fall from a heixht,1,Other
+Weakness,3,Health problems
+industrial accident,1,Other
+labor pain,1,Health problems
+Sprain,3,Other
+construction site incident,1,Other
+Ovetdose,1,Other
+Car cqllision,2,RTA
+Nall from a height,1,Other
+sexual assault,1,Violence and Abuse
+mild fever,3,Health problems
+self-destructive attempt,1,Violence and Abuse
+fit,2,Health problems
+pregnant and abdominal pain,3,Health problems
+thorax pain,1,Health problems
+Severe fever,1,Health problems
+mental health crisis,2,Health problems
+bicycle accident,3,RTA
+Severe burns,1,Other
+dizziness,3,Health problems
+Fall frBm a height,1,Other
+Diarrhea,3,Health problems
+Cardiac arrest,1,Health problems
+Allergic reaction,2,Other
+Corbosive substances,2,Other
+Head injurQ,2,Other
+Slip anQ fall,3,Other
+Choking,2,Other
+self-destructive attempt,1,Violence and Abuse
+Foreign body lodged in the body,2,Other
+Fall Qrom a height,1,Other
+severe fever,1,Health problems
+Stroke,1,Health problems
+Stomach pahn,3,Health problems
+major road accident,1,RTA
+eye injury,3,Other
+Dizziness,3,Health problems
+Drowning,1,Other
+Bosy pain,3,Health problems
+labor pain,1,Health problems
+Animal atOack,1,Other
+Stroke,1,Health problems
+unconscious_mind,2,Health problems
+Gunshot,1,Other
+Foreign body lodged in the body,2,Other
+DizzIness,3,Health problems
+Substances corrosives,2,Other
+Frapture,2,Other
+car collision,2,RTA
+faux_pas and fall,3,Other
+Industrial accidents,1,Other
+Body pain,3,Health problems
+klip and fall,3,Other
+Slight fever,3,Health problems
+mental health crisis,2,Health problems
+Chiking,2,Other
+Physical trmuma,2,Other
+dizziness,3,Health problems
+mild fever,3,Health problems
+Breathing difficulties,2,Health problems
+PVisoning,2,Other
+Major roUd accident,1,RTA
+Foodepoisoning,3,Other
+natural catastrophe,1,Other
+Corrosive substances,2,Other
+Mild fevqr,3,Health problems
+Domestic vialence,1,Violence and Abuse
+body pain,3,Health problems
+electric daze,1,Other
+eye injury,3,Other
+Body paiH,3,Health problems
+dizziness,3,Health problems
+stomach pain,3,Health problems
+Industrial aWcidents,1,Other
+Unconscious,2,Health problems
+pregnant and abdominal pain,3,Health problems
+Sgvere fever,1,Health problems
+Breathing difficultied,2,Health problems
+Stroke,1,Health problems
+CorrosiHe substances,2,Other
+Vomiting,3,Health problems
+Mental healKh crisis,2,Health problems
+sprain,3,Other
+Pregnant aVd abdominal pain,3,Health problems
+FJts,2,Health problems
+Mental iealth crisis,2,Health problems
+Bicycle aLcident,3,RTA
+Bicycle accideQt,3,RTA
+Eye iOjury,3,Other
+Excepsive bleeding,1,Other
+failing,3,Health problems
+Head tnjury,2,Other
+Domestic violence,1,Violence and Abuse
+physical injury,2,Other
+fall from a height,1,Other
+car crash,2,RTA
+Severe burns,1,Other
+Natural disasters,1,Other
+Bicycde accident,3,RTA
+Choklng,2,Other
+Food poisZning,3,Other
+Hean injury,2,Other
+Chest vain,1,Health problems
+Inyustrial accidents,1,Other
+Slight fever,3,Health problems
+submerge,1,Other
+food poisoning,3,Other
+CorZosive substances,2,Other
+Slight fever,3,Health problems
+Chokirg,2,Other
+car collision,2,RTA
+DrowninT,1,Other
+Pregqant and abdominal pain,3,Health problems
+body pain,3,Health problems
+Smoke inhalatign,2,Fire
+major road accident,1,RTA
+Domestic violence,1,Violence and Abuse
+Breathing difficultieD,2,Health problems
+cardiac apprehension,1,Health problems
+Physical trMuma,2,Other
+Stomfch pain,3,Health problems
+pregnant and abdominal pain,3,Health problems
+sexual assault,1,Violence and Abuse
+child injury,3,Other
+Chest pain,1,Health problems
+animal attack,1,Other
+excessive bleeding,1,Other
+Agrees,2,Health problems
+industrial accident,1,Other
+domestic violence,1,Violence and Abuse
+animal attack,1,Other
+cardiac apprehension,1,Health problems
+unconscious_mind,2,Health problems
+FraKture,2,Other
+natural catastrophe,1,Other
+car collision,2,RTA
+car crash,2,RTA
+fall from a height,1,Other
+Substances corrosives,2,Other
+labor pain,1,Health problems
+MajorSroad accident,1,RTA
+Chest pain,1,Health problems
+Stroke,1,Health problems
+major road accident,1,RTA
+PoiYoning,2,Other
+Minor injuries,3,Other
+Sexual Assault,1,Violence and Abuse
+Physical trafma,2,Other
+bicycle accident,3,RTA
+eye injury,3,Other
+Cardiac arrest,1,Health problems
+domestic violence,1,Violence and Abuse
+Industrial accidenhs,1,Other
+choking,2,Other
+Breathing difficulties,2,Health problems
+industrial accident,1,Other
+building fire,1,Fire
+SeizurO,1,Health problems
+Excessive blejding,1,Other
+failing,3,Health problems
+self-destructive attempt,1,Violence and Abuse
+Elecxric shock,1,Other
+fracture,2,Other
+vomit,3,Health problems
+car collision,2,RTA
+eye injury,3,Other
+Poisoning,2,Other
+Electrical shock,1,Other
+excessive bleeding,1,Other
+Industrial accixents,1,Other
+Major road accident,1,RTA
+UnAonscious,2,Health problems
+eye injury,3,Other
+bicycle accident,3,RTA
+stroke,1,Health problems
+electric daze,1,Other
+unconscious_mind,2,Health problems
+faux_pas and fall,3,Other
+bnimal attack,1,Other
+Smoky inhalation,2,Fire
+Fracture,2,Other
+fracture,2,Other
+Stroke,1,Health problems
+Food poisoning,3,Other
+SeverE burns,1,Other
+allergic chemical_reaction,2,Other
+Industrial accideGts,1,Other
+Foreign object lodged Kn the body,2,Other
+SexDal assault,1,Violence and Abuse
+Mental heaNth crisis,2,Health problems
+EyeAinjury,3,Other
+Mental sealth crisis,2,Health problems
+Slip and falr,3,Other
+Drowning,1,Other
+stomach pain,3,Health problems
+industrial accident,1,Other
+heart attack,1,Health problems
+fall from a height,1,Other
+Minor injurios,3,Other
+Cardiac arrest,1,Health problems
+Domestic violence,1,Violence and Abuse
+Foreign object lodged yn the body,2,Other
+Food poisoning,3,Other
+Overdose,1,Other
+mild fever,3,Health problems
+Major road accident,1,RTA
+PhysicGl trauma,2,Other
+mental health crisis,2,Health problems
+Vomhting,3,Health problems
+The pain of labor,1,Health problems
+Chest pain,1,Health problems
+self-destructive attempt,1,Violence and Abuse
+thorax pain,1,Health problems
+Severe buHns,1,Other
+physical injury,2,Other
+Eye inCury,3,Other
+seizure,1,Health problems
+Epileptic crisis,1,Health problems
+heart attack,1,Health problems
+failing,3,Health problems
+Epileptic crisis,1,Health problems
+stomach pain,3,Health problems
+severe Burns,1,Other
+Stroke,1,Health problems
+Electrical shock,1,Other
+Allergic reaction,2,Other
+Diaqrhea,3,Health problems
+unconscious_mind,2,Health problems
+Smoke inhalation,2,Fire
+Chest pain,1,Health problems
+Substances corrosives,2,Other
+Overdose,1,Other
+physical injury,2,Other
+mental health crisis,2,Health problems
+Substances corrosives,2,Other
+mild fever,3,Health problems
+smoke inhalation,2,Fire
+Whakness,3,Health problems
+Mental healthocrisis,2,Health problems
+Smoke inhalation,2,Fire
+Severe burns,1,Other
+severe fever,1,Health problems
+Sprain,3,Other
+child injury,3,Other
+kitchen fire,3,Fire
+Physickl trauma,2,Other
+Breathing difficulties,2,Health problems
+SUoke inhalation,2,Fire
+poisoning,2,Other
+cardiac apprehension,1,Health problems
+FracTure,2,Other
+WeaknFss,3,Health problems
+Suicidaw attempts,1,Violence and Abuse
+Electrical shock,1,Other
+kitchen fire,3,Fire
+bicycle accident,3,RTA
+Slip Knd fall,3,Other
+mental health crisis,2,Health problems
+NaturalMdisasters,1,Other
+Mild feveS,3,Health problems
+sprain,3,Other
+mild fever,3,Health problems
+Unconsvious,2,Health problems
+SeizuEe,1,Health problems
+Pregnant and abdominal pain,3,Health problems
+Physical trauma,2,Other
+cardiac apprehension,1,Health problems
+Eys injury,3,Other
+Gunshot,1,Other
+Major road accident,1,RTA
+bicycle accident,3,RTA
+Poisoning,2,Other
+Gukshot,1,Other
+stomach pain,3,Health problems
+CarOcollision,2,RTA
+Physical trauma,2,Other
+Cardihc arrest,1,Health problems
+physical injury,2,Other
+Cardiac akrest,1,Health problems
+SevereWfever,1,Health problems
+FiMs,2,Health problems
+Diarrhea,3,Health problems
+Fracture,2,Other
+Dizziness,3,Health problems
+Mental healthhcrisis,2,Health problems
+Breathing difficultieN,2,Health problems
+kitchen fire,3,Fire
+Industrial accideBts,1,Other
+Wtroke,1,Health problems
+building fire,1,Fire
+child injury,3,Other
+Constructiln site incident,1,Other
+building fire,1,Fire
+DiHrrhea,3,Health problems
+mild fever,3,Health problems
+Chest pRin,1,Health problems
+Allergic reaction,2,Other
+diarrhea,3,Health problems
+DSarrhea,3,Health problems
+Breathing dQfficulties,2,Health problems
+Allergic reaction,2,Other
+Physical traVma,2,Other
+bleeding,2,Other
+fracture,2,Other
+suicide attempts,1,Violence and Abuse
+Smoke inOalation,2,Fire
+Slip and fHll,3,Other
+Mild fpver,3,Health problems
+Cardiac arrest,1,Health problems
+electric daze,1,Other
+Epileptic crisis,1,Health problems
+Electric shocF,1,Other
+Severe bQrns,1,Other
+FNacture,2,Other
+choking,2,Other
+Foreijn object lodged in the body,2,Other
+Food poisoninO,3,Other
+whest pain,1,Health problems
+kitchen fire,3,Fire
+bleeding,2,Other
+IIdustrial accidents,1,Other
+food poisoning,3,Other
+sexual assault,1,Violence and Abuse
+mental health crisis,2,Health problems
+Smokb inhalation,2,Fire
+Epileptic crisis,1,Health problems
+Food poisoning,3,Other
+asthma,3,Health problems
+NatuIal disasters,1,Other
+DroVning,1,Other
+fall from angstrom height,1,Other
+suicide attempts,1,Violence and Abuse
+Bicycle acczdent,3,RTA
+domestic violence,1,Violence and Abuse
+fllergic reaction,2,Other
+Asthma,3,Health problems
+food poisoning,3,Other
+Allergic reaction,2,Other
+DrJwning,1,Other
+Cardiac arLest,1,Health problems
+Choking,2,Other
+Smoke inhalatiJn,2,Fire
+AsthLa,3,Health problems
+foreign object lodge inch the body,2,Other
+Asthma,3,Health problems
+submerge,1,Other
+Smoke inhalation,2,Fire
+Vomiting,3,Health problems
+Ahimal attack,1,Other
+Eye injQry,3,Other
+eye injury,3,Other
+Industrial accidents,1,Other
+Chest pain,1,Health problems
+building fire,1,Fire
+car collision,2,RTA
+Major road accideit,1,RTA
+eye injury,3,Other
+Food poisoning,3,Other
+Suicidal aJtempts,1,Violence and Abuse
+sexual assault,1,Violence and Abuse
+asthma,3,Health problems
+animal attack,1,Other
+IndustriSl accidents,1,Other
+fall from angstrom height,1,Other
+Quicidal attempts,1,Violence and Abuse
+submerge,1,Other
+unconscious_mind,2,Health problems
+Domestic violence,1,Violence and Abuse
+construction site incident,1,Other
+sexual assault,1,Violence and Abuse
+dizziness,3,Health problems
+mental health crisis,2,Health problems
+Fracture,2,Other
+Gunshot,1,Other
+cardiac apprehension,1,Health problems
+building fire,1,Fire
+foreign object lodge inch the body,2,Other
+SexCal assault,1,Violence and Abuse
+Epileptic crisis,1,Health problems
+natural catastrophe,1,Other
+Heart attack,1,Health problems
+bleeding,2,Other
+diarrhea,3,Health problems
+Smoke inhSlation,2,Fire
+Building fife,1,Fire
+eye injury,3,Other
+foreign object lodge inch the body,2,Other
+choking,2,Other
+animal attack,1,Other
+child injury,3,Other
+Bicxcle accident,3,RTA
+car crash,2,RTA
+kitchen fire,3,Fire
+Foreign object lodged in the kody,2,Other
+heart attack,1,Health problems
+natural catastrophe,1,Other
+slip and fall,3,Other
+The pain of labor,1,Health problems
+Smoke inhalation,2,Fire
+labor pain,1,Health problems
+sexual assault,1,Violence and Abuse
+submerge,1,Other
+cardiac apprehension,1,Health problems
+Fxts,2,Health problems
+Asthma,3,Health problems
+sexual assault,1,Violence and Abuse
+overdose,1,Other
+heart attack,1,Health problems
+suicide attempts,1,Violence and Abuse
+Heart attack,1,Health problems
+slip and fall,3,Other
+Dverdose,1,Other
+Smoke inhalation,2,Fire
+Dizzineks,3,Health problems
+Excessive bleeding,1,Other
+Dizziness,3,Health problems
+dizziness,3,Health problems
+Slip andVfall,3,Other
+Allergic reaction,2,Other
+UnIonscious,2,Health problems
+StAoke,1,Health problems
+Electric sQock,1,Other
+animal attack,1,Other
+Electrical shock,1,Other
+The pain of labor,1,Health problems
+Foreign body lodged in the body,2,Other
+child injury,3,Other
+hye injury,3,Other
+otomach pain,3,Health problems
+Heart attack,1,Health problems
+breathing trouble,2,Health problems
+Food poisoning,3,Other
+Hkad injury,2,Other
+UMconscious,2,Health problems
+Corrosive substanees,2,Other
+sprain,3,Other
+bicycle accident,3,RTA
+Severe burns,1,Other
+choking,2,Other
+car crash,2,RTA
+Eqcessive bleeding,1,Other
+domestic violence,1,Violence and Abuse
+car crash,2,RTA
+Natural disasters,1,Other
+Overdose,1,Other
+Severe Iurns,1,Other
+failing,3,Health problems
+building fire,1,Fire
+heart attack,1,Health problems
+PregEant and abdominal pain,3,Health problems
+smoke inhalation,2,Fire
+Mild vever,3,Health problems
+kitchen fire,3,Fire
+DizzinCss,3,Health problems
+stroke,1,Health problems
+Head injury,2,Other
+Pregnant and abdominal pain,3,Health problems
+Industrial accidents,1,Other
+sead injury,2,Other
+Dizziness,3,Health problems
+Wedkness,3,Health problems
+Overwose,1,Other
+stroke,1,Health problems
+Oonstruction site incident,1,Other
+Agrees,2,Health problems
+Deizure,1,Health problems
+severe Burns,1,Other
+allergic chemical_reaction,2,Other
+natural catastrophe,1,Other
+VomiZing,3,Health problems
+Fall froM a height,1,Other
+Diarrhea,3,Health problems
+DGowning,1,Other
+gunfire,1,Other
+Excessive bleeFing,1,Other
+submerge,1,Other
+thorax pain,1,Health problems
+Head injury,2,Other
+Cpest pain,1,Health problems
+animal attack,1,Other
+Dizziness,3,Health problems
+Stroku,1,Health problems
+bicycle accident,3,RTA
+vomit,3,Health problems
+major road accident,1,RTA
+Cardiac arrest,1,Health problems
+Severe fever,1,Health problems
+Stomach phin,3,Health problems
+Cardiac arrest,1,Health problems
+gunfire,1,Other
+Pregnant andpabdominal pain,3,Health problems
+Chest pain,1,Health problems
+vomit,3,Health problems
+smoke inhalation,2,Fire
+seizure,1,Health problems
+Bicycle accideLt,3,RTA
+Vomiting,3,Health problems
+Kinchen fire,3,Fire
+Foreign body lodged in the body,2,Other
+sexual assault,1,Violence and Abuse
+building fire,1,Fire
+Oild fever,3,Health problems
+submerge,1,Other
+Induswrial accidents,1,Other
+Bleeding,2,Other
+Vomitwng,3,Health problems
+kitchen fire,3,Fire
+FraHture,2,Other
+stroke,1,Health problems
+eye injury,3,Other
+Corrosive subsoances,2,Other
+stomach pain,3,Health problems
+submerge,1,Other
+suicide attempts,1,Violence and Abuse
+MHjor road accident,1,RTA
+Mildjfever,3,Health problems
+Electric sfock,1,Other
+Weakness,3,Health problems
+Szroke,1,Health problems
+body pain,3,Health problems
+Food ptisoning,3,Other
+Breathing difficulties,2,Health problems
+Epileptic crisis,1,Health problems
+fall from angstrom height,1,Other
+head injury,2,Other
+Severe burns,1,Other
+Construcdion site incident,1,Other
+SeveYe fever,1,Health problems
+overdose,1,Other
+kitchen fire,3,Fire
+Body pain,3,Health problems
+Sprain,3,Other
+fall from angstrom height,1,Other
+Car Pollision,2,RTA
+allergic chemical_reaction,2,Other
+PoisoBing,2,Other
+Ede injury,3,Other
+unconscious_mind,2,Health problems
+kitchen fire,3,Fire
+Head injury,2,Other
+mental health crisis,2,Health problems
+Gunsfot,1,Other
+Headminjury,2,Other
+child injury,3,Other
+stomach pain,3,Health problems
+Head injxry,2,Other
+Severe burns,1,Other
+Labor pahn,1,Health problems
+erowning,1,Other
+Slight fever,3,Health problems
+MajoT road accident,1,RTA
+fall from a height,1,Other
+domestic violence,1,Violence and Abuse
+Substances corrosives,2,Other
+SevereJburns,1,Other
+Greathing difficulties,2,Health problems
+Fracturx,2,Other
+Fold poisoning,3,Other
+child injury,3,Other
+Smoke inhalation,2,Fire
+diarrhea,3,Health problems
+stomach pain,3,Health problems
+construction site incident,1,Other
+DiarrheH,3,Health problems
+Bleeding,2,Other
+Foreign body lodged in the body,2,Other
+Chlking,2,Other
+stomach pain,3,Health problems
+poisoning,2,Other
+vomit,3,Health problems
+BuildinZ fire,1,Fire
+Labor pMin,1,Health problems
+SBomach pain,3,Health problems
+domestic violence,1,Violence and Abuse
+FrCcture,2,Other
+Food poisoning,3,Other
+Slipaand fall,3,Other
+StomaGh pain,3,Health problems
+foreign object lodge inch the body,2,Other
+major road accident,1,RTA
+Natural disasters,1,Other
+Major road accident,1,RTA
+stomach pain,3,Health problems
+diarrhea,3,Health problems
+Natural disasters,1,Other
+Labor paiH,1,Health problems
+Pregnant and abdominal pain,3,Health problems
+major road accident,1,RTA
+CRoking,2,Other
+sprain,3,Other
+kitchen fire,3,Fire
+The pain of labor,1,Health problems
+Allergic reaction,2,Other
+asthma,3,Health problems
+Poisoning,2,Other
+Substances corrosives,2,Other
+Gxcessive bleeding,1,Other
+animal attack,1,Other
+electric daze,1,Other
+Breathing difficulties,2,Health problems
+heart attack,1,Health problems
+animal attack,1,Other
+Drobning,1,Other
+Diarrhea,3,Health problems
+Chest pain,1,Health problems
+sexual assault,1,Violence and Abuse
+cardiac apprehension,1,Health problems
+sprain,3,Other
+dizziness,3,Health problems
+excessive bleeding,1,Other
+Mamor road accident,1,RTA
+LaborApain,1,Health problems
+natural catastrophe,1,Other
+pregnant and abdominal pain,3,Health problems
+Stroke,1,Health problems
+SlipZand fall,3,Other
+ExcDssive bleeding,1,Other
+Substances corrosives,2,Other
+car collision,2,RTA
+overdose,1,Other
+Head injury,2,Other
+stroke,1,Health problems
+fall from angstrom height,1,Other
+Fructure,2,Other
+Drowning,1,Other
+PoUsoning,2,Other
+Minoh injuries,3,Other
+corrosive substance,2,Other
+Mizd fever,3,Health problems
+AsthmN,3,Health problems
+fall from angstrom height,1,Other
+Milv fever,3,Health problems
+fracture,2,Other
+Gunshot,1,Other
+sexual assault,1,Violence and Abuse
+failing,3,Health problems
+Stomach paYn,3,Health problems
+Asthma,3,Health problems
+Body paTn,3,Health problems
+Epileptic crisis,1,Health problems
+natural catastrophe,1,Other
+building fire,1,Fire
+Major road accident,1,RTA
+animal attack,1,Other
+Stroke,1,Health problems
+fall from angstrom height,1,Other
+nlip and fall,3,Other
+vomit,3,Health problems
+CorCosive substances,2,Other
+submerge,1,Other
+zeizure,1,Health problems
+sprain,3,Other
+suicide attempts,1,Violence and Abuse
+SeveLe burns,1,Other
+kitchen fire,3,Fire
+foreign object lodge inch the body,2,Other
+kverdose,1,Other
+self-destructive attempt,1,Violence and Abuse
+Uwconscious,2,Health problems
+Cardilc arrest,1,Health problems
+Asthma,3,Health problems
+allergic chemical_reaction,2,Other
+Foreign body lodged in the body,2,Other
+DrowniMg,1,Other
+sexual assault,1,Violence and Abuse
+Excessive bleeXing,1,Other
+SpIain,3,Other
+Major road accident,1,RTA
+WeaknesL,3,Health problems
+fracture,2,Other
+pregnant and abdominal pain,3,Health problems
+dizziness,3,Health problems
+ConstructionSsite incident,1,Other
+food poisoning,3,Other
+Unconscious,2,Health problems
+Gueshot,1,Other
+Severe burns,1,Other
+Choking,2,Other
+Allergic reaction,2,Other
+cardiac apprehension,1,Health problems
+LaIor pain,1,Health problems
+MiNd fever,3,Health problems
+suicide attempts,1,Violence and Abuse
+industrial accident,1,Other
+Severe buWns,1,Other
+fit,2,Health problems
+Fall from a heigit,1,Other
+corrosive substance,2,Other
+slip and fall,3,Other
+Weakness,3,Health problems
+sexual assault,1,Violence and Abuse
+Asthma,3,Health problems
+Electric shock,1,Other
+PhVsical trauma,2,Other
+animal attack,1,Other
+domestic violence,1,Violence and Abuse
+industrial accident,1,Other
+food poisoning,3,Other
+UncPnscious,2,Health problems
+The pain of labor,1,Health problems
+Vomiting,3,Health problems
+slip and fall,3,Other
+Pregnant and abdominal pain,3,Health problems
+Weakness,3,Health problems
+bicycle accident,3,RTA
+Slight fever,3,Health problems
+fall from angstrom height,1,Other
+mental health crisis,2,Health problems
+BreathinI difficulties,2,Health problems
+CorAosive substances,2,Other
+Poisoning,2,Other
+DNowning,1,Other
+corrosive substance,2,Other
+Sexual assaklt,1,Violence and Abuse
+severe Burns,1,Other
+Fobeign object lodged in the body,2,Other
+electric daze,1,Other
+Overdose,1,Other
+Slight fever,3,Health problems
+Natural disastArs,1,Other
+Sjip and fall,3,Other
+fall from a height,1,Other
+Vomiting,3,Health problems
+excessive bleeding,1,Other
+Drowning,1,Other
+BreathiTg difficulties,2,Health problems
+overdose,1,Other
+sexual assault,1,Violence and Abuse
+choking,2,Other
+sexual assault,1,Violence and Abuse
+DiaJrhea,3,Health problems
+self-destructive attempt,1,Violence and Abuse
+Major road accidept,1,RTA
+Breathing difficulties,2,Health problems
+Breathing difficulties,2,Health problems
+Car colliZion,2,RTA
+CardiJc arrest,1,Health problems
+Bicycle accjdent,3,RTA
+Stomnch pain,3,Health problems
+Sprain,3,Other
+mild fever,3,Health problems
+Weakness,3,Health problems
+domestic violence,1,Violence and Abuse
+fall from a height,1,Other
+Chest paVn,1,Health problems
+Minor injcries,3,Other
+bicycle accident,3,RTA
+diarrhea,3,Health problems
+diarrhea,3,Health problems
+Mental healtI crisis,2,Health problems
+Choking,2,Other
+suicide attempts,1,Violence and Abuse
+Electrical shock,1,Other
+seizure,1,Health problems
+labor pain,1,Health problems
+Heart attack,1,Health problems
+Flacture,2,Other
+FoXd poisoning,3,Other
+poisoning,2,Other
+animal attack,1,Other
+physical injury,2,Other
+Unconscious,2,Health problems
+animal attack,1,Other
+SeXere fever,1,Health problems
+Unconscious,2,Health problems
+BicyclB accident,3,RTA
+KUtchen fire,3,Fire
+Diarrsea,3,Health problems
+SeizuJe,1,Health problems
+Overtose,1,Other
+thorax pain,1,Health problems
+mental health crisis,2,Health problems
+Domestic violence,1,Violence and Abuse
+bicycle accident,3,RTA
+kitchen fire,3,Fire
+BicyLle accident,3,RTA
+Stogach pain,3,Health problems
+Agrees,2,Health problems
+smoke inhalation,2,Fire
+mental health crisis,2,Health problems
+choking,2,Other
+Severe bucns,1,Other
+animal attack,1,Other
+sexual assault,1,Violence and Abuse
+Bteathing difficulties,2,Health problems
+HeaM injury,2,Other
+Sprain,3,Other
+natural catastrophe,1,Other
+Major road accident,1,RTA
+Cabdiac arrest,1,Health problems
+Foreign body lodged in the body,2,Other
+gunfire,1,Other
+Head injwry,2,Other
+fall from angstrom height,1,Other
+corrosive substance,2,Other
+bicycle accident,3,RTA
+fit,2,Health problems
+construction site incident,1,Other
+food poisoning,3,Other
+cardiac apprehension,1,Health problems
+mental health crisis,2,Health problems
+domestic violence,1,Violence and Abuse
+fracture,2,Other
+Cexual assault,1,Violence and Abuse
+Stroke,1,Health problems
+corrosive substance,2,Other
+submerge,1,Other
+Foreign body lodged in the body,2,Other
+Domestic violence,1,Violence and Abuse
+Corrosive substanceo,2,Other
+severe Burns,1,Other
+suicide attempts,1,Violence and Abuse
+Car collisisn,2,RTA
+stomach pain,3,Health problems
+Fall fros a height,1,Other
+Slip Qnd fall,3,Other
+kitchen fire,3,Fire
+Physical trauCa,2,Other
+Unconscious,2,Health problems
+foreign object lodge inch the body,2,Other
+head injury,2,Other
+Unconscious,2,Health problems
+Mild feSer,3,Health problems
+heart attack,1,Health problems
+asthma,3,Health problems
+bicycle accident,3,RTA
+Siroke,1,Health problems
+stomach pain,3,Health problems
+ELectric shock,1,Other
+mental health crisis,2,Health problems
+smoke inhalation,2,Fire
+Pregnant and abdominal pain,3,Health problems
+food poisoning,3,Other
+Electrical shock,1,Other
+VomitinM,3,Health problems
+submerge,1,Other
+Avthma,3,Health problems
+food poisoning,3,Other
+eeizure,1,Health problems
+Smoke inhalation,2,Fire
+animal attack,1,Other
+Poisoning,2,Other
+kitchen fire,3,Fire
+Allergic reaction,2,Other
+dizziness,3,Health problems
+bicycle accident,3,RTA
+Drowning,1,Other
+Head iijury,2,Other
+heart attack,1,Health problems
+Pregnant snd abdominal pain,3,Health problems
+AsXhma,3,Health problems
+Asthma,3,Health problems
+Drownsng,1,Other
+sexual assault,1,Violence and Abuse
+natural catastrophe,1,Other
+severe fever,1,Health problems
+DiaUrhea,3,Health problems
+StAoke,1,Health problems
+construction site incident,1,Other
+kitchen fire,3,Fire
+bicycle accident,3,RTA
+Slip rnd fall,3,Other
+asthma,3,Health problems
+BleTding,2,Other
+Heart attack,1,Health problems
+AsthmM,3,Health problems
+labor pain,1,Health problems
+Chest gain,1,Health problems
+major road accident,1,RTA
+Drowning,1,Other
+smoke inhalation,2,Fire
+Drowzing,1,Other
+overdose,1,Other
+kitchen fire,3,Fire
+breathing trouble,2,Health problems
+industrial accident,1,Other
+ChQking,2,Other
+MentHl health crisis,2,Health problems
+severe Burns,1,Other
+Cardiac arrest,1,Health problems
+food poisoning,3,Other
+OverdPse,1,Other
+SeizBre,1,Health problems
+Minor injuries,3,Other
+Cardiac arrest,1,Health problems
+Diarrhea,3,Health problems
+Kitchgn fire,3,Fire
+Domemtic violence,1,Violence and Abuse
+Fall from a heigZt,1,Other
+Fracture,2,Other
+Substances corrosives,2,Other
+Excessive Eleeding,1,Other
+eye injury,3,Other
+Pregnant atd abdominal pain,3,Health problems
+Domestic violeNce,1,Violence and Abuse
+electric daze,1,Other
+Smokeninhalation,2,Fire
+seizure,1,Health problems
+Agrees,2,Health problems
+Head injury,2,Other
+Overdose,1,Other
+poisoning,2,Other
+excessive bleeding,1,Other
+eye injury,3,Other
+choking,2,Other
+bicycle accident,3,RTA
+body pain,3,Health problems
+bicycle accident,3,RTA
+fall from a height,1,Other
+building fire,1,Fire
+Food poisoning,3,Other
+SeverX burns,1,Other
+Cardiac arrest,1,Health problems
+fracture,2,Other
+vomit,3,Health problems
+Heart attack,1,Health problems
+CJrdiac arrest,1,Health problems
+Natural disasters,1,Other
+electric daze,1,Other
+animal attack,1,Other
+stomach pain,3,Health problems
+fall from a height,1,Other
+StrokG,1,Health problems
+Major road accident,1,RTA
+animal attack,1,Other
+electric daze,1,Other
+building fire,1,Fire
+animal attack,1,Other
+building fire,1,Fire
+mental health crisis,2,Health problems
+Agrees,2,Health problems
+Fall from a heisht,1,Other
+car collision,2,RTA
+Epileptic crisis,1,Health problems
+bicycle accident,3,RTA
+The pain of labor,1,Health problems
+Natural disasters,1,Other
+building fire,1,Fire
+Lbbor pain,1,Health problems
+Sesere burns,1,Other
+Vomiting,3,Health problems
+Heart attacH,1,Health problems
+major road accident,1,RTA
+Poisoning,2,Other
+animal attack,1,Other
+animal attack,1,Other
+severe Burns,1,Other
+eye injury,3,Other
+Smoke inhalation,2,Fire
+Car coslision,2,RTA
+head injury,2,Other
+smoke inhalation,2,Fire
+cardiac apprehension,1,Health problems
+kitchen fire,3,Fire
+fall from angstrom height,1,Other
+AZlergic reaction,2,Other
+Fall from a Beight,1,Other
+electric daze,1,Other
+Industrial apcidents,1,Other
+gunfire,1,Other
+Lpbor pain,1,Health problems
+body pain,3,Health problems
+fracture,2,Other
+Physical trauma,2,Other
+self-destructive attempt,1,Violence and Abuse
+The pain of labor,1,Health problems
+Industrpal accidents,1,Other
