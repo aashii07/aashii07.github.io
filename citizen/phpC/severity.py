@@ -42,19 +42,19 @@ def preprocess(text):
 
 
 # Load the saved model from file
-with open("../../model1.pkl", "rb") as file:
+with open("citizen/phpC/model1.pkl", "rb") as file:
     model1 = pickle.load(file)
 
 # Load the CountVectorizer used during training
-with open("../../vectorizer1.pkl", "rb") as file:
+with open("citizen/phpC/vectorizer1.pkl", "rb") as file:
     vectorizer1 = pickle.load(file)
 
 # Load the saved model from file
-with open("../../model2.pkl", "rb") as file:
+with open("citizen/phpC/model2.pkl", "rb") as file:
     model2 = pickle.load(file)
 
 # Load the CountVectorizer used during training
-with open("../../vectorizer2.pkl", "rb") as file:
+with open("citizen/phpC/vectorizer2.pkl", "rb") as file:
     vectorizer2 = pickle.load(file)
 
 
