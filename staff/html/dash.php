@@ -272,7 +272,7 @@
 </div>
 <br><br><br><br><br>
 <div style="display: flex; justify-content: center;">
-    <iframe title="ml" width="90%" height="775" src="https://app.powerbi.com/reportEmbed?reportId=fc7fdbe0-4c43-4539-8b6b-bc332e4866b7&autoAuth=true&ctid=5a236243-d31a-49db-a7bb-8ff4bd42ea1a&filterPaneEnabled=false&navContentPaneEnabled=false" frameborder="0" allowFullScreen="true"></iframe>
+    <iframe title="ml" width="90.9%" height="910" src="https://app.powerbi.com/reportEmbed?reportId=fc7fdbe0-4c43-4539-8b6b-bc332e4866b7&autoAuth=true&ctid=5a236243-d31a-49db-a7bb-8ff4bd42ea1a&filterPaneEnabled=false&navContentPaneEnabled=false" frameborder="0" allowFullScreen="true"></iframe>
 </div>
 <br><br><br>
 </html>
