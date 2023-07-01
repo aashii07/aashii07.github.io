@@ -191,9 +191,7 @@
            
             font-size: 36px;
             color: white; /* Set the text color */
-
-            background-image: linear-gradient(45deg,red, teal);
-            /* Adjust spacing and alignment */
+            background: linear-gradient(to left, rgba(255, 0, 0, 0.7), rgba(0, 128, 128, 0.7)); /* Add a linear gradient background *//* Adjust spacing and alignment */
             margin: 0; /* Remove any margin */
             padding: 10px 0; /* Add padding to the top and bottom */
             text-align: center; /* Align the text to the center */

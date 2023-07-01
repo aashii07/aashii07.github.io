@@ -1,31 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Run Python File</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    /* CSS for the footer */
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 300px;
+      background-color: #f1f1f19b;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* CSS for the GIF animation */
+    .gif-animation {
+      position: relative;
+      animation: moveGif 5s linear infinite;
+    }
+
+    /* Keyframes for the GIF animation */
+    @keyframes moveGif {
+      0% { right: 100%; }
+      100% { right: -100%; }
+    }
+  </style>
+  <div class="footer">
+    <div class="gif-animation">
+      <img src="./a.gif" alt="Moving GIF">
+      <img src="./ambulance.gif" alt="Moving GIF">
+    </div>
+  </div>
 </head>
 <body>
-    <button id="runButton">Run Python File</button>
 
-    
+  <div class="footer">
+    <div class="gif-animation">
+      <img src="./a.gif" alt="Moving GIF">
+      <img src="./ambulance.gif" alt="Moving GIF">
+    </div>
+  </div>
 
-    <script>
-        $(document).ready(function() {
-            // Attach a click event listener to the button
-            $("#runButton").click(function() {
-                // Make an AJAX request to the Python file
-                $.ajax({
-                    url: "severityfull.py",
-                    type: "GET",  // or "POST" if needed
-                    success: function(response) {
-                        console.log(response);  // Handle the response as needed
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);  // Handle any errors
-                    }
-                });
-            });
-        });
-    </script>
+  <!-- Optional: JavaScript to control the animation -->
+  <script>
+    // You can add JavaScript code here to control the animation, if needed
+  </script>
 </body>
 </html>
