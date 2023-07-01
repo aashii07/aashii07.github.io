@@ -203,8 +203,6 @@
         <hr>
         <a href="EPhome.php" class="active">Home</a>
         <hr>
-        <a href="../html/Sdash.html">Dashboard</a>
-        <hr>
         <a href="logout.php">Log Out</a>
         <hr>
     </div>

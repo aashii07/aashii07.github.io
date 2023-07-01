@@ -153,7 +153,7 @@
         }
 
         th, td {
-            padding: 8px;
+            padding: 15px;
             text-align: center;
             border: 1px solid teal;
         }
@@ -260,6 +260,34 @@
                 <span class="firstname">Hello '.$n.' &#x1F600;</span>
             </div> <br>';
 
+            $user = "SELECT *
+                        FROM hospital";
+            $result = mysqli_query($db, $user);?>
+
+            <br><br><br><div style="display: flex; justify-content: center;">
+            <table style="border: 3px solid red;">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Contact Number</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php while ($h = mysqli_fetch_assoc($result)) : ?>
+                    <tr>
+                    <td><?php echo $h['name']; ?></td>
+                    <td><?php echo $h['city']; ?></td>
+                    <td>
+                        <a href="tel:<?php echo $h['phonenum']; ?>" style="text-decoration: none;color: darkblue"><?php echo $h['phonenum']; ?></a>
+                    </td>
+                    </tr>
+                <?php endwhile; ?>
+                </tbody>
+            </table>
+            </div>
+                        
+        <?php
         
     }
 ?>
