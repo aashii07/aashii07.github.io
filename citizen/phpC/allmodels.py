@@ -57,7 +57,8 @@ def preprocess(text):
 # Load dataset
 data = pd.read_csv("augmented_data.csv")
 
-target = "Category"
+target = "Severity"
+#target = "Category"
 
 # Preprocess the data
 data['Description'] = data['Description'].apply(preprocess)
@@ -85,7 +86,7 @@ with open(vectorizer_filename, "wb") as file:
 
 models = [
     MultinomialNB(),
-    KNeighborsClassifier(),
+    #KNeighborsClassifier(),
     LogisticRegression(),
     SVC(),
     DecisionTreeClassifier(),
