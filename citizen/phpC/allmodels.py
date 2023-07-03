@@ -20,6 +20,7 @@ from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import accuracy_score
 
+
 nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
@@ -56,6 +57,8 @@ def preprocess(text):
 # Load dataset
 data = pd.read_csv("augmented_data.csv")
 
+target = "Category"
+
 # Preprocess the data
 data['Description'] = data['Description'].apply(preprocess)
 
@@ -67,7 +70,7 @@ train_data = train_data.drop_duplicates()
 
 # Separate input features and target variable for training
 X_train = train_data["Description"]
-y_train = train_data["Severity"]
+y_train = train_data[target]
 
 # Create a CountVectorizer object
 vectorizer = CountVectorizer()
@@ -87,36 +90,20 @@ models = [
     SVC(),
     DecisionTreeClassifier(),
     RandomForestClassifier(),
-    GradientBoostingClassifier(),
-    MLPClassifier(),
-    AdaBoostClassifier(),
-    LinearSVC(),
-    SGDClassifier(),
-    RidgeClassifier()
-
-]
-
-model_names = [
-    "Multinomial Naive Bayes",
-    "K Nearest Neighbors",
-    "Logistic Regression",
-    "Support Vector Machine",
-    "Decision Tree",
-    "Random Forest",
-    "Gradient Boosting",
-    "Multilayer Perceptron",
-    "AdaBoost",
-    "Linear SVM",
-    "SGD Classifier",
-    "Ridge Classifier"
+    # GradientBoostingClassifier(),
+    # MLPClassifier(),
+    # AdaBoostClassifier(),
+    # LinearSVC(),
+    # SGDClassifier(),
+    # RidgeClassifier()
 ]
 
 # Train and evaluate models
-for model, model_name in zip(models, model_names):
+for model in models:
     model.fit(X_train, y_train)
 
     # Save the trained model to a file
-    model_filename = f"{model_name}.pkl"
+    model_filename = f"{type(model).__name__}.pkl"
     with open(model_filename, "wb") as file:
         pickle.dump(model, file)
 
@@ -131,18 +118,19 @@ for model, model_name in zip(models, model_names):
     predicted_severity_test = loaded_model.predict(X_test)
 
     # Calculate accuracy for test data
-    accuracy_test = accuracy_score(test_data["Severity"], predicted_severity_test)
+    accuracy_test = accuracy_score(test_data[target], predicted_severity_test)
 
     # Vectorize the train data
-    X_train_vectorized = vectorizer.transform(train_data["Description"])
+    #X_train = vectorizer.transform(train_data["Description"])
 
     # Make predictions on the train data
-    predicted_severity_train = loaded_model.predict(X_train_vectorized)
+    #predicted_severity_train = loaded_model.predict(X_train)
 
     # Calculate accuracy for train data
-    accuracy_train = accuracy_score(train_data["Severity"], predicted_severity_train)
+    #accuracy_train = accuracy_score(train_data[target], predicted_severity_train)
 
-    print("Model:", model_name)
+    print("Model:", model)
     print("Accuracy for test data:", accuracy_test)
-    print("Accuracy for train data:", accuracy_train)
+    #print("Accuracy for train data:", accuracy_train)
     print()
+
