@@ -19,6 +19,7 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import accuracy_score
+from tabulate import tabulate
 
 
 nltk.download('punkt')
@@ -99,8 +100,19 @@ models = [
     # RidgeClassifier()
 ]
 
+model_names = [
+    "Multinomial Naïve Bayes",
+    "Logistic Regression",
+    "Support Vector Classifier",
+    "Decision Tree",
+    "Random Forest",
+
+]
+
+table_data = []
+
 # Train and evaluate models
-for model in models:
+for model, model_name in zip(models, model_names):
     model.fit(X_train, y_train)
 
     # Save the trained model to a file
@@ -130,8 +142,12 @@ for model in models:
     # Calculate accuracy for train data
     #accuracy_train = accuracy_score(train_data[target], predicted_severity_train)
 
-    print("Model:", model)
-    print("Accuracy for test data:", accuracy_test)
-    #print("Accuracy for train data:", accuracy_train)
-    print()
+    # Display model name without parentheses and formatted accuracy
+    accuracy_formatted = "{:.{}f}".format(accuracy_test, 15)  # Format accuracy with desired decimal places
+    table_data.append([model_name, model, accuracy_formatted])
+
+# Print the table
+table_headers = ["Model", "Function", "Accuracy"]
+table = tabulate(table_data, headers=table_headers, tablefmt="grid", floatfmt=".{}f".format(15))
+print(table)
 
