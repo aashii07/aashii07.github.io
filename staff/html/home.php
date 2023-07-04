@@ -382,19 +382,19 @@
   
     <div class="footer-icons">
         <!-- Phone icon with number -->
-        <a href="tel:123456789"><i class="fas fa-phone"></i></a>
+        <a href="tel:57647416" target="_blank"><i class="fas fa-phone"></i></a>
         
         <!-- Email icon with email address -->
-        <a href="mailto:example@example.com"><i class="fas fa-envelope"></i></a>
+        <a href="mailto:assist@medrush.com" target="_blank"><i class="fas fa-envelope"></i></a>
         
         <!-- Facebook icon with link to Facebook page -->
-        <a href="https://www.facebook.com/yourpage"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.facebook.com/medrush" target="_blank"><i class="fab fa-facebook"></i></a>
         
         <!-- Instagram icon with link to Instagram profile -->
-        <a href="https://www.instagram.com/yourprofile"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.instagram.com/medrush" target="_blank"><i class="fab fa-instagram"></i></a>
         
         <!-- YouTube icon with link to YouTube channel -->
-        <a href="https://www.youtube.com/yourchannel"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.youtube.com/medrush" target="_blank"><i class="fab fa-youtube"></i></a>
     </div>
 
     <p class="copyright">

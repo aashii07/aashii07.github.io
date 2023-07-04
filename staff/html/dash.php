@@ -286,8 +286,122 @@
 <div style="display: flex; justify-content: center;">
     <iframe title="ml" width="90.9%" height="910" src="https://app.powerbi.com/reportEmbed?reportId=fc7fdbe0-4c43-4539-8b6b-bc332e4866b7&autoAuth=true&ctid=5a236243-d31a-49db-a7bb-8ff4bd42ea1a&filterPaneEnabled=false&navContentPaneEnabled=false" frameborder="0" allowFullScreen="true"></iframe>
 </div>
-<br><br><br>
+<br>
 </html>
+
+
+<title>MedRush</title>
+<style>
+    /* CSS for the footer */
+    .footer {
+      position: relative;
+      left: 0;
+      bottom: 0;
+      top: 0;;
+      width: 100%;
+      height: 150px;
+      background-color: rgb(150, 200, 200, 0);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .footer1 {
+      position: relative;
+      left: 0;
+      bottom: 0;
+      top: 0;
+      width: 100%;
+      height: 120px;
+      border: 1px solid rgb(150, 200, 200, 0.3);
+      background: linear-gradient(to left, rgba(255, 0, 0, 0.5), rgba(0, 128, 128, 0.5)); /* Add a linear gradient background */
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* CSS for the GIF animation */
+    .gif-animation {
+      position: relative;
+      animation: moveGif 4s linear infinite;
+      margin-left: 1px;
+    }
+   
+
+    /* Keyframes for the GIF animation */
+    @keyframes moveGif {
+      0% { right: 100%; }
+      100% { right: -100%; }
+    }
+
+    /* CSS for the icon links */
+    .footer-icons {
+        display: flex; /* Display the icons in a row */
+        justify-content: center; /* Center the icons horizontally */
+        align-items: center; /* Center the icons vertically */
+        padding: 10px; /* Add some space around the icons */
+    }
+
+    .footer-icons a {
+        color: rgb(150, 200, 200, 0.5);
+        margin: 10px; /* Increase or decrease the margin as needed */
+        font-size: 30px; /* Adjust the font size */
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 20px;
+        
+        transition: color 0.3s ease; /* Add a smooth transition effect on hover */
+    }
+
+    .footer-icons a:hover {
+        color: rgb(150, 250, 250); /* Change the color on hover */
+    }
+
+    .footer1 .copyright {
+        color: rgb(150, 200, 200, 0.5);
+        font-size: 14px;
+        margin-top: 10px; /* Add some space between the icons and the copyright notice */
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  
+<div class="footer">
+    <div class="gif-animation">
+        <img src="./a.gif" alt="Moving GIF">
+        <span style="margin-right: 1000px;"></span>
+        <img src="./a.gif" alt="Moving GIF">
+      
+    </div>
+</div>
+
+
+
+
+<div class="footer1">
+  
+    <div class="footer-icons">
+        <!-- Phone icon with number -->
+        <a href="tel:57647416" target="_blank"><i class="fas fa-phone"></i></a>
+        
+        <!-- Email icon with email address -->
+        <a href="mailto:assist@medrush.com" target="_blank"><i class="fas fa-envelope"></i></a>
+        
+        <!-- Facebook icon with link to Facebook page -->
+        <a href="https://www.facebook.com/medrush" target="_blank"><i class="fab fa-facebook"></i></a>
+        
+        <!-- Instagram icon with link to Instagram profile -->
+        <a href="https://www.instagram.com/medrush" target="_blank"><i class="fab fa-instagram"></i></a>
+        
+        <!-- YouTube icon with link to YouTube channel -->
+        <a href="https://www.youtube.com/medrush" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <p class="copyright">
+        &copy;2023 MedRush | All Rights Reserved
+    </p>
+
+</div>
+
+
 
 
 
