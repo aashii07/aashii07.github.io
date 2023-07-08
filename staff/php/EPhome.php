@@ -311,7 +311,9 @@
         $u = "SELECT *
                     FROM incident_staff s
                     JOIN incident i ON i.id = s.incident_id
-                    WHERE (i.status = 'dispatched' OR i.status = 'resolving') AND s.staff_id='$idS'";
+                    WHERE (i.status = 'dispatched' OR i.status = 'resolving') AND s.staff_id='$idS'
+                    ORDER BY s.id DESC
+                    LIMIT 1";
 
             $r = mysqli_query($db, $u);
             $r1 = mysqli_fetch_assoc($r);
@@ -342,10 +344,9 @@
                 // Disable ONLY_FULL_GROUP_BY mode for the current session
                 mysqli_query($db, "SET SESSION sql_mode = ''");
 
-                $query = "SELECT s.incident_id, i.status, i.description
-                            FROM incident_staff s
-                            JOIN incident i ON i.id = s.incident_id
-                            WHERE (i.status = 'dispatched' OR i.status = 'resolving')";
+                $query = "SELECT *
+                            FROM incident
+                            WHERE id= '$Iid' ";
                 $result = mysqli_query($db, $query);
                 $row = mysqli_fetch_assoc($result);
                 
@@ -353,7 +354,7 @@
                 if($row){
 
                     
-                    $id = $row['incident_id'];
+                    $id = $row['id'];
                     $status = $row['status'];
                     $desc = $row['description'];
                     
