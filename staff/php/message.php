@@ -12,7 +12,7 @@
     .message {
       width: 400px;
       padding: 20px;
-      background-color: #f9f9f9;
+      background-color: rgb(150, 200, 200);
       border-radius: 10px;
       position: relative;
       margin: 50px auto;
@@ -41,7 +41,7 @@
     }
 
     p {
-      color: #666;
+      color: #595E60;
       font-size: 16px;
       line-height: 1.4;
     }
