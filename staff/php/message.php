@@ -46,13 +46,14 @@
       line-height: 1.4;
     }
 
-    .bc {
+    .button-container {
       text-align: right;
-      margin-top: 20px;
+      margin-top: 30px;
       margin-right: 20px;
+      display: flex;
     }
 
-    .bc button {
+    .button-container button {
       align-items: center;
       background-image: linear-gradient(45deg,red, teal);
       border: 0;
@@ -64,7 +65,7 @@
       font-family: Phantomsans, sans-serif;
       font-size: 16px; /* Updated font size */
       justify-content: center;
-      line-height: 1em;
+      line-height: 2.5em;
       width: 120px; /* Updated width */
       padding: 2.5px; /* Updated padding */
       text-decoration: none;
@@ -74,32 +75,23 @@
       white-space: nowrap;
       cursor: pointer;
       margin-left: 260px;
-      margin-top: 30px;
+     
+      
     }
 
-    .bc button:hover,
-    .bc button:active {
-      outline: 0;
+    .button-container button:hover,
+    .button-container button:active {
+      background-image: linear-gradient(45deg,teal, red);
     }
 
-    .bc button span{
-      background-color: rgb(5, 6, 45);
-      padding: 12px; /* Updated padding */
-      border-radius: 6px;
-      width: 100px;
-      height: 20px;
-      transition: 300ms;
-    }
-
-    .bc button:hover span{
-      background: none;
-    }
+   
 
     hr{
         background-image: linear-gradient(to right, red, teal); /* Replace "red" and "blue" with your desired colors */
         height: 2px; /* Adjust the height of the hr element as needed */
         border: none;
     }
+    
   </style>
 </head>
 <body>

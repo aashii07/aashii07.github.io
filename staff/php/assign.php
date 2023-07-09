@@ -503,7 +503,7 @@ SAMU IMS Team';
                                 $msg = '<h2>Resource Alert<hr></h2>';
                                 $msg .= '<p>No hospital has the required resources right now. <br>Do you want to assign an ambulance?</p>';
                                 $msg .= '<div class="button-container">';
-                                $msg .= '<button onclick="window.location.href=\'ambu.php?id='. $id .'\'">Yes</button>';
+                                $msg .= '<button onclick="window.location.href=\'ambu.php?id='. $id .'\'" style="margin-left: 150px;">Yes</button>';
                                 $msg .= '<button onclick="window.location.href=\'priority.php\'" style="margin-left: 15px;">No</button>';
                                 $msg .= '</div>';
                                 generateMessageBox($msg);
