@@ -280,15 +280,26 @@ if ($db->connect_error) {
                         $co = "SELECT id FROM control_officer WHERE email='$CO' LIMIT 1";
                         $result = mysqli_query($db, $co);
                         $co = mysqli_fetch_assoc($result);
-                        $coID = $co["id"];
+                        if($co["id"]!=""){
+
+                                $coID = $co["id"];
+                        }
 
                         date_default_timezone_set("Indian/Mauritius");
                         $dispatch = date("Y-m-d H:i:s");
 
-                        $query = "UPDATE incident
-                        SET status = 'dispatched', dispatched_datetime = '$dispatch', hospital_id = '$hospitalID', co_id = '$coID', vehicle_id = '$vehID'
-                        WHERE id = $id";
-                        mysqli_query($db, $query);
+                        if($co["id"]!=""){
+                                $query = "UPDATE incident
+                                SET status = 'dispatched', dispatched_datetime = '$dispatch', hospital_id = '$hospitalID', co_id = '$coID', vehicle_id = '$vehID'
+                                WHERE id = $id";
+                                mysqli_query($db, $query);
+                        }
+                        else{
+                                $query = "UPDATE incident
+                                SET status = 'dispatched', dispatched_datetime = '$dispatch', hospital_id = '$hospitalID', vehicle_id = '$vehID'
+                                WHERE id = $id";
+                                mysqli_query($db, $query);
+                        }
 
 
 
