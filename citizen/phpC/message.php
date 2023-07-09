@@ -113,4 +113,5 @@
 
  
 </body>
+<title>MedRush</title>
 </html>

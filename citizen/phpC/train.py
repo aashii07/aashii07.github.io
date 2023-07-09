@@ -1,7 +1,7 @@
 import pandas as pd, nltk, re, string, pickle
 
 from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
@@ -84,7 +84,7 @@ with open("vectorizer1.pkl", "wb") as file:
     pickle.dump(vectorizer1, file)
 
 # Train the model
-model1 = KNeighborsClassifier()
+model1 = SVC()
 model1.fit(X_train1, y_train1)
 
 # Save the trained model to a file
@@ -154,7 +154,7 @@ with open("vectorizer2.pkl", "wb") as file:
     pickle.dump(vectorizer2, file)
 
 # Train the model
-model2 = KNeighborsClassifier()
+model2 = SVC()
 model2.fit(X_train2, y_train2)
 
 # Save the trained model to a file
