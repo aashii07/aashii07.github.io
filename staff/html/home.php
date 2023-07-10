@@ -204,7 +204,7 @@
         <hr>
         <a href="home.php" class="active">Home</a>
         <hr>
-        <a href="../php/priority.php">Resource Management</a>
+        <a href="../php/priority.php">Resource Allocation</a>
         <hr>
         <a href="form.php">Incident Reporting</a>
         <hr>
