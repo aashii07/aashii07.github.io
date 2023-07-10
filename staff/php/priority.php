@@ -408,7 +408,7 @@
                     $msg = '<h2>No Incident<hr></h2>';
                     $msg .= '<p>There is no incident to be assigned yet. Please come back later.</p>';
                     $msg .= '<div class="button-container">';
-                    $msg .= '<button onclick="window.location.href=\'../html/home.html\'">Close</button>';
+                    $msg .= '<button onclick="window.location.href=\'../html/home.html\' "style="margin-left: 110px; width:120px">Close</button>';
                     $msg .= '</div>';
                     generateMessageBox($msg);
                 }
