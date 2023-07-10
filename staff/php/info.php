@@ -28,7 +28,6 @@
             height: 43px;
             width: 100%;
             background-color: rgb(150, 200, 200, 0.2);
-            
         }
 
         .menu-icon {
@@ -202,17 +201,20 @@
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <hr>
-        <a href="Uhome.php" class="active">Home</a>
+        <a href="EPhome.php" class="active">Home</a>
         <hr>
-        <a href="../php/Uscheduling.php">Staff Scheduling</a>
-        <hr>
-        <a href="../php/UselectS.php">Remove Staff</a>
-        <hr>
-        <a href="../php/logout.php">Log Out</a>
+        <a href="logout.php">Log Out</a>
         <hr>
     </div>
 
 
+   
+
+    
+
+
+
+    
    
 
 
@@ -232,7 +234,7 @@
     // Start the session
     //session_start();
     $_SESSION['schedule']="0";
-    require_once('../php/Ushift.php');
+    require_once('Ushift.php');
     
 
     //DB connection
@@ -248,9 +250,10 @@
                     WHERE email='$staff'";
         $result = mysqli_query($db, $user);
         $staff = mysqli_fetch_assoc($result);
-        $id = $staff['id'];
+        $idS = $staff['id'];
         $status = $staff['status'];
         $n = $staff['firstname'];
+        $hos = $staff['hospital_id'];
 
         echo '<br>
             <div class="menu-box">
@@ -287,7 +290,7 @@
         if($status=="break"){
 
             echo '<form method="POST" action="../php/stavailable.php">';
-            echo '<input type="hidden" name="id" value="' . $id . '">';
+            echo '<input type="hidden" name="id" value="' . $idS . '">';
             echo '<div style="display: flex; justify-content: flex-end; margin-right:1%">';
             echo '<button class="call-button">I am on break</button>';
             echo '</div>';
@@ -296,7 +299,7 @@
         else if($status=="available"){
 
             echo '<form method="POST" action="../php/break.php">';
-            echo '<input type="hidden" name="id" value="' . $id . '">';
+            echo '<input type="hidden" name="id" value="' . $idS . '">';
             echo '<div style="display: flex; justify-content: flex-end; margin-right:1%">';
             echo '<button class="call-button">I am on duty</button>';
             echo '</div>';
@@ -304,103 +307,13 @@
 
         }
         
-        
 
-        
-        
-
-        echo "<br><br>";
-        $currentDate = date('Y-m-d');  // Get the current date in 'YYYY-MM-DD' format
-        //$weekStartDate = date('Y-m-d', strtotime("last Monday", strtotime($currentDate))); // Get the week start date
-
-        $weekStartDate = date('Y-m-d', strtotime("this Monday")); // Get the week start date
-
-        // Generate the week
-        $week = array();
-        for ($i = 0; $i < 7; $i++) {
-            $day = date('Y-m-d', strtotime("+$i days", strtotime($weekStartDate)));
-            $dayName = date('D', strtotime($day)); // Get the day name
-    
-            $week[$day] = $dayName;
-        }
-
-        // Print the week
-        echo "<table style='margin: 0 auto;' id='grid-table'>";
-
-        foreach ($week as $day => $dayName) {
-            $q = "SELECT * FROM staff_schedule
-                WHERE staff_id='$id' AND date='$day'";
-            $r = mysqli_query($db, $q);
-            $row = mysqli_fetch_assoc($r);
-            if($row){
-
-                echo "<th>$dayName<br><span style='font-size: 13px; font-weight: normal;'>($day)</span></th>";
-            
-            }
-            
-        }
-        echo '<tr>';
-        
-        
-
-        foreach ($week as $day => $dayName) {
-            $q = "SELECT * FROM staff_schedule
-                WHERE staff_id='$id' AND date='$day'";
-            $r = mysqli_query($db, $q);
-            $row = mysqli_fetch_assoc($r);
-            if($row){
-
-               
-
-                $shift = $row['shift'];
-                $S = "";
-                if ($shift == "d") {
-                    $S = "Day";
-                } else if ($shift == "dn") {
-                    $S = "Day + Night";
-                } else if ($shift == "n") {
-                    $S = "Night";
-                } else if ($shift == "o") {
-                    $S = "Off Duty";
-                }
-                
-            
-                
-                echo '<td>' . $S . '</td>';
-            }
-            
-        }
-
-        echo '</tr>';
-        echo '</table>';
-        echo '<br>';
-
-        echo "<div style='text-align: center; color:rgb(190, 200, 200)'>";
-        echo "For any request or issue concerning your working shift, please ";
-        $q = "SELECT * FROM samu_staff
-        WHERE role='u'";
-        $r = mysqli_query($db, $q);
-        $row = mysqli_fetch_assoc($r);
-        $email = $row['email'];
-        $message = "mail us";
-        $link = "<a href='mailto:$email'>$message</a>";
-        echo $link;
-        echo "</div><br>";
-
-            
-            
-
-            
-
-            
-
-       
-
-            
-
-            
-
-        
+        $user = "SELECT *
+                    FROM samu_staff
+                    WHERE email='$staff'";
+        $result = mysqli_query($db, $user);
+        $staff = mysqli_fetch_assoc($result);
+        $idS = $staff['id'];
 
         
        
@@ -518,7 +431,6 @@
     </p>
 
 </div>
-
 
 
 

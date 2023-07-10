@@ -203,6 +203,8 @@
         <hr>
         <a href="EPhome.php" class="active">Home</a>
         <hr>
+        <a href="info.php">Incident Info</a>
+        <hr>
         <a href="logout.php">Log Out</a>
         <hr>
     </div>
@@ -398,6 +400,7 @@
            
        
         
+        echo "<br><br>";
 
         $currentDate = date('Y-m-d');  // Get the current date in 'YYYY-MM-DD' format
         //$weekStartDate = date('Y-m-d', strtotime("last Monday", strtotime($currentDate))); // Get the week start date
