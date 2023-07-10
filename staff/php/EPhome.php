@@ -400,7 +400,9 @@
         
 
         $currentDate = date('Y-m-d');  // Get the current date in 'YYYY-MM-DD' format
-        $weekStartDate = date('Y-m-d', strtotime("last Monday", strtotime($currentDate))); // Get the week start date
+        //$weekStartDate = date('Y-m-d', strtotime("last Monday", strtotime($currentDate))); // Get the week start date
+
+        $weekStartDate = date('Y-m-d', strtotime("this Monday")); // Get the week start date
 
         // Generate the week
         $week = array();
