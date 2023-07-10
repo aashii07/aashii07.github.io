@@ -63,7 +63,6 @@ if ($db->connect_error) {
                                                         AND status = 'available'
                                                 GROUP BY hospital_id
                                                 HAVING COUNT(DISTINCT role) = 2
-                                                LIMIT 1
                                         ) s ON h.id = s.hospital_id
                                         JOIN vehicle v ON h.id = v.hospital_id
                                         WHERE v.type = 'a' AND v.status = 'available'
@@ -152,7 +151,6 @@ if ($db->connect_error) {
                                                 GROUP BY hospital_id
                                                 HAVING COUNT(DISTINCT role) = 3
                                                         AND COUNT(CASE WHEN role = 'n' THEN 1 END) >= 2
-                                                LIMIT 1
                                         ) s ON h.id = s.hospital_id
                                         JOIN vehicle v ON h.id = v.hospital_id
                                         WHERE v.type = 's' AND v.status = 'available'
