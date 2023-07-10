@@ -149,6 +149,8 @@
         table {
             border-collapse: collapse;
             background-color: rgb(150, 200, 200, 0.7);
+            margin: 0 auto;
+
         }
 
         th, td {
@@ -202,6 +204,8 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <hr>
         <a href="EPhome.php" class="active">Home</a>
+        <hr>
+        <a href="info.php" >Incident Info</a>
         <hr>
         <a href="logout.php">Log Out</a>
         <hr>
@@ -306,21 +310,71 @@
             echo '</form><br>';
 
         }
-        
-
         $user = "SELECT *
-                    FROM samu_staff
-                    WHERE email='$staff'";
+        FROM incident
+        WHERE hospital_id='$hos' AND status!='closed'";
         $result = mysqli_query($db, $user);
-        $staff = mysqli_fetch_assoc($result);
-        $idS = $staff['id'];
+
+        echo '<table>';
+        echo '<tr><th>Incident ID</th><th>Status</th><th>Details</th></tr>';
+
+        while($staff = mysqli_fetch_assoc($result)){
+            $Iid = $staff['id'];
+            $q = "SELECT *
+                    FROM incident_staff
+                    WHERE incident_id='$Iid'";
+            $r = mysqli_query($db, $q);
+
+            echo '<tr>';
+            echo '<td>' . $Iid . '</td>';
+            echo '<td>' . $staff['status'] . '</td>';
+            echo '<td><button class="call-button" onclick="toggleDetails(' . $Iid . ') "style=" width:140px; font-size:14px">Show staff details</button></td>';
+            echo '</tr>';
+            echo '<tr id="details-' . $Iid . '" style="display: none;"><td colspan="3">';
+            echo '<table>';
+            echo '<tr><th>Name</th><th>Email</th><th>Phone Number</th></tr>';
+
+            while($ans = mysqli_fetch_assoc($r)){
+                $Sid = $ans['staff_id'];
+                $q1 = "SELECT *
+                        FROM samu_staff
+                        WHERE id='$Sid'";
+                $r1 = mysqli_query($db, $q1);
+                $ans1 = mysqli_fetch_assoc($r1);
+
+                echo '<tr>';
+                echo '<td>' . $ans1['firstname']." ".$ans1['lastname'] . '</td>';
+                echo '<td><a href="tel:' . $ans1['phonenum'] . '" style="text-decoration: none; color: darkblue;">' . $ans1['phonenum'] . '</a></td>';
+
+echo '<td><a href="mailto:' . $ans1['email'] . '" style="text-decoration: none; color: darkblue;">' . $ans1['email'] . '</a></td>';
+
+                echo '</tr>';
+            }
+
+            echo '</table>';
+            echo '</td></tr>';
+        }
+
+        echo '</table>';
+
+        echo '<script>';
+        echo 'function toggleDetails(incidentId) {';
+        echo '    var detailsRow = document.getElementById("details-" + incidentId);';
+        echo '    if (detailsRow.style.display === "none") {';
+        echo '        detailsRow.style.display = "table-row";';
+        echo '    } else {';
+        echo '        detailsRow.style.display = "none";';
+        echo '    }';
+        echo '}';
+        echo '</script>';
+
 
         
        
         
     }
 ?>
-
+<br>
 <title>MedRush</title>
 <style>
     /* CSS for the footer */
